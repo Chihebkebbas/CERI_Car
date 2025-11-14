@@ -1,37 +1,216 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Acceuil</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CERI Car - Covoiturage</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="home.css">
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <p class="logo">CERI <em>Car</em></p>
-        <ul class="nav-items">
-            <li>Acceuil</li>
-            <li>Villes Populaires</li>
-            <li>À Propos</li>
-            <li>Contact</li>
-        </ul>
+        <p class="logo">CERI <span>Car</span></p>
+        <nav>
+            <ul class="nav-items">
+                <li class="active"><a href="#accueil">Accueil</a></li>
+                <li><a href="#villes">Villes Populaires</a></li>
+                <li><a href="#apropos">À Propos</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
         <div class="right-nav">
-            <a href="#">Créer un compte</a>
-            <button class="primary-button">
-                Se Connecter
-            </button>
+            <a href="#" class="btn-outline">Créer un compte</a>
+            <button class="primary-button">Se Connecter</button>
         </div>
     </header>
-    <section class="hero">
-        <div class="hero-text">
-            <p class="hero-ticket">Avec CERI Car :</p>
-            <h1>Partage La Route, Partage Les Frais, Partage Le Moment.</h1>
-            <p>Voyage moins cher, plus écologique et plus convivial. Rejoins des milliers de conducteurs et passagers près de chez toi.</p>
-        </div>
-        <img src="images/hero-img.jpg" alt="Image de l'arc de triomph">
-        <div class="search-container">
-            <div class="search-container-item">
 
+    <!-- Section Hero -->
+    <section class="hero" id="accueil">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-ticket">Avec CERI Car :</p>
+                <h1>Partage La Route, Partage Les Frais, Partage Le Moment.</h1>
+                <p>Voyage moins cher, plus écologique et plus convivial. Rejoins des milliers de conducteurs et passagers près de chez toi.</p>
+            </div>
+            
+            <div class="search-container">
+                <div class="search-container-item">
+                    <img width="50" height="50" src="https://img.icons8.com/ios/50/sent--v1.png" alt="départ">
+                    <div class="search-container-item-text">
+                        <input type="text" placeholder="Départ">
+                        <p>Sélectionnez votre ville de départ</p>
+                    </div>
+                </div>
+                <div class="search-container-item">
+                    <img width="50" height="50" src="https://img.icons8.com/ios/50/address--v1.png" alt="arrivée">
+                    <div class="search-container-item-text">
+                        <input type="text" placeholder="Arrivée">
+                        <p>Sélectionnez votre ville d'arrivée</p>
+                    </div>
+                </div>
+                <div class="search-container-item">
+                    <img width="48" height="48" src="https://img.icons8.com/parakeet-line/48/person-male.png" alt="passagers">
+                    <div class="search-container-item-text">
+                        <p class="passagers-number"><em id="passagers-number">1</em> Passager</p>
+                        <p>Ajouter un voyageur</p>
+                    </div>
+                </div>
+                <button class="search-icon">
+                    <img width="48" height="48" src="https://img.icons8.com/fluency-systems-filled/48/search.png" alt="rechercher">
+                </button>
+            </div>
+        </div>
+        
+        <div class="hero-image">
+            <img src="images/hero-img.jpg" alt="Arc de Triomphe" onerror="this.src='https://images.unsplash.com/photo-1431274172761-fca41d930114?w=600&h=400&fit=crop'">
+        </div>
+    </section>
+
+    <!-- Section Comment ça marche -->
+    <section class="how-it-works">
+        <div class="text">
+            <h2>Comment ça marche ?</h2>
+            <p>Trouvez, partagez et voyagez ensemble en toute simplicité avec CERI Car.</p>
+        </div>
+        <div class="how-items">
+            <div class="how-item">
+                <div class="how-item-icon">
+                    <img width="48" height="48" src="https://img.icons8.com/parakeet-line/48/person-male.png" alt="connexion">
+                </div>
+                <h3>Se Connecter</h3>
+                <p>Crée ton compte ou connecte-toi avec ton e-mail pour accéder à la plateforme.</p>
+            </div>
+            <div class="how-item">
+                <div class="how-item-icon">
+                    <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/marker.png" alt="recherche">
+                </div>
+                <h3>Rechercher un trajet</h3>
+                <p>Indique ta ville de départ et d'arrivée, le nombre de passagers pour trouver des covoiturages proches de toi.</p>
+            </div>
+            <div class="how-item">
+                <div class="how-item-icon">
+                    <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/car--v1.png" alt="réservation">
+                </div>
+                <h3>Réserver ton siège !</h3>
+                <p>Choisis le trajet qui te convient, réserve ta place et contacte ton covoitureur en un clic.</p>
             </div>
         </div>
     </section>
+
+    <!-- Section Villes Populaires -->
+    <section class="popular-ville" id="villes">
+        <div class="text">
+            <h2>Villes Populaires</h2>
+            <p>Découvrez les trajets les plus recherchés en France. Choisissez votre destination et partagez la route simplement avec CERI Car.</p>
+        </div>
+        <div class="ville-cards">
+            <div class="ville-card ville-card-paris">
+                <h3>Paris</h3>
+                <button>Visiter</button>
+            </div>
+            <div class="ville-card ville-card-marseille">
+                <h3>Marseille</h3>
+                <button>Visiter</button>
+            </div>
+            <div class="ville-card ville-card-lyon">
+                <h3>Lyon</h3>
+                <button>Visiter</button>
+            </div>
+            <div class="ville-card ville-card-avignon">
+                <h3>Avignon</h3>
+                <button>Visiter</button>
+            </div>
+            <div class="ville-card ville-card-rennes">
+                <h3>Rennes</h3>
+                <button>Visiter</button>
+            </div>
+            <div class="ville-card ville-card-nice">
+                <h3>Nice</h3>
+                <button>Visiter</button>
+            </div>
+            <div class="ville-card ville-card-monaco">
+                <h3>Monaco</h3>
+                <button>Visiter</button>
+            </div>
+            <div class="ville-card ville-card-lille">
+                <h3>Lille</h3>
+                <button>Visiter</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section À Propos -->
+    <section class="about-us" id="apropos">
+        <div class="text">
+            <h2>Pourquoi Choisir <em>CERI Car</em></h2>
+            <p>Avec CERI Car, trouver un trajet n'a jamais été aussi facile. Connectez-vous, recherchez votre itinéraire et réservez — en seulement quelques clics.</p>
+        </div>
+        <div class="about-us-container">
+            <div class="about-us-image">
+                <img src="images/travel.jpg" alt="voyage en voiture" onerror="this.src='https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&h=400&fit=crop'">
+            </div>
+            <div class="about-us-container-items">
+                <div class="about-us-container-item">
+                    <div class="icon">
+                        <img width="24" height="24" src="https://img.icons8.com/material-rounded/24/money.png" alt="prix">
+                    </div>
+                    <div class="container-text">
+                        <h3>Meilleur prix garanti.</h3>
+                        <p>Voyagez au prix le plus juste, sans frais cachés. Partager, c'est économiser !</p>
+                    </div>
+                </div>
+                <div class="about-us-container-item">
+                    <div class="icon">
+                        <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/phone.png" alt="assistance">  
+                    </div>
+                    <div class="container-text">
+                        <h3>Assistance à tout moment.</h3>
+                        <p>Notre équipe est disponible avant, pendant et après chaque trajet.</p>
+                    </div>
+                </div>
+                <div class="about-us-container-item">
+                    <div class="icon">
+                        <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/marker.png" alt="disponibilité">
+                    </div>
+                    <div class="container-text">
+                        <h3>Disponible partout en France.</h3>
+                        <p>De Paris à Marseille, de Lyon à Lille — CERI Car relie toutes les villes de France.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section class="contact" id="contact">
+        <h3>Entrons en contact</h3>
+        <div class="text contact-text">
+            <h2>Abonnez-vous à notre newsletter</h2>
+            <p>Une question, une suggestion ou un partenariat ? L'équipe CERI Car vous répond avec plaisir.</p>
+        </div>
+        <div class="contact-form">
+            <input type="email" placeholder="Entrez votre adresse e-mail">
+            <button class="primary-button">S'abonner</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-items">
+            <p class="logo">CERI <em>Car</em></p>
+            <nav>
+                <ul>
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#villes">Villes Populaires</a></li>
+                    <li><a href="#apropos">À Propos</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+        <p class="footer-copyright">&copy; 2025 CERI Car par <em>Chiheb Eddine KEBBAS</em>. Tous droits réservés.</p>
+    </footer>
 </body>
 </html>

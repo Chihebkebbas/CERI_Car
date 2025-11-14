@@ -1,0 +1,60 @@
+/* ==================== Variables CSS ==================== */
+:root {
+    --primary-blue: #304FAC;
+    --blue-300: #5A7EEA;
+    --blue-100: #E0E7FE;
+    --black: #383838;
+    --gray: #BEBEBE;
+    --light-gray: #F0F0F0;
+    --cyan: #3DD0C4;
+    --red: #E11143;
+    --white: #FFFFFF;
+}
+
+/* ==================== Reset & Base ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 64px;
+    height: 100px;
+    border-bottom: var(--primary-blue) solid 1px;
+}
+
+.logo {
+    font-family: 'Caveat', cursive;
+    font-size: 32px;
+    color: var(--black);
+    font-weight: 700;
+}
+
+.logo span{
+    color: var(--red);
+}
+
+.nav-items {
+    list-style: none;
+    display: flex;
+    gap: 32px;
+}
+
+header .nav-items li a {
+    text-decoration: none;
+    color: var(--black);
+    font-weight: 500;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+.active {
+    color: var(--cyan);
+}
