@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Créez votre compte CERI Car - Plateforme de covoiturage">
+    <title>Créer un compte - CERI Car</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+    <!-- Header : Navigation principale -->
+    <header role="banner">
+        <a href="Acceuil.html" class="logo" aria-label="CERI Car - Retour à l'accueil">
+            CERI <span>Car</span>
+        </a>
+        <nav role="navigation" aria-label="Navigation principale">
+            <ul class="nav-items">
+                <li><a href="Acceuil.html">Accueil</a></li>
+                <li><a href="Acceuil.html#villes">Villes Populaires</a></li>
+                <li><a href="Acceuil.html#apropos">À Propos</a></li>
+                <li><a href="Acceuil.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="right-nav">
+            <span class="separator" aria-hidden="true">|</span>
+            <a href="signup.html" class="btn-outline">Créer un compte</a>
+            <a href="login.html" class="primary-button">Se Connecter</a>
+        </div>
+    </header>
+
+    <!-- Section d'inscription -->
+    <main class="auth-container">
+        <section class="auth-section" aria-labelledby="signup-title">
+            <div class="auth-content">
+                <div class="auth-header">
+                    <h1 id="signup-title" class="auth-title">Créer un compte</h1>
+                    <p class="auth-subtitle">Rejoignez la communauté CERI Car</p>
+                </div>
+
+                <form class="auth-form two-columns" method="POST" action="#" aria-label="Formulaire de création de compte">
+                    <!-- Colonne gauche -->
+                    <div class="form-group">
+                        <label for="nom" class="form-label">Nom</label>
+                        <input 
+                            type="text" 
+                            id="nom" 
+                            name="nom" 
+                            class="form-input" 
+                            placeholder="Dupont" 
+                            required 
+                            aria-required="true"
+                            autocomplete="family-name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prenom" class="form-label">Prénom</label>
+                        <input 
+                            type="text" 
+                            id="prenom" 
+                            name="prenom" 
+                            class="form-input" 
+                            placeholder="Jean" 
+                            required 
+                            aria-required="true"
+                            autocomplete="given-name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pseudo" class="form-label">Pseudo <span class="form-label-hint">(unique)</span></label>
+                        <input 
+                            type="text" 
+                            id="pseudo" 
+                            name="pseudo" 
+                            class="form-input" 
+                            placeholder="jean_dupont" 
+                            required 
+                            aria-required="true"
+                            autocomplete="username"
+                            pattern="[a-zA-Z0-9_]+"
+                            title="Le pseudo ne peut contenir que des lettres, chiffres et underscores">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email-signup" class="form-label">Adresse e-mail</label>
+                        <input 
+                            type="email" 
+                            id="email-signup" 
+                            name="email" 
+                            class="form-input" 
+                            placeholder="votre@email.com" 
+                            required 
+                            aria-required="true"
+                            autocomplete="email">
+                    </div>
+
+                    <!-- Colonne droite -->
+                    <div class="form-group">
+                        <label for="password-signup" class="form-label">Mot de passe</label>
+                        <input 
+                            type="password" 
+                            id="password-signup" 
+                            name="password" 
+                            class="form-input" 
+                            placeholder="••••••••" 
+                            required 
+                            aria-required="true"
+                            autocomplete="new-password"
+                            minlength="8">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="permis" class="form-label">
+                            Numéro de permis 
+                            <span class="form-label-optional">(optionnel)</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="permis" 
+                            name="permis" 
+                            class="form-input" 
+                            placeholder="123456789012" 
+                            pattern="[0-9]{1,12}"
+                            title="Le numéro de permis doit contenir entre 1 et 12 chiffres"
+                            autocomplete="off">
+                        <p class="form-hint">Entre 1 et 12 chiffres</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="photo" class="form-label">Photo de profil <span class="form-label-optional">(URL)</span></label>
+                        <input 
+                            type="url" 
+                            id="photo" 
+                            name="photo" 
+                            class="form-input" 
+                            placeholder="https://exemple.com/photo.jpg" 
+                            autocomplete="photo">
+                        <p class="form-hint">URL vers votre photo de profil</p>
+                    </div>
+
+                    <!-- Bouton sur toute la largeur -->
+                    <button type="submit" class="primary-button auth-submit">
+                        Créer mon compte
+                    </button>
+                </form>
+
+                <div class="auth-footer">
+                    <p class="auth-footer-text">
+                        Déjà un compte ? 
+                        <a href="login.html" class="auth-link">Se connecter</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <div class="footer-items">
+            <a href="Acceuil.html" class="logo footer-logo" aria-label="CERI Car - Retour à l'accueil">
+                CERI <span class="logo-red">Car</span>
+            </a>
+            <nav role="navigation" aria-label="Navigation du pied de page">
+                <ul>
+                    <li><a href="Acceuil.html">Accueil</a></li>
+                    <li><a href="Acceuil.html#villes">Villes Populaires</a></li>
+                    <li><a href="Acceuil.html#apropos">À Propos</a></li>
+                    <li><a href="Acceuil.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+        <hr>
+        <p class="footer-copyright">&copy; 2025 CERI Car par <span class="chiheb">Chiheb Eddine KEBBAS</span>. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>
