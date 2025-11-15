@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CERI Car - Plateforme de covoiturage pour partager la route, les frais et les moments">
     <title>CERI Car - Covoiturage</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -10,197 +11,205 @@
     <link rel="stylesheet" href="Acceuil.css">
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <p class="logo">CERI <span>Car</span></p>
-        <nav>
+    <!-- Header : Navigation principale -->
+    <header role="banner">
+        <a href="#accueil" class="logo" aria-label="CERI Car - Retour à l'accueil">
+            CERI <span>Car</span>
+        </a>
+        <nav role="navigation" aria-label="Navigation principale">
             <ul class="nav-items">
-                <li><a href="#accueil" class="active">Accueil</a></li>
+                <li><a href="#accueil" class="active" aria-current="page">Accueil</a></li>
                 <li><a href="#villes">Villes Populaires</a></li>
                 <li><a href="#apropos">À Propos</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
         <div class="right-nav">
-            <p>|</p>
+            <span class="separator" aria-hidden="true">|</span>
             <a href="#" class="btn-outline">Créer un compte</a>
-            <button class="primary-button">Se Connecter</button>
+            <button class="primary-button" type="button">Se Connecter</button>
         </div>
     </header>
 
-    <!-- Section Hero -->
-    <section class="hero" id="accueil">
+    <!-- Section Hero : Présentation principale -->
+    <section class="hero" id="accueil" aria-labelledby="hero-title">
         <div class="hero-content">
             <div class="hero-text">
                 <p class="hero-ticket">Avec CERI Car :</p>
-                <h1>Partage La Route, Partage Les Frais, Partage Le Moment.</h1>
+                <h1 id="hero-title">Partage La Route, Partage Les Frais, Partage Le Moment.</h1>
                 <p>Voyage moins cher, plus écologique et plus convivial. Rejoins des milliers de conducteurs et passagers près de chez toi.</p>
             </div>
             <div class="hero-image">
-                <img src="images/hero-img.jpg" alt="Arc de Triomphe" onerror="this.src='https://images.unsplash.com/photo-1431274172761-fca41d930114?w=600&h=400&fit=crop'">
+                <img src="images/hero-img.jpg" alt="Arc de Triomphe" loading="eager" onerror="this.src='https://images.unsplash.com/photo-1431274172761-fca41d930114?w=600&h=400&fit=crop'">
             </div>
         </div>
-        <div class="search-container">
+        <!-- Formulaire de recherche de trajet -->
+        <form class="search-container" role="search" aria-label="Rechercher un trajet">
             <div class="search-container-item">
-                <img width="50" height="50" src="https://img.icons8.com/ios/50/sent--v1.png" alt="départ">
+                <img src="https://img.icons8.com/ios/50/sent--v1.png" alt="" width="50" height="50" aria-hidden="true">
                 <div class="search-container-item-text">
-                    <input type="text" placeholder="Départ">
+                    <label for="depart" class="visually-hidden">Ville de départ</label>
+                    <input type="text" id="depart" placeholder="Départ" aria-label="Sélectionnez votre ville de départ">
                     <p>Sélectionnez votre ville de départ</p>
                 </div>
             </div>
             <div class="search-container-item">
-                <img width="50" height="50" src="https://img.icons8.com/ios/50/address--v1.png" alt="arrivée">
+                <img src="https://img.icons8.com/ios/50/address--v1.png" alt="" width="50" height="50" aria-hidden="true">
                 <div class="search-container-item-text">
-                    <input type="text" placeholder="Arrivée">
+                    <label for="arrivee" class="visually-hidden">Ville d'arrivée</label>
+                    <input type="text" id="arrivee" placeholder="Arrivée" aria-label="Sélectionnez votre ville d'arrivée">
                     <p>Sélectionnez votre ville d'arrivée</p>
                 </div>
             </div>
             <div class="search-container-item">
-                <img width="50" height="50" src="https://img.icons8.com/parakeet-line/48/person-male.png" alt="passagers">
+                <img src="https://img.icons8.com/parakeet-line/48/person-male.png" alt="" width="50" height="50" aria-hidden="true">
                 <div class="search-container-item-text">
                     <p class="passagers-number"><span id="passagers-number">1</span> Passager</p>
                     <p>Ajouter un voyageur</p>
                 </div>
             </div>
-            <button class="search-icon">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAABvklEQVR4nO2WS0oDQRCGBx/Z+NgpeAX1DupaFyqaKwTF9ymC19DoUQRx4wNUYtyGkGT+v2dmoauSijUwK7U7IQhaUDAw/dfXVFdVdxT9228xESmRLAO4APBEMlPXbwA1/adrBgoFsEmyQVK+cgAvADb6BorICMnTQvBb59xBkiTzzWZzQr3b7S7EcXxI8q6wrqraYDANCuCNZOWrYLbJHVvbg/eTXtFAcRwveeiWcziA9ZBCatjOK76bJrlr4LqIjPsIy/mZhpyViIySvDf41o+FAC4NvO8LLcQ4MvC5j+hZRVq9oWCtdgM//VhEMlVRq9WaDAW32+0py1o6VHCn05n2BmMwqV7MK9sHXFORTqRQMIATA5+FtNNdH+30YDG2fYQlHfgm3PEFk9wzbUNExrzEADbykalj0EO3AuBdtc65tSjESFYLl8SupvCb9O7lUACtNE1ng8DyeeP04Ob3OpF0OGirqWv1AjgunGkPmq8PhqvpLaNt8d1DgOSrc25VYfms7hsuIuM68HX2Ani0IaNPn7q2jFZvsZAGCve1JElm8peJbjbLsrnoT8DTQtoBXA8NXIDfALgaKvjfIrMPDB/TSpPDn+oAAAAASUVORK5CYII=" alt="search--v1">
+            <button class="search-icon" type="submit" aria-label="Rechercher un trajet">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAABvklEQVR4nO2WS0oDQRCGBx/Z+NgpeAX1DupaFyqaKwTF9ymC19DoUQRx4wNUYtyGkGT+v2dmoauSijUwK7U7IQhaUDAw/dfXVFdVdxT9228xESmRLAO4APBEMlPXbwA1/adrBgoFsEmyQVK+cgAvADb6BorICMnTQvBb59xBkiTzzWZzQr3b7S7EcXxI8q6wrqraYDANCuCNZOWrYLbJHVvbg/eTXtFAcRwveeiWcziA9ZBCatjOK76bJrlr4LqIjPsIy/mZhpyViIySvDf41o+FAC4NvO8LLcQ4MvC5j+hZRVq9oWCtdgM//VhEMlVRq9WaDAW32+0py1o6VHCn05n2BmMwqV7MK9sHXFORTqRQMIATA5+FtNNdH+30YDG2fYQlHfgm3PEFk9wzbUNExrzEADbykalj0EO3AuBdtc65tSjESFYLl8SupvCb9O7lUACtNE1ng8DyeeP04Ob3OpF0OGirqWv1AjgunGkPmq8PhqvpLaNt8d1DgOSrc25VYfms7hsuIuM68HX2Ani0IaNPn7q2jFZvsZAGCve1JElm8peJbjbLsrnoT8DTQtoBXA8NXIDfALgaKvjfIrMPDB/TSpPDn+oAAAAASUVORK5CYII=" alt="" aria-hidden="true">
             </button>
-        </div>
+        </form>
     </section>
 
     <!-- Section Comment ça marche -->
-    <section class="how-it-works">
+    <section class="how-it-works" id="comment-ca-marche" aria-labelledby="how-it-works-title">
         <div class="text">
-            <h2>Comment ça marche ?</h2>
+            <h2 id="how-it-works-title">Comment ça marche ?</h2>
             <p>Trouvez, partagez et voyagez ensemble en toute simplicité avec CERI Car.</p>
         </div>
-        <div class="how-items">
-            <div class="how-item">
-                <div class="how-item-icon">
-                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAACXBIWXMAAAsTAAALEwEAmpwYAAADAUlEQVR4nO2bzWtTQRDAt4iIijcPflS8CCIlmX2Ngv+AUG0ykxYDevEiFrX17D+hBw9SIp4EL2/maZFaz4IX8aAnvwp+HPTgSduKh9pGNlVbSEnbZF9e3sv8YOBBcsj+MrO7b9g1RlEURVGUFhigh4egJBNA/ASI31iSBRfuGVBmAHk8NxL1m14DhsODFrkKxIuWpNY0UJYsSRiMymHTCwQYoSWe21BMQ/BcnqRkskxA0bW/GbFFOavZ5ErSZBFb5tOA8rtlOWskuSw0mZtzqJWyWj+A5EdhJNpvsgIg3/UlZzWTuGoys5Sjh9JqyCJedJlpMjExk+fs+R/hVZN2AGUmPkE8bdIOEL+PT5C8NWnHoszHJghl3qQdG1/21MOkHauCmqOCNsDnDnq9HbVJOxb5XWyCkF+btAO6D2qO6wrGJShAvmzSTm4k6t9U57BX38UcluRODBP0pMkKAU4d8NoPQvl+4ky4z2SJoBQN+eoo5stcNFkESjLRdk8aedxkmXyZi26D10pZAUbDphcoFO/vBZJbm1nd6t9BrmaqB72lZn5ZrgDyY7crrrdGUObrz8TT9c+yspQriqIoiqIoSssEyMct8U2L/LGFl9UPgHwjV4wGTZYoFB/tAuRLgPzKW8MM5aUluXiyEu40aaUwVt0OZRkD5K++u4lr3vC/AfH1I0MzO0x6qPVZ5AqQzMYlplEUf3J/RqUSbjPdDJR4AEhedErMOqX3PCg/OGa6j1pfvZyIfyYm5182kfxyZdc12QQrBzSfJS2mURQ/TbzJBhRaIPmctIwmkr64rUUicixGZ7uhpDYRC/kSj3ZUToDhuThOrsaWSe63YnihI3Jsmc+nSU5HJVlf1wkSlBTbNQag0MZ6ILNjwXNBifNe5eRP3dvtjtwmPzhPmUQyexSn9ngTBCSTSQ/KuyTk294E2ZWrkrWMxYJPQbUshgqiTgnCNo6sdGugLHkTBD67gV0SbkzeBOWK0eCKJF5OemDtBy+7seSRA2+CFEVRFEVRFNNz/AHeJ0WoB+xIsQAAAABJRU5ErkJggg==" alt="user">
+        <div class="how-items" role="list">
+            <article class="how-item" role="listitem">
+                <div class="how-item-icon" aria-hidden="true">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAACXBIWXMAAAsTAAALEwEAmpwYAAADAUlEQVR4nO2bzWtTQRDAt4iIijcPflS8CCIlmX2Ngv+AUG0ykxYDevEiFrX17D+hBw9SIp4EL2/maZFaz4IX8aAnvwp+HPTgSduKh9pGNlVbSEnbZF9e3sv8YOBBcsj+MrO7b9g1RlEURVGUFhigh4egJBNA/ASI31iSBRfuGVBmAHk8NxL1m14DhsODFrkKxIuWpNY0UJYsSRiMymHTCwQYoSWe21BMQ/BcnqRkskxA0bW/GbFFOavZ5ErSZBFb5tOA8rtlOWskuSw0mZtzqJWyWj+A5EdhJNpvsgIg3/UlZzWTuGoys5Sjh9JqyCJedJlpMjExk+fs+R/hVZN2AGUmPkE8bdIOEL+PT5C8NWnHoszHJghl3qQdG1/21MOkHauCmqOCNsDnDnq9HbVJOxb5XWyCkF+btAO6D2qO6wrGJShAvmzSTm4k6t9U57BX38UcluRODBP0pMkKAU4d8NoPQvl+4ky4z2SJoBQN+eoo5stcNFkESjLRdk8aedxkmXyZi26D10pZAUbDphcoFO/vBZJbm1nd6t9BrmaqB72lZn5ZrgDyY7crrrdGUObrz8TT9c+yspQriqIoiqIoSssEyMct8U2L/LGFl9UPgHwjV4wGTZYoFB/tAuRLgPzKW8MM5aUluXiyEu40aaUwVt0OZRkD5K++u4lr3vC/AfH1I0MzO0x6qPVZ5AqQzMYlplEUf3J/RqUSbjPdDJR4AEhedErMOqX3PCg/OGa6j1pfvZyIfyYm5182kfxyZdc12QQrBzSfJS2mURQ/TbzJBhRaIPmctIwmkr64rUUicixGZ7uhpDYRC/kSj3ZUToDhuThOrsaWSe63YnihI3Jsmc+nSU5HJVlf1wkSlBTbNQag0MZ6ILNjwXNBifNe5eRP3dvtjtwmPzhPmUQyexSn9ngTBCSTSQ/KuyTk294E2ZWrkrWMxYJPQbUshgqiTgnCNo6sdGugLHkTBD67gV0SbkzeBOWK0eCKJF5OemDtBy+7seSRA2+CFEVRFEVRFNNz/AHeJ0WoB+xIsQAAAABJRU5ErkJggg==" alt="">
                 </div>
                 <h3>Se Connecter</h3>
                 <p>Crée ton compte ou connecte-toi avec ton e-mail pour accéder à la plateforme.</p>
-            </div>
-            <div class="how-item">
-                <div class="how-item-icon">
-                    <img src="data:image/png;base64,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" alt="marker">
+            </article>
+            <article class="how-item" role="listitem">
+                <div class="how-item-icon" aria-hidden="true">
+                    <img src="data:image/png;base64,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" alt="">
                 </div>
                 <h3>Rechercher un trajet</h3>
                 <p>Indique ta ville de départ et d'arrivée, le nombre de passagers pour trouver des covoiturages proches de toi.</p>
-            </div>
-            <div class="how-item">
-                <div class="how-item-icon">
-                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFR0lEQVR4nO2cTYgcRRTHy4AfqOAXeFBR0GgkMFOvHVeNglEwIOz2q0lgDxrF2yIYRdG4Hsyu4iEBvy4KRg+CoAn93qxhE4IYL5KgaNQoOQlGD8aDHwQ0iZoEd+T1zkpYp3Z7dj6qu/N+8NjDzlT/37+ru15VV48xiqIoiqIoiqIoiqIoSmZgmK8H5AmL/BE4Pmwd/wWOmyGjpeGwdbRHtEVxstwUlQomK8DRLnA0E9rYxYNmAHlntT51gykSNuYNgHwivIHcqeF/W6RHTBEApFfDG8ZdhUV6yeQZi7wxtEnQu3jS5JEopqpFPpkDg5o96dWOTlWRIpM3AHmv/1LkP8HxK7ae3FIbTS4KrdW69y+uIt0qt7mWNp/ZH5s8ASONoQV6x/eVdXytySlS2gHSD179I40hkxfA8ZvthdIftZHkapNzonV8DSAf9VyNb5k8sHI0Occi/dbWaOQJUxCso+c8vfrI8nt3nxtan4GYnKcnnByqT11mCkJl+N1LvLV/TC4PdfP29r2Zpk3BAOSdnly2BxVWXfPOBeD4WFtxdbrPFAxwfL+n+ji+cjS5MJgwi8n6XArrpuN4B8VkvQnF7KJR2/vze6agWMfbPBXUriCCVo4ml/oGj6rj2BSUCBvonSmubVweQBA97CuHpOQzBaU2tvVsX7kqOQ9ckExPPSP0VlNwwDMBG/iUPMIdVwDyPx4xd5mCY5Hv9tynZ2QWOTAh4Ogpj8k/mcnJZaboTE4uk1w8A/3GgekAR1+2N5p3mJIASNOeMeirAT4L9Kx0If1cG5k+f6E6tYLJigj5TpkcWKQnrKPNgPyGlFUWeTc42gdIBwHpECD9KIPrXMjIf3oVcPr/0s/OfuegtCFtpaVa2jZttq7xuEyi5NiiQbT4dEoOFvkXX561Eb7RBFx8mevV+21MD0BMD4GjF1IDHe9vGdLMWcjJ+1zqftEqmkW7Rf5i4Rzp+b4bDUjf5sCgZsiwSN8Z0zyrbyZHSDeHThJyEuJFgAX+My9sPx4IrF799nne5dAzOKzjbeJN756gOPowdFKQ10D6QKbtXRst5VHwZFy+wyK93q3J94ROAgoRNCPT9iUbvVg9qcH/hdTjSzM55jtCi4eCRVRPVnVsNDh6ObRwKFhY5Bc779HIn2Rq3NFxcLSpVp+6TioU+dvaeO7dagXzA/mEdfy0LL+aHiFtWUfjnWwf7j4X2te50Y5/zSLsprhxW9tE68mqrAKto/FemNs+DxrPanK3uchC1FIEnspwBjct1AYgT2ZJMuphT277kCJbb+w6F/GsY4FZxMmltegGwoIYXetRLh0LzNLoYg9hZc9a6FsHID8zyFw6F9iDXpC+kZV5MKTxkINhr3LpWGhGgya6eUgAeYoe5dIXo2Uk9hXp4Oj2jko8FzZ6lUtfjJ4TKCOyDBZyn5O/cvbz8OImLMHsbnPpm9EarEaDGs2lDTXaqdHNMoUa7dToZplCjXZqdLNMoUY7NbpZpui70eme57ixBpBGI8cP2jqPye54i/wsIG8Bx6/J+y2trWXJ7P7l9Mej9sq2Buv4m9b+5kOtXxs4Mi/avTh67H+fk++22pE20y0TcgxHe2b3X3OSahAtqSbeIhpTrXUeE+2Sg+TS2sedL6NNSQE1ejCo0aUx2vNOdLuwjn83JQX67QMgf5b9APSpKSnQbx8A6bHMB4h5gykp0G8f5PG6Rfp60QMgHyjyu9+58KGytnHVggdBPmCHkytNyakMwgc5o5FrPCr3n3RgQD4qGyDlMilzT56P+qAoiqIoiqIoiqIoiqIoimK64V/ZDcW9PeQ3vQAAAABJRU5ErkJggg==" alt="car--v1">
+            </article>
+            <article class="how-item" role="listitem">
+                <div class="how-item-icon" aria-hidden="true">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFR0lEQVR4nO2cTYgcRRTHy4AfqOAXeFBR0GgkMFOvHVeNglEwIOz2q0lgDxrF2yIYRdG4Hsyu4iEBvy4KRg+CoAn93qxhE4IYL5KgaNQoOQlGD8aDHwQ0iZoEd+T1zkpYp3Z7dj6qu/N+8NjDzlT/37+ru15VV48xiqIoiqIoiqIoiqIoSmZgmK8H5AmL/BE4Pmwd/wWOmyGjpeGwdbRHtEVxstwUlQomK8DRLnA0E9rYxYNmAHlntT51gykSNuYNgHwivIHcqeF/W6RHTBEApFfDG8ZdhUV6yeQZi7wxtEnQu3jS5JEopqpFPpkDg5o96dWOTlWRIpM3AHmv/1LkP8HxK7ae3FIbTS4KrdW69y+uIt0qt7mWNp/ZH5s8ASONoQV6x/eVdXytySlS2gHSD179I40hkxfA8ZvthdIftZHkapNzonV8DSAf9VyNb5k8sHI0Occi/dbWaOQJUxCso+c8vfrI8nt3nxtan4GYnKcnnByqT11mCkJl+N1LvLV/TC4PdfP29r2Zpk3BAOSdnly2BxVWXfPOBeD4WFtxdbrPFAxwfL+n+ji+cjS5MJgwi8n6XArrpuN4B8VkvQnF7KJR2/vze6agWMfbPBXUriCCVo4ml/oGj6rj2BSUCBvonSmubVweQBA97CuHpOQzBaU2tvVsX7kqOQ9ckExPPSP0VlNwwDMBG/iUPMIdVwDyPx4xd5mCY5Hv9tynZ2QWOTAh4Ogpj8k/mcnJZaboTE4uk1w8A/3GgekAR1+2N5p3mJIASNOeMeirAT4L9Kx0If1cG5k+f6E6tYLJigj5TpkcWKQnrKPNgPyGlFUWeTc42gdIBwHpECD9KIPrXMjIf3oVcPr/0s/OfuegtCFtpaVa2jZttq7xuEyi5NiiQbT4dEoOFvkXX561Eb7RBFx8mevV+21MD0BMD4GjF1IDHe9vGdLMWcjJ+1zqftEqmkW7Rf5i4Rzp+b4bDUjf5sCgZsiwSN8Z0zyrbyZHSDeHThJyEuJFgAX+My9sPx4IrF799nne5dAzOKzjbeJN756gOPowdFKQ10D6QKbtXRst5VHwZFy+wyK93q3J94ROAgoRNCPT9iUbvVg9qcH/hdTjSzM55jtCi4eCRVRPVnVsNDh6ObRwKFhY5Bc779HIn2Rq3NFxcLSpVp+6TioU+dvaeO7dagXzA/mEdfy0LL+aHiFtWUfjnWwf7j4X2te50Y5/zSLsprhxW9tE68mqrAKto/FemNs+DxrPanK3uchC1FIEnspwBjct1AYgT2ZJMuphT277kCJbb+w6F/GsY4FZxMmltegGwoIYXetRLh0LzNLoYg9hZc9a6FsHID8zyFw6F9iDXpC+kZV5MKTxkINhr3LpWGhGgya6eUgAeYoe5dIXo2Uk9hXp4Oj2jko8FzZ6lUtfjJ4TKCOyDBZyn5O/cvbz8OImLMHsbnPpm9EarEaDGs2lDTXaqdHNMoUa7dToZplCjXZqdLNMoUY7NbpZpui70eme57ixBpBGI8cP2jqPye54i/wsIG8Bx6/J+y2trWXJ7P7l9Mej9sq2Buv4m9b+5kOtXxs4Mi/avTh67H+fk++22pE20y0TcgxHe2b3X3OSahAtqSbeIhpTrXUeE+2Sg+TS2sedL6NNSQE1ejCo0aUx2vNOdLuwjn83JQX67QMgf5b9APSpKSnQbx8A6bHMB4h5gykp0G8f5PG6Rfp60QMgHyjyu9+58KGytnHVggdBPmCHkytNyakMwgc5o5FrPCr3n3RgQD4qGyDlMilzT56P+qAoiqIoiqIoiqIoiqIoimK64V/ZDcW9PeQ3vQAAAABJRU5ErkJggg==" alt="">
                 </div>
                 <h3>Réserver ton siège !</h3>
                 <p>Choisis le trajet qui te convient, réserve ta place et contacte ton covoitureur en un clic.</p>
-            </div>
+            </article>
         </div>
     </section>
 
     <!-- Section Villes Populaires -->
-    <section class="popular-ville" id="villes">
+    <section class="popular-ville" id="villes" aria-labelledby="villes-title">
         <div class="text">
-            <h2>Villes Populaires</h2>
+            <h2 id="villes-title">Villes Populaires</h2>
             <p>Découvrez les trajets les plus recherchés en France. Choisissez votre destination et partagez la route simplement avec CERI Car.</p>
         </div>
-        <div class="ville-cards">
-            <div class="ville-card ville-card-paris">
+        <div class="ville-cards" role="list">
+            <article class="ville-card ville-card-paris" role="listitem">
                 <h3>Paris</h3>
-                <button>Visiter</button>
-            </div>
-            <div class="ville-card ville-card-marseille">
+                <button type="button">Visiter</button>
+            </article>
+            <article class="ville-card ville-card-marseille" role="listitem">
                 <h3>Marseille</h3>
-                <button>Visiter</button>
-            </div>
-            <div class="ville-card ville-card-lyon">
+                <button type="button">Visiter</button>
+            </article>
+            <article class="ville-card ville-card-lyon" role="listitem">
                 <h3>Lyon</h3>
-                <button>Visiter</button>
-            </div>
-            <div class="ville-card ville-card-avignon">
+                <button type="button">Visiter</button>
+            </article>
+            <article class="ville-card ville-card-avignon" role="listitem">
                 <h3>Avignon</h3>
-                <button>Visiter</button>
-            </div>
-            <div class="ville-card ville-card-rennes">
+                <button type="button">Visiter</button>
+            </article>
+            <article class="ville-card ville-card-rennes" role="listitem">
                 <h3>Rennes</h3>
-                <button>Visiter</button>
-            </div>
-            <div class="ville-card ville-card-nice">
+                <button type="button">Visiter</button>
+            </article>
+            <article class="ville-card ville-card-nice" role="listitem">
                 <h3>Nice</h3>
-                <button>Visiter</button>
-            </div>
-            <div class="ville-card ville-card-monaco">
+                <button type="button">Visiter</button>
+            </article>
+            <article class="ville-card ville-card-monaco" role="listitem">
                 <h3>Monaco</h3>
-                <button>Visiter</button>
-            </div>
-            <div class="ville-card ville-card-lille">
+                <button type="button">Visiter</button>
+            </article>
+            <article class="ville-card ville-card-lille" role="listitem">
                 <h3>Lille</h3>
-                <button>Visiter</button>
-            </div>
+                <button type="button">Visiter</button>
+            </article>
         </div>
     </section>
 
     <!-- Section À Propos -->
-    <section class="about-us" id="apropos">
+    <section class="about-us" id="apropos" aria-labelledby="about-title">
         <div class="text">
-            <h2>Pourquoi Choisir <span class="logo">CERI <span class="logo-red">Car</span></span></h2>
+            <h2 id="about-title">Pourquoi Choisir <span class="logo">CERI <span class="logo-red">Car</span></span></h2>
             <p>Avec CERI Car, trouver un trajet n'a jamais été aussi facile. Connectez-vous, recherchez votre itinéraire et réservez — en seulement quelques clics.</p>
         </div>
         <div class="about-us-container">
             <div class="about-us-image">
-                <img src="images/travel.jpg" alt="voyage en voiture" onerror="this.src='https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&h=400&fit=crop'">
+                <img src="images/travel.jpg" alt="Voyage en voiture" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&h=400&fit=crop'">
             </div>
-            <div class="about-us-container-items">
-                <div class="about-us-container-item">
-                    <div class="icon">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAACXBIWXMAAAsTAAALEwEAmpwYAAADQklEQVR4nO2aPWgUQRiGB4mKaCNY+QfGv1oQLCws/MFEBLERCxFBRBuFgCAICoKl2FiIhYUaMVFJYav4A4KFEFEQRaJ4CcTz7uZ9v4s2ahz5yB4cktvd293kZo99YJq7vZl5ZuZ2Zr4ZYwoKCgoKCgq8guR6AHdICkmXpwTgO4B76mBiym7QH3W64hmIl0n2RgoDGOp0ZTOUvh1HuOxDZTNKEmdIh2VA4xkk62F1NjEyCBsiQ8YzSI7MiTCAarVaXW08Q0Q2k7RZCov2rI+yDWq12hqSw7NNoyaKtn8QE20wAJdIvgkqpmlUP6tWq6uyKscLYZKnSE6F/Nf0xXOiK4RJXmhjGjmfa2Fr7X4Af+MK67Mi0p9LYefcQpJfEiwWxpxzPbkTJnk4gWwjHfJGWET2kZwgOS4ifa3yAXA3qbDu1FrlG1V+5sIkx5u+L4XkM5ZC+FNIvqHld1L4R4ohPeWNsIj0BYWWSO5NuqhPusuJKr9jLy0AH1IM6fdJy+2k8OCcbtw9FD6YQvhA7oSdcz0k3yUZzrpoyZ2wQnI3gOk2ZP8A2GlS0FFhheTJuMIictqkJLUwZ6aXEY0sGL8DAA9mmwpNFCE9YDVj4xlaJwC1VvU2UUQMu2HjGUHPtqyzSSkcHefNYZhWks6fviUA3yKFg0O0bhEejHtyWO6G3mWcw7RAulc38DkV1zj6LQDrYskWFBR0ByLS34grA/gdnNA1kgboRkk+B/BIN+wkrwAYEJEjJHeJyEbn3KL5qu//L68kGUxkMDXo1vAryacArun5kYhsK5fLy3wUHp/DOXJaQ7HBOljPnnZPTk4u7aiwzEQHP8/jQuEXgJcALpPc024DpBZuxjm3gOTypqQLky3W2h16YGatPUryHMmrQfDuhYZR24l2zNYAJJ9Ya8+0WkToe4Lkfb2dkKlwUpxzi0VkkzaKHoXqTQIN32ooJ0EjvCV5USWb7pNVWj1vfKJUKi0huRXAcZI3AHxss/dfkXwd9ozxnUqlslJPHAFcTxPEz41wi13bAMlnCf4C1uSZer2+AsAxko/jvAh9vE+WGL3xA+CsBuzzdJ8sE+r1+naSN4PN/k+SD621a7PJvaCgwHjIP8xDkkP3n2pwAAAAAElFTkSuQmCC" alt="money--v1">
+            <div class="about-us-container-items" role="list">
+                <article class="about-us-container-item" role="listitem">
+                    <div class="icon" aria-hidden="true">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAACXBIWXMAAAsTAAALEwEAmpwYAAADQklEQVR4nO2aPWgUQRiGB4mKaCNY+QfGv1oQLCws/MFEBLERCxFBRBuFgCAICoKl2FiIhYUaMVFJYav4A4KFEFEQRaJ4CcTz7uZ9v4s2ahz5yB4cktvd293kZo99YJq7vZl5ZuZ2Zr4ZYwoKCgoKCgq8guR6AHdICkmXpwTgO4B76mBiym7QH3W64hmIl0n2RgoDGOp0ZTOUvh1HuOxDZTNKEmdIh2VA4xkk62F1NjEyCBsiQ8YzSI7MiTCAarVaXW08Q0Q2k7RZCov2rI+yDWq12hqSw7NNoyaKtn8QE20wAJdIvgkqpmlUP6tWq6uyKscLYZKnSE6F/Nf0xXOiK4RJXmhjGjmfa2Fr7X4Af+MK67Mi0p9LYefcQpJfEiwWxpxzPbkTJnk4gWwjHfJGWET2kZwgOS4ifa3yAXA3qbDu1FrlG1V+5sIkx5u+L4XkM5ZC+FNIvqHld1L4R4ohPeWNsIj0BYWWSO5NuqhPusuJKr9jLy0AH1IM6fdJy+2k8OCcbtw9FD6YQvhA7oSdcz0k3yUZzrpoyZ2wQnI3gOk2ZP8A2GlS0FFhheTJuMIictqkJLUwZ6aXEY0sGL8DAA9mmwpNFCE9YDVj4xlaJwC1VvU2UUQMu2HjGUHPtqyzSSkcHefNYZhWks6fviUA3yKFg0O0bhEejHtyWO6G3mWcw7RAulc38DkV1zj6LQDrYskWFBR0ByLS34grA/gdnNA1kgboRkk+B/BIN+wkrwAYEJEjJHeJyEbn3KL5qu//L68kGUxkMDXo1vAryacArun5kYhsK5fLy3wUHp/DOXJaQ7HBOljPnnZPTk4u7aiwzEQHP8/jQuEXgJcALpPc024DpBZuxjm3gOTypqQLky3W2h16YGatPUryHMmrQfDuhYZR24l2zNYAJJ9Ya8+0WkToe4Lkfb2dkKlwUpxzi0VkkzaKHoXqTQIN32ooJ0EjvCV5USWb7pNVWj1vfKJUKi0huRXAcZI3AHxss/dfkXwd9ozxnUqlslJPHAFcTxPEz41wi13bAMlnCf4C1uSZer2+AsAxko/jvAh9vE+WGL3xA+CsBuzzdJ8sE+r1+naSN4PN/k+SD621a7PJvaCgwHjIP8xDkkP3n2pwAAAAAElFTkSuQmCC" alt="">
                     </div>
                     <div class="container-text">
                         <h3>Meilleur prix garanti.</h3>
                         <p>Voyagez au prix le plus juste, sans frais cachés. Partager, c'est économiser !</p>
                     </div>
-                </div>
-                <div class="about-us-container-item">
-                    <div class="icon">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAChklEQVR4nO2ZyYoUQRCGw10QvSiuKIgnl6MMHkX0psxFFBREcHkEwScQb+pJfQMPg+M6KHPQgUEYDzqCGwqKIH2oqvz/WhRRISTtbhDpdjqrqeponA/+Y0N9RHZmRqTIPPMMDufcKIAZkhmAp2ma7pFhQlWXALhKUv8K4jjeJMNAFEUrAdzvIPE7AO6JdaIo2gjgZTeJdpxzJ8QqeZ6vA/B2LolWXFEUG8QaqroUwHSPEu3cEmuQPB8o0c5xsQTJj2VEAMRFUawXK5AsSlbEZ0ysAOBdHyI+R8UCJMf6EQHwRixA8myfFfkqFsjzfC2An31U5IlYgeRkWRFTJ71zbrSkyHNVXShWUNUFJGdLiBwQa5A8EihxWyyizapMBfzJT4lVkiTZCeB7jzKO5DaxCsmLAcvrWaPRWCEWUdVl/gMDZCb9b8QiWZbtIPklQOamqi4WiwA4E7iLXfcbhlgEnacp/8olsToaIvkoRAbAZZOVyZuDifclltkisYZzbgvJT4Ey46q6XKyRJMkuAEngMnvQ6Zzx1QJw0o9iAfwA8NpfkWqTITniZ8GBlZn98wYAYF+3cwrAHT8orEtmP4BvgTLO380A3O2hijHJY3VO6kNlQjNey0QTwN4Syyw08DOFymVI7gYQVSyjACaSJNlc+dWf5OeqZdiszkilMgC2ljg0y1RmRuoYK4V0mCWTSl1PFCSvVViRaakTAKcD+xntJWmaHpS6ybJse2CnqXNU44oMCt8CA7gQMNDQLhITJjrQ1hb9uKTIiziOV4kVfLMF4HDIcgPwyvdDYhEv5Jw7BOChv8Kzu8hUlmVrZBhI03R161Z8wz8YtZ4BPwA459vsQX/fPP8tvwCzHdW00rYcngAAAABJRU5ErkJggg==" alt="phone">
+                </article>
+                <article class="about-us-container-item" role="listitem">
+                    <div class="icon" aria-hidden="true">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAChklEQVR4nO2ZyYoUQRCGw10QvSiuKIgnl6MMHkX0psxFFBREcHkEwScQb+pJfQMPg+M6KHPQgUEYDzqCGwqKIH2oqvz/WhRRISTtbhDpdjqrqeponA/+Y0N9RHZmRqTIPPMMDufcKIAZkhmAp2ma7pFhQlWXALhKUv8K4jjeJMNAFEUrAdzvIPE7AO6JdaIo2gjgZTeJdpxzJ8QqeZ6vA/B2LolWXFEUG8QaqroUwHSPEu3cEmuQPB8o0c5xsQTJj2VEAMRFUawXK5AsSlbEZ0ysAOBdHyI+R8UCJMf6EQHwRixA8myfFfkqFsjzfC2An31U5IlYgeRkWRFTJ71zbrSkyHNVXShWUNUFJGdLiBwQa5A8EihxWyyizapMBfzJT4lVkiTZCeB7jzKO5DaxCsmLAcvrWaPRWCEWUdVl/gMDZCb9b8QiWZbtIPklQOamqi4WiwA4E7iLXfcbhlgEnacp/8olsToaIvkoRAbAZZOVyZuDifclltkisYZzbgvJT4Ey46q6XKyRJMkuAEngMnvQ6Zzx1QJw0o9iAfwA8NpfkWqTITniZ8GBlZn98wYAYF+3cwrAHT8orEtmP4BvgTLO380A3O2hijHJY3VO6kNlQjNey0QTwN4Syyw08DOFymVI7gYQVSyjACaSJNlc+dWf5OeqZdiszkilMgC2ljg0y1RmRuoYK4V0mCWTSl1PFCSvVViRaakTAKcD+xntJWmaHpS6ybJse2CnqXNU44oMCt8CA7gQMNDQLhITJjrQ1hb9uKTIiziOV4kVfLMF4HDIcgPwyvdDYhEv5Jw7BOChv8Kzu8hUlmVrZBhI03R161Z8wz8YtZ4BPwA459vsQX/fPP8tvwCzHdW00rYcngAAAABJRU5ErkJggg==" alt="">
                     </div>
                     <div class="container-text">
                         <h3>Assistance à tout moment.</h3>
                         <p>Notre équipe est disponible avant, pendant et après chaque trajet.</p>
                     </div>
-                </div>
-                <div class="about-us-container-item">
-                    <div class="icon">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAC50lEQVR4nO2Zu2sVQRTGxxcqRhFRVBQEURAUtNL4B9iJdj4qa8FKBQsLUYLYSWKhxr/AQgs7sVF8RkQbQVsvIXG9e+f7Zu9Gkvg4cshiIiZh9mZm773iBweW3WFmf3MeO7NjzH/9rXq9vprkSZKDAF4D+AJgsjC9HtJnJE9oW9NpyvN8M4CbJMdIiqdp2zskd7T7/Y2ILAdwhWReAuAPU2+RvKZ9mXYoy7L1JJ+0CjAL0Is8zzdVCtFoNPaQrIWCmGGftO9KIJrN5sZIEL9hdIyoECKyQkMgIoQUYfY8as4UiR0VgtMwV6OV2IVUpxZAJkhuDw5SfCekYrsdFCJJkh6SzTaA5Dp2MJBi2VEmLMYB9DvnDoyOjq5S02sAA/qsJMyxkCCDJQYettbunasvAPu0TYlJuRUMRBeAvp6YD2ImjK9nALwKCVL3HLS/RJ83PPtMQoJMeIbCft8+nXO9vl42AUG8wqBMhSkqoc/kfA0J8jk0SJqmazw9MhIS5EO7Qovk+2AgJB94zt5A6GQneS8YiC7gfBNTS6tn+fUqIAAuBwPRr6vn7KkNzwdT9oNorT0SDCTLsg0AfvgOrrOtoaN5oAVAzTl3UO+VKOUC4JsWBRNSJN+V8Eooe2q6eVPFaY+cDw6SZdmuiiF+Wmu3mRgi+bZCmMdRIAqQ0xWCHI8GUqyPWEFYjYjIMhNTJK9X4I2LJrbSNN3awna1jDkAa00V0u1nxLDqM1UpTdMtMf5xAWiQXGeqlC7mInjkjKlatVptZcif2QA+Rq9Uc8laeyoUiHPusGmXRGQxyTcBQB6ZdgtTm6TJBUCMOed2mk4QPHeQc+TGWdMpEpHl+pOgBYghEVliOknOuV4A30tAjDcajd2mEwWgrwTIOdOpEpGlAJ55QDzUimc6WenUojKdByLRYzzTDbLWHtWt6iwQmkOHTDeJ5KVZPHLBdJtEZBGAuzMg7us9041KkqRHT5wAvAx6qGn+Yf0CVK0mJZJG+8oAAAAASUVORK5CYII=" alt="marker">
+                </article>
+                <article class="about-us-container-item" role="listitem">
+                    <div class="icon" aria-hidden="true">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAC50lEQVR4nO2Zu2sVQRTGxxcqRhFRVBQEURAUtNL4B9iJdj4qa8FKBQsLUYLYSWKhxr/AQgs7sVF8RkQbQVsvIXG9e+f7Zu9Gkvg4cshiIiZh9mZm773iBweW3WFmf3MeO7NjzH/9rXq9vprkSZKDAF4D+AJgsjC9HtJnJE9oW9NpyvN8M4CbJMdIiqdp2zskd7T7/Y2ILAdwhWReAuAPU2+RvKZ9mXYoy7L1JJ+0CjAL0Is8zzdVCtFoNPaQrIWCmGGftO9KIJrN5sZIEL9hdIyoECKyQkMgIoQUYfY8as4UiR0VgtMwV6OV2IVUpxZAJkhuDw5SfCekYrsdFCJJkh6SzTaA5Dp2MJBi2VEmLMYB9DvnDoyOjq5S02sAA/qsJMyxkCCDJQYettbunasvAPu0TYlJuRUMRBeAvp6YD2ImjK9nALwKCVL3HLS/RJ83PPtMQoJMeIbCft8+nXO9vl42AUG8wqBMhSkqoc/kfA0J8jk0SJqmazw9MhIS5EO7Qovk+2AgJB94zt5A6GQneS8YiC7gfBNTS6tn+fUqIAAuBwPRr6vn7KkNzwdT9oNorT0SDCTLsg0AfvgOrrOtoaN5oAVAzTl3UO+VKOUC4JsWBRNSJN+V8Eooe2q6eVPFaY+cDw6SZdmuiiF+Wmu3mRgi+bZCmMdRIAqQ0xWCHI8GUqyPWEFYjYjIMhNTJK9X4I2LJrbSNN3awna1jDkAa00V0u1nxLDqM1UpTdMtMf5xAWiQXGeqlC7mInjkjKlatVptZcif2QA+Rq9Uc8laeyoUiHPusGmXRGQxyTcBQB6ZdgtTm6TJBUCMOed2mk4QPHeQc+TGWdMpEpHl+pOgBYghEVliOknOuV4A30tAjDcajd2mEwWgrwTIOdOpEpGlAJ55QDzUimc6WenUojKdByLRYzzTDbLWHtWt6iwQmkOHTDeJ5KVZPHLBdJtEZBGAuzMg7us9041KkqRHT5wAvAx6qGn+Yf0CVK0mJZJG+8oAAAAASUVORK5CYII=" alt="">
                     </div>
                     <div class="container-text">
                         <h3>Disponible partout en France.</h3>
                         <p>De Paris à Marseille, de Lyon à Lille — CERI Car relie toutes les villes de France.</p>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </section>
 
     <!-- Section Contact -->
-    <section class="contact" id="contact">
+    <section class="contact" id="contact" aria-labelledby="contact-title">
         <h3>Entrons en contact</h3>
         <div class="text contact-text">
-            <h2>Abonnez-vous à notre newsletter</h2>
+            <h2 id="contact-title">Abonnez-vous à notre newsletter</h2>
             <p>Une question, une suggestion ou un partenariat ? L'équipe CERI Car vous répond avec plaisir.</p>
         </div>
-        <div class="contact-form">
-            <input type="email" placeholder="Entrez votre adresse e-mail">
-            <button class="primary-button">S'abonner</button>
-        </div>
+        <form class="contact-form" aria-label="Formulaire d'abonnement à la newsletter">
+            <label for="email" class="visually-hidden">Adresse e-mail</label>
+            <input type="email" id="email" placeholder="Entrez votre adresse e-mail" required aria-required="true">
+            <button class="primary-button" type="submit">S'abonner</button>
+        </form>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer role="contentinfo">
         <div class="footer-items">
-            <p class="logo footer-logo">CERI <span class="logo-red">Car</span></p>
-            <nav>
+            <a href="#accueil" class="logo footer-logo" aria-label="CERI Car - Retour à l'accueil">
+                CERI <span class="logo-red">Car</span>
+            </a>
+            <nav role="navigation" aria-label="Navigation du pied de page">
                 <ul>
                     <li><a href="#accueil">Accueil</a></li>
                     <li><a href="#villes">Villes Populaires</a></li>
