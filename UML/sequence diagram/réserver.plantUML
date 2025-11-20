@@ -1,0 +1,45 @@
+@startuml
+actor "Membre" as M
+participant "Vue" as V
+participant "ControleurReservation" as C
+participant "Voyage (Model)" as MV
+participant "Reservation (Model)" as MR
+
+M -> V : Clic "Réserver" (sur voyage disponible)
+V -> C : actionReserver(voyage_id)
+activate C
+
+    ' Double vérification (Sécurité serveur)
+    C -> MV : findOne(voyage_id)
+    activate MV
+    MV --> C : Objet Voyage
+    deactivate MV
+
+    C -> MV : getReservations()
+    activate MV
+    MV --> C : Liste réservations
+    deactivate MV
+
+    C -> C : Check places (Max - Count)
+
+    alt Places > 0 (Confirmation disponibilité)
+        C -> MR : new Reservation()
+        C -> MR : save()
+        activate MR
+        MR --> C : true
+        deactivate MR
+        C -> V : setFlash("Réservation confirmée")
+        C -> V : redirect("Mes Réservations")
+
+    else Complet (Cas rare: Concurrence)
+        note right of C
+          Si une place a été prise
+          juste avant le clic
+        end note
+        C -> V : setFlash("Désolé, voyage devenu complet")
+        C -> V : redirect("Recherche")
+    end
+
+deactivate C
+V --> M : Affichage résultat
+@enduml

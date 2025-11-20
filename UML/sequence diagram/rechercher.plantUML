@@ -1,0 +1,55 @@
+@startuml
+actor "Visiteur" as User
+participant "VueRecherche" as View
+participant "ControleurVoyage" as Ctrl
+participant "Trajet (Model)" as TrajetModel
+participant "Voyage (Model)" as VoyageModel
+
+User -> View : Saisir(Départ: A, Arrivée: C)
+View -> Ctrl : actionRechercher(A, C)
+activate Ctrl
+
+    group 1. Recherche Directe
+        Ctrl -> TrajetModel : findOne(A, C)
+        activate TrajetModel
+        TrajetModel --> Ctrl : Trajet_AC
+        deactivate TrajetModel
+
+        opt Si Trajet_AC existe
+            Ctrl -> VoyageModel : findAllByTrajet(Trajet_AC)
+            activate VoyageModel
+            VoyageModel --> Ctrl : Liste_Voyages_Directs
+            deactivate VoyageModel
+        end
+    end
+
+    group 2. Recherche Correspondance (A -> B -> C)
+        Ctrl -> TrajetModel : findVillesIntermediaires(A, C)
+        activate TrajetModel
+        TrajetModel --> Ctrl : Villes_B [B1, B2...]
+        deactivate TrajetModel
+
+        loop Pour chaque Ville B
+            Ctrl -> TrajetModel : findOne(A, B) -> Trajet_1
+            Ctrl -> TrajetModel : findOne(B, C) -> Trajet_2
+
+            Ctrl -> VoyageModel : findAllByTrajet(Trajet_1) -> Voyages_V1
+            Ctrl -> VoyageModel : findAllByTrajet(Trajet_2) -> Voyages_V2
+
+            loop Pour chaque combinaison (v1, v2)
+                note right of Ctrl
+                  Vérification Contrainte :
+                  v1.heure_depart + v1.trajet.duree < v2.heure_depart
+                end note
+
+                alt Si Contrainte OK
+                    Ctrl -> Ctrl : Ajouter à Resultats(v1 + v2)
+                end
+            end
+        end
+    end
+
+    Ctrl -> View : render('resultats', [Directs + Correspondances])
+deactivate Ctrl
+View --> User : Affichage des voyages
+@enduml
