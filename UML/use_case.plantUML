@@ -9,7 +9,7 @@ actor "Visiteur" as V
 M -|> V
 C -|> M
 
-rectangle "Application CERICar" {
+rectangle "CERI Car" {
   usecase "Rechercher un voyage" as UC1
   usecase "S'inscrire (Créer compte)" as UC2
   usecase "S'authentifier" as UC3

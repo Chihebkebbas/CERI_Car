@@ -6,7 +6,7 @@ participant "Voyage (Model)" as MV
 participant "Reservation (Model)" as MR
 
 M -> V : Clic "Réserver" (sur voyage disponible)
-V -> C : actionReserver(voyage_id)
+V -> C : actionReserver(voyage_id, nbr_personnes)
 activate C
 
     ' Double vérification (Sécurité serveur)
@@ -22,7 +22,9 @@ activate C
 
     C -> C : Check places (Max - Count)
 
-    alt Places > 0 (Confirmation disponibilité)
+
+    alt Places > nbr_personnes
+        note right of V: Réservation confirmée
         C -> MR : new Reservation()
         C -> MR : save()
         activate MR
@@ -31,13 +33,7 @@ activate C
         C -> V : setFlash("Réservation confirmée")
         C -> V : redirect("Mes Réservations")
 
-    else Complet (Cas rare: Concurrence)
-        note right of C
-          Si une place a été prise
-          juste avant le clic
-        end note
-        C -> V : setFlash("Désolé, voyage devenu complet")
-        C -> V : redirect("Recherche")
+
     end
 
 deactivate C
