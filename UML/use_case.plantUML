@@ -17,6 +17,7 @@ rectangle "CERI Car" {
   usecase "Consulter ses réservations" as UC5
   usecase "Proposer un voyage" as UC6
   usecase "Consulter ses propositions" as UC7
+  usecase "Contacter CERI Car" as UC8
 
   C --> UC6
   C --> UC7
@@ -24,12 +25,13 @@ rectangle "CERI Car" {
   M --> UC4
   M --> UC5
 
+
   V --> UC1
   V --> UC2
   V --> UC3
-
+  V --> UC8
 
   UC4 ..> UC1 : <<include>>
-  note right of UC1 : Recherche directe\net avec correspondances
+  note bottom of UC1 : Recherche directe\net avec correspondances
 }
 @enduml

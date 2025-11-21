@@ -1,9 +1,9 @@
 @startuml
 
+scale 1.3
 state EtatVoyage {
 
 [*] --> Publie : Création par Conducteur
-
 state Publie {
   state "Disponible" as Dispo
   state "Complet" as Full
@@ -11,12 +11,11 @@ state Publie {
   [*] --> Dispo
 
   Dispo --> Full : Nouvelle Réservation\n[Total places réservées == Places Max]
-  Full --> Dispo : Annulation Réservation\n[Total places réservées < Places Max]
+
 }
 
 Publie --> Termine : Heure Départ passée
 Termine --> [*]
 
-note right of Full : État calculé via requête SQL\nsur table Réservation\n
 }
 @enduml
