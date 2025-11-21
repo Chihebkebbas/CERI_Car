@@ -1,6 +1,6 @@
 @startuml
 
-state EtatInternaut {
+state EtatVoyage {
 
 [*] --> Publie : Création par Conducteur
 
