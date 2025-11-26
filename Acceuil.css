@@ -31,6 +31,18 @@
     --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/** Supprimer les flèches natives **/
+/* Chrome, Edge, Safari */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+}
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
@@ -49,7 +61,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 /* ==================== 2. Floating Glass Header ==================== */
 header {
     position: fixed;
-    top: 24px;
+    top: 32px;
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
@@ -76,19 +88,26 @@ header:hover { box-shadow: var(--shadow-md); background: rgba(255,255,255,0.95);
 }
 
 .logo {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'caveat', sans-serif;
     font-size: 24px;
-    font-weight: 800;
+    font-weight: 700;
     color: var(--text-main);
-    letter-spacing: -0.5px;
     display: flex;
     align-items: baseline;
 }
 
-.logo-dot { color: var(--text-main); margin: 0 1px; }
-.logo-red { color: var(--brand-red); }
+.logo-dot {
+    color: var(--text-main); margin: 0 1px;
+}
+.logo-red {
+    color: var(--brand-red);
+}
 
-.nav-items { display: flex; gap: 32px; list-style: none;}
+.nav-items {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+}
 
 .nav-items a {
     font-size: 15px;
@@ -97,16 +116,56 @@ header:hover { box-shadow: var(--shadow-md); background: rgba(255,255,255,0.95);
     position: relative;
 }
 
-.nav-items a:hover, .nav-items a.active { color: var(--text-main); }
-.nav-items a::after {
-    content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
-    background: var(--brand-blue); transition: var(--transition);
+.nav-items a:hover, .nav-items a.active {
+    color: var(--text-main);
 }
-.nav-items a:hover::after { width: 100%; }
 
-.right-nav { display: flex; align-items: center; gap: 16px; }
+.nav-items a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--brand-blue);
+    transition: var(--transition);
+}
+.nav-items a:hover::after {
+    width: 100%;
+}
 
-.btn-text { font-weight: 600; font-size: 15px; color: var(--text-main); }
+.right-nav {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.btn-text {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text-main);
+    position: relative;
+}
+
+.btn-text::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--brand-blue);
+    transition: var(--transition);
+}
+
+.btn-text:hover {
+    transition: var(--transition);
+}
+
+.btn-text:hover::after {
+    width: 100%;
+}
+
 .btn-primary {
     background: var(--text-main);
     color: var(--white);
@@ -115,12 +174,17 @@ header:hover { box-shadow: var(--shadow-md); background: rgba(255,255,255,0.95);
     font-size: 14px;
     font-weight: 600;
 }
-.btn-primary:hover { transform: scale(1.05); background: black; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    background: black;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
 
 /* ==================== 3. Hero Section ==================== */
 .hero {
     min-height: 100vh;
-    padding-top: 140px; /* Space for fixed header */
+    padding-top: 180px; /* Space for fixed header */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -156,7 +220,7 @@ header:hover { box-shadow: var(--shadow-md); background: rgba(255,255,255,0.95);
 }
 
 .hero-text h1 {
-    font-size: 56px;
+    font-size: 64px;
     line-height: 1.05;
     font-weight: 700;
     margin-bottom: 24px;
@@ -171,17 +235,17 @@ header:hover { box-shadow: var(--shadow-md); background: rgba(255,255,255,0.95);
 
 .hero-visual {
     flex: 1.2;
-    height: 500px;
+    height: 620px;
     border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-float);
     position: relative;
 }
 
-/* ==================== 4. Search Bar (Airbnb Style + Icons V1) ==================== */
+/* ==================== 4. Search Bar ==================== */
 .search-container-wrapper {
     position: absolute;
-    bottom: 80px; /* Overlap effect if desired, or position conventionally */
+    bottom: 100px;
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
@@ -204,13 +268,18 @@ header:hover { box-shadow: var(--shadow-md); background: rgba(255,255,255,0.95);
     transition: var(--transition);
 }
 
-.search-bar:hover { transform: translateY(-4px); box-shadow: 0 40px 80px -12px rgba(0, 0, 0, 0.2); }
+.search-bar:hover {
+    transform: translateY(-4px);
+    scale: 1.1;
+    box-shadow: 0 40px 80px -12px rgba(0, 0, 0, 0.2);
+    transition: all 0.6s cubic-bezier(0.3, 1, 0.16, 1);
+}
 
 .search-group {
     flex: 1;
     padding: 14px 24px;
     display: flex;
-    align-items: center; /* Align icon and text stack */
+    align-items: center;
     gap: 16px;
     position: relative;
     cursor: pointer;
@@ -218,9 +287,10 @@ header:hover { box-shadow: var(--shadow-md); background: rgba(255,255,255,0.95);
     transition: background 0.2s;
 }
 
-.search-group:hover { background: #F2F2F7; }
+.search-group:hover {
+    background: #F2F2F7;
+}
 
-/* Styles pour les icônes originales V1 dans la nouvelle barre */
 .input-icon {
     width: 24px;
     height: 24px;
@@ -240,29 +310,42 @@ header:hover { box-shadow: var(--shadow-md); background: rgba(255,255,255,0.95);
 }
 
 .search-group label {
-    font-size: 11px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-main);
-    margin-bottom: 2px;
+
+    font-weight: 500;
+    color: var(--text-secondary);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
 }
 
 .search-group input {
+    margin-bottom: 2px;
     width: 100%;
     border: none;
     outline: none;
     background: transparent;
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--text-secondary);
-    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-main);
+    font-size: 16px;
+
 }
 
-.search-group input:focus { color: var(--text-main); }
-.search-group input::placeholder { opacity: 0.7; }
+.search-group input:focus {
+    color: var(--text-main);
+    font-size: 16px;
+}
+.search-group input::placeholder {
+    font-size: 16px;
+    color: var(--text-main);
+}
 
-.divider { width: 1px; height: 32px; background: #E5E5EA; }
+
+.divider {
+    width: 1px;
+    height: 32px;
+    background: #E5E5EA;
+}
 
 .search-btn {
     height: 64px;
@@ -297,19 +380,42 @@ header:hover { box-shadow: var(--shadow-md); background: rgba(255,255,255,0.95);
     white-space: nowrap;
 }
 
-.search-bar:hover .search-btn { width: 160px; border-radius: var(--radius-pill); background: #c20e39; }
-.search-bar:hover .search-btn-text { max-width: 100px; opacity: 1; margin-right: 12px; }
+.search-bar:hover .search-btn {
+    width: 160px;
+    border-radius: var(--radius-pill);
+    background: var(--brand-red);
+}
+
+.search-bar:hover .search-btn:hover {
+    transform: scale(1.05);
+    background: #c20e39;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: var(--transition);
+}
+
+.search-bar:hover .search-btn-text {
+    max-width: 100px;
+    opacity: 1;
+    margin-right: 12px;
+}
 
 
-/* ==================== 5. Bento Grid / Villes ==================== */
+/* ==================== 5. Villes ==================== */
 .popular-ville {
-    padding: 100px 5%;
+    padding: 140px 5% 100px;
     max-width: var(--container-width);
     margin: 0 auto;
 }
 
-.section-header { text-align: center; margin-bottom: 60px; }
-.section-header h2 { font-size: 40px; margin-bottom: 12px; }
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-header h2 {
+    font-size: 40px;
+    margin-bottom: 12px;
+}
 
 .ville-grid {
     display: grid;
@@ -329,10 +435,19 @@ header:hover { box-shadow: var(--shadow-md); background: rgba(255,255,255,0.95);
     box-shadow: var(--shadow-sm);
 }
 
-.ville-card.large { grid-column: span 2; grid-row: span 2; }
-.ville-card.wide { grid-column: span 2; }
+.ville-card.large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
 
-.ville-card:hover { transform: scale(0.98); box-shadow: var(--shadow-lg); }
+.ville-card.wide {
+    grid-column: span 2;
+}
+
+.ville-card:hover {
+    transform: scale(0.98);
+    box-shadow: var(--shadow-lg);
+}
 
 .card-overlay {
     position: absolute;
@@ -347,8 +462,14 @@ header:hover { box-shadow: var(--shadow-md); background: rgba(255,255,255,0.95);
     transition: var(--transition);
 }
 
-.ville-card:hover .card-overlay { opacity: 1; }
-.card-overlay h3 { font-size: 24px; margin-bottom: 8px; }
+.ville-card:hover .card-overlay {
+    opacity: 1;
+}
+
+.card-overlay h3 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
 
 .glass-btn {
     background: rgba(255,255,255,0.2);
@@ -362,7 +483,10 @@ header:hover { box-shadow: var(--shadow-md); background: rgba(255,255,255,0.95);
     cursor: pointer;
     transition: var(--transition);
 }
-.glass-btn:hover { background: white; color: black; }
+.glass-btn:hover {
+    background: white;
+    color: black;
+}
 
 
 /* ==================== 6. How It Works ==================== */
