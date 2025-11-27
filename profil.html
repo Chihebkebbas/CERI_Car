@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription - CERI Car</title>
+    <title>Mon Profil - CERI Car</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,13 +23,13 @@
         <nav role="navigation">
             <ul class="nav-items">
                 <li><a href="Acceuil.html#accueil">Explorer</a></li>
-                <li><a href="Acceuil.html#villes">Destinations</a></li>
-                <li><a href="Acceuil.html#concept">Concept</a></li>
+                <li><a href="reservation.html">Réservations</a></li>
+                <li><a href="voyage.html">Voyages</a></li>
             </ul>
         </nav>
         <div class="right-nav">
-            <a href="login.html" class="btn-text">Connexion</a>
-            <a href="signup.html" class="btn-primary">S'inscrire</a>
+            <a href="#" class="btn-text">Profil</a>
+            <a href="ajouter_voyage.html" class="btn-primary">Nouveau voyage</a>
         </div>
     </div>
 </header>
@@ -37,34 +37,38 @@
 <main class="auth-main">
     <section class="auth-card wide">
         <div class="auth-header">
-            <h1 class="auth-title">Créer un compte</h1>
-            <p class="auth-subtitle">Rejoignez la communauté et commencez à économiser.</p>
+            <h1 class="auth-title">Mon compte</h1>
+            <p class="auth-subtitle">Vous pouvez modifier vous informations.</p>
+        </div>
+
+        <div class="avatar">
+            <img src="https://i.pravatar.cc/150?img=5" alt="user avatar">
         </div>
 
         <form class="auth-form two-columns" action="#" method="POST">
             <div class="form-group">
                 <label for="nom" class="form-label">Nom</label>
-                <input type="text" id="nom" name="nom" class="form-input" placeholder="Votre nom" required>
+                <input type="text" id="nom" name="nom" class="form-input" placeholder="Votre nom" required value="Martin">
             </div>
 
             <div class="form-group">
                 <label for="prenom" class="form-label">Prénom</label>
-                <input type="text" id="prenom" name="prenom" class="form-input" placeholder="Votre prénom" required>
+                <input type="text" id="prenom" name="prenom" class="form-input" placeholder="Votre prénom" required value="Sarah">
             </div>
 
             <div class="form-group">
                 <label for="pseudo" class="form-label">Pseudo</label>
-                <input type="text" id="pseudo" name="pseudo" class="form-input" placeholder="Choisissez un pseudo" required>
+                <input type="text" id="pseudo" name="pseudo" class="form-input" placeholder="Choisissez un pseudo" required value="@sarah_martin">
             </div>
 
             <div class="form-group">
                 <label for="email" class="form-label">Adresse e-mail</label>
-                <input type="email" id="email" name="email" class="form-input" placeholder="nom@exemple.com" required>
+                <input type="email" id="email" name="email" class="form-input" placeholder="nom@exemple.com" required value="sarah.martin@gmail.com">
             </div>
 
             <div class="form-group full-width">
                 <label for="password" class="form-label">Mot de passe</label>
-                <input type="password" id="password" name="password" class="form-input" placeholder="8 caractères minimum" required minlength="8">
+                <input type="password" id="password" name="password" class="form-input" placeholder="8 caractères minimum" required minlength="8" value="sarahsarah">
             </div>
 
             <div class="form-group">
@@ -74,16 +78,16 @@
 
             <div class="form-group">
                 <label for="photo" class="form-label">Photo URL <span>(Optionnel)</span></label>
-                <input type="url" id="photo" name="photo" class="form-input" placeholder="https://...">
+                <input type="url" id="photo" name="photo" class="form-input" placeholder="https://..." value="https://i.pravatar.cc/150?img=5">
             </div>
 
             <div class="form-group full-width">
-                <button type="submit" class="auth-submit">Commencer l'aventure</button>
+                <button type="submit" class="auth-submit">Sauvgarder</button>
             </div>
         </form>
 
         <div class="auth-footer">
-            <p>Déjà membre ? <a href="login.html" class="auth-link">Se connecter</a></p>
+            <p>Rejoindre nos conducteurs ? <a href="#" class="auth-link">Ajouter un permis</a></p>
         </div>
     </section>
 </main>
@@ -96,8 +100,8 @@
         </div>
         <div class="footer-links">
             <a href="#">Explorer</a>
-            <a href="#">Destinations</a>
-            <a href="#">Concept</a>
+            <a href="#">Réservations</a>
+            <a href="#">Voyages</a>
         </div>
     </div>
     <div class="footer-bottom">

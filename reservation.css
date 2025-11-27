@@ -1,0 +1,61 @@
+.reservation-date {
+    font-size: 14px;
+    color: var(--brand-blue);
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.driver-reseration {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 16px;
+}
+
+.reservation-info {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.trip-meta-visible.reservation {
+    justify-content: end;
+}
+
+.reservation-driver {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+}
+
+/* Status Badges */
+.status-badge {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 100px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+.status-confirmed { background: #E5F9F6; color: #00A884; } /* Vert WhatsApp/Airbnb */
+.status-past { background: #F0F0F0; color: #86868B; }
+.status-cancelled { background: #FFF4E5; color: #FF9500; }
+
+/* Bouton Annuler (Style Danger/Secondaire) */
+.btn-cancel {
+    background: transparent;
+    border: 1px solid #E11143;
+    color: #E11143;
+    padding: 10px 20px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.2s;
+}
+.btn-cancel:hover {
+    background: #FFF4E5;
+}
+
