@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Internaute;
+use app\models\Reservation;
 use app\models\Trajet;
 use app\models\Voyage;
 use Yii;
@@ -74,46 +75,7 @@ class SiteController extends Controller
 
 
 
-    public function actionTest()
-    {
-        $pseudo = "Fourmi";
 
-        $internaute = Internaute::getUserByIdentifiant($pseudo);
-
-        echo "<h/>Pseudo : </h1>" . $pseudo . "<br>";
-
-        echo "<h3>Information : </h3> <br>";
-        echo "Nom : ". $internaute->nom . "<br>";
-        echo "Prénom : ". $internaute->prenom . "<br>";
-        echo "Mail : ". $internaute->mail . "<br>";
-        echo "<img src='$internaute->photo ' alt='photo' style='width: 100px'> ". "<br>";
-
-        $estCoducteur = Internaute::estConducteur($pseudo);
-
-        if ($estCoducteur != NULL) {
-
-            $voyages = Voyage::getVoyagesByConducteurID($internaute->id);
-
-            echo "<h3>Voyages : </h3> <br>";
-            $n = 1;
-            foreach ($voyages as $voyage) {
-                echo "Voyage n: " . $n . "<br>";
-
-                echo "Type Véhicule: ". $voyage->typeVehicule->typev . "<br>";
-                echo "Marque Véhicule: ". $voyage->marqueVehicule->marquev . "<br>";
-                echo "Tarif: ". $voyage->tarif . "<br>";
-                echo "Nombre de places : ". $voyage->nbplacedispo. "<br>";
-                echo "Nombre de bagage: ". $voyage->nbbagage . "<br>";
-                echo "Heure de départ: ". $voyage->heuredepart . "<br>";
-                echo "Contraintes: ". $voyage->contraintes . "<br>";
-
-
-                $n ++;
-            }
-
-        }
-
-    }
 
 }
 

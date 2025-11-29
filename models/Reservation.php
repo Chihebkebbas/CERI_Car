@@ -11,15 +11,19 @@ class Reservation extends ActiveRecord
     }
 
     public function getVoyageurs() {
-        return $this->hasMany(Internaute::class , ['voyageur' => 'id']);
+        return $this->hasMany(Internaute::class , ['id' => 'voyageur']);
     }
 
-    public function getVoyage() {
-        return $this->hasOne(Internaute::class , ['voyage' => 'id']);
+    public function getInfoVoyage() {
+        return $this->hasOne(Voyage::class , ['id' => 'voyage']);
     }
 
-    public function getReservationsByVoyageId($voyageId) {
-        return $this->findAll(['voyage' => $voyageId]);
+    public static function getReservationsByVoyageId($voyageId) {
+        return self::findAll(['voyage' => $voyageId]);
+    }
+
+    public static function getReservationsByInternauteId($internauteId) {
+        return self::findAll(['voyageur' => $internauteId]);
     }
 
 }

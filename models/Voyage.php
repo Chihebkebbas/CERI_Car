@@ -11,12 +11,12 @@ class Voyage extends ActiveRecord
         return 'fredouil.voyage';
     }
 
-    public function getConducteur()
+    public function getInfoConducteur()
     {
         return $this->hasOne(Internaute::class , ['id' => 'conducteur']);
     }
 
-    public function getTrajet() {
+    public function getInfoTrajet() {
         return $this->hasOne(Trajet::class , ['id' => 'trajet']);
     }
 
