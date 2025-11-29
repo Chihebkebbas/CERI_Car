@@ -1,0 +1,41 @@
+@startuml
+actor "Membre" as M
+participant "Vue" as V
+participant "ControleurReservation" as C
+participant "Voyage (Model)" as MV
+participant "Reservation (Model)" as MR
+
+M -> V : Clic "Réserver" (sur voyage disponible)
+V -> C : actionReserver(voyage_id, nbr_personnes)
+activate C
+
+    ' Double vérification (Sécurité serveur)
+    C -> MV : findOne(voyage_id)
+    activate MV
+    MV --> C : Objet Voyage
+    deactivate MV
+
+    C -> MV : getReservations()
+    activate MV
+    MV --> C : Liste réservations
+    deactivate MV
+
+    C -> C : Check places (Max - Count)
+
+
+    alt Places > nbr_personnes
+        note right of V: Réservation confirmée
+        C -> MR : new Reservation()
+        C -> MR : save()
+        activate MR
+        MR --> C : true
+        deactivate MR
+        C -> V : setFlash("Réservation confirmée")
+        C -> V : redirect("Mes Réservations")
+
+
+    end
+
+deactivate C
+V --> M : Affichage résultat
+@enduml

@@ -1,0 +1,61 @@
+@startuml
+class Internaute {
+  +id : Integer
+  +nom : String
+  +prenom : String
+  +pseudo : String
+  +email : String
+  +mot_de_passe : String
+  +num_permis : String [0..1]
+  +photo_url : String
+  +estConducteur() : Boolean
+}
+
+class Trajet {
+  +id : Integer
+  +ville_depart : String
+  +ville_arrivee : String
+  +distance : Integer
+  +getDuree() : Integer
+}
+
+class Voyage {
+  +id : Integer
+  +heure_depart : Time
+  +tarif : Float
+  +nb_places : Integer
+  +nb_bagages : Integer
+  +contraintes : Text
+  +estComplet() : Boolean
+}
+
+class Reservation {
+  +id : Integer
+  +date_reservation : DateTime
+  +statut : String
+}
+
+class MarqueVehicule {
+  +id : Integer
+  +nom : String
+}
+
+class TypeVehicule {
+  +id : Integer
+  +nom : String
+}
+
+Internaute "1" -- "0..*" Voyage : Propose >
+Internaute "1" -- "0..*" Reservation : Effectue >
+Trajet "1" -- "0..*" Voyage : Est associé à <
+Voyage "1" -- "0..*" Reservation : Concerne <
+Voyage "1" -- "1" MarqueVehicule : Marque >
+Voyage "1" -- "1" TypeVehicule : Type >
+
+note bottom of Trajet : Durée (mn) = Distance (km)
+note right of Voyage : Un voyage complet a\nautant de réservations\nque de places
+note right of Trajet : Un Trajet : est une définition\n géographique\n (Ville A -> Ville B)
+note top of Voyage : Un Voyage : est une instance temporelle proposée\n par un conducteur sur un trajet existant
+note left of Internaute : Conducteur == Internaute avec un\n num_permis non nul
+
+@enduml

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposer un voyage - CERI Car</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=DM+Sans:opsz,wght@9..40,400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="auth.css">
+    <link rel="stylesheet" href="Acceuil.css">
+</head>
+<body>
+
+<header role="banner">
+    <div class="header-container">
+        <a href="Acceuil.html" class="logo">
+            CERI<span class="logo-dot">.</span><span class="logo-red">Car</span>
+        </a>
+        <nav role="navigation">
+            <ul class="nav-items">
+                <li><a href="Acceuil.html#accueil">Explorer</a></li>
+                <li><a href="reservation.html">Réservations</a></li>
+                <li><a href="voyage.html">Voyages</a></li>
+            </ul>
+        </nav>
+        <div class="right-nav">
+            <a href="profil.html" class="btn-text">Profil</a>
+        </div>
+    </div>
+</header>
+
+<main class="auth-main">
+    <section class="auth-card wide"> <div class="auth-header">
+        <h1 class="auth-title">Proposer un voyage</h1>
+        <p class="auth-subtitle">Partagez vos frais et rencontrez de nouvelles personnes.</p>
+    </div>
+
+        <form class="auth-form two-columns" action="#" method="POST">
+
+            <div class="form-group">
+                <label for="depart" class="form-label">Ville de départ</label>
+                <div class="input-with-icon">
+                    <input type="text" id="depart" name="depart" class="form-input" placeholder="Ex: Avignon" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="arrivee" class="form-label">Ville d'arrivée</label>
+                <input type="text" id="arrivee" name="arrivee" class="form-input" placeholder="Ex: Paris" required>
+            </div>
+
+            <div class="form-group">
+                <label for="heure" class="form-label">Heure de départ</label>
+                <input type="time" id="heure" name="heure" class="form-input" required>
+            </div>
+
+            <div class="form-group">
+                <label for="tarif" class="form-label">Prix par passager (€)</label>
+                <input type="number" id="tarif" name="tarif" class="form-input" placeholder="Ex: 25" min="0" step="0.5" required>
+            </div>
+
+            <div class="form-group">
+                <label for="places" class="form-label">Places disponibles</label>
+                <div class="stepper-input">
+                    <input type="number" id="places" name="places" class="form-input" value="3" min="1" max="8" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="bagages" class="form-label">Bagages autorisés / pers.</label>
+                <input type="number" id="bagages" name="bagages" class="form-input" value="1" min="0" max="3" required>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="contraintes" class="form-label">Contraintes & Infos voyageur</label>
+                <textarea id="contraintes" name="contraintes" class="form-input contraintes" rows="3" placeholder="Ex: Pas de fumeurs, petits animaux acceptés en cage, musique calme..."></textarea>
+                <p class="form-hint voyage">
+                    Soyez précis pour éviter les malentendus avec vos passagers.
+                </p>
+            </div>
+
+            <div class="form-group full-width">
+                <button type="submit" class="auth-submit">Publier le voyage</button>
+            </div>
+
+        </form>
+    </section>
+</main>
+
+<footer role="contentinfo">
+    <div class="footer-content">
+        <div class="footer-brand">
+            <a href="Acceuil.html" class="logo">CERI<span class="logo-dot">.</span><span class="logo-red">Car</span></a>
+            <p>Le covoiturage nouvelle génération.</p>
+        </div>
+        <div class="footer-links">
+            <a href="Acceuil.html">Explorer</a>
+            <a href="reservation.html">Réservation</a>
+            <a href="#">Voyages</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 CERI Car. Conçu par <span class="chiheb">Chiheb Eddine KEBBAS</span>.</p>
+    </div>
+</footer>
+
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+@startuml
+hide empty description
+scale 1.3
+
+state EtatInternaute {
+
+[*] --> Visiteur : Accès Site
+
+state Visiteur {
+  note "Peut Rechercher, S'inscrire" as N1
+}
+
+Visiteur --> Membre : Connexion / Inscription
+Membre --> Visiteur : Déconnexion
+
+state Membre {
+  note "Peut Réserver" as N2
+}
+
+state Conducteur {
+  note "Peut Proposer Voyage" as N3
+}
+
+Membre --> Conducteur : Ajout num_permis
+Conducteur --> Membre : Retrait num_permis
+
+Conducteur --> Visiteur : Déconnexion
+
+}
+
+@enduml

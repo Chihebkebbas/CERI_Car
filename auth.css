@@ -1,0 +1,367 @@
+/* ==================== 1. Variables & Core ==================== */
+:root {
+    /* Palette Premium */
+    --bg-body: #F5F5F7;
+    --text-main: #1D1D1F;
+    --text-secondary: #86868B;
+
+    /* Branding */
+    --accent: #007AFF;
+    --brand-red: #E11143;
+    --brand-blue: #304FAC;
+    --white: #FFFFFF;
+
+    /* Glassmorphism */
+    --glass: rgba(255, 255, 255, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.6);
+    --blur: 20px;
+
+    /* Spacing & Layout */
+    --radius-sm: 12px;
+    --radius-md: 24px;
+    --radius-lg: 32px;
+    --radius-pill: 100px;
+    --container-width: 1200px;
+
+    /* Physics */
+    --shadow-sm: 0 4px 12px rgba(0,0,0,0.04);
+    --shadow-md: 0 12px 32px rgba(0,0,0,0.08);
+    --shadow-lg: 0 20px 40px rgba(0,0,0,0.12);
+    --shadow-float: 0 30px 60px -12px rgba(0, 0, 0, 0.15);
+    --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h1, h2, h3, .btn { font-family: 'DM Sans', sans-serif; letter-spacing: -0.02em; }
+a { text-decoration: none; color: inherit; transition: var(--transition); }
+
+
+/* ==================== Header ==================== */
+header {
+    position: fixed;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: var(--container-width);
+    height: 72px;
+    background: var(--glass);
+    backdrop-filter: blur(var(--blur));
+    -webkit-backdrop-filter: blur(var(--blur));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-pill);
+    z-index: 1000;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+
+header:hover {
+    box-shadow: var(--shadow-md);
+    background: rgba(255,255,255,0.95);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 32px;
+}
+
+.logo {
+    font-family: 'caveat', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-main);
+    display: flex;
+    align-items: baseline;
+}
+
+.logo-dot {
+    color: var(--text-main); margin: 0 1px;
+}
+.logo-red {
+    color: var(--brand-red);
+}
+
+.nav-items {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+}
+
+.nav-items a {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    position: relative;
+}
+
+.nav-items a:hover, .nav-items a.active {
+    color: var(--text-main);
+}
+
+.nav-items a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--brand-blue);
+    transition: var(--transition);
+}
+.nav-items a:hover::after {
+    width: 100%;
+}
+
+.right-nav {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.btn-text {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text-main);
+    position: relative;
+}
+
+.btn-text::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--brand-blue);
+    transition: var(--transition);
+}
+
+.btn-text:hover {
+    transition: var(--transition);
+}
+
+.btn-text:hover::after {
+    width: 100%;
+}
+
+.btn-primary {
+    background: var(--text-main);
+    color: var(--white);
+    padding: 12px 24px;
+    border-radius: var(--radius-pill);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    background: black;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* ==================== 3. Auth Layout ==================== */
+
+/*Avatar du profil*/
+
+.avatar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.avatar img {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-pill);
+    object-fit: cover;
+}
+
+
+.auth-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 180px 20px 80px;
+}
+
+.auth-card {
+    background: var(--white);
+    width: 100%;
+    max-width: 600px;
+    padding: 48px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-float);
+    border: 1px solid rgba(255,255,255,0.8);
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.auth-card.wide {
+    max-width: 800px; /* Plus large pour l'inscription */
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.auth-header { text-align: center; margin-bottom: 40px; }
+.auth-title { font-size: 32px; font-weight: 700; color: var(--text-main); margin-bottom: 8px; }
+.auth-subtitle { color: var(--text-secondary); font-size: 16px; }
+
+/* ==================== 4. Forms ==================== */
+.auth-form { display: flex; flex-direction: column; gap: 24px; }
+
+/* Grid pour le signup (2 colonnes) */
+.auth-form.two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+.form-group.full-width { grid-column: 1 / -1; }
+
+.form-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-left: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.form-label span { color: var(--text-secondary); font-weight: 400; text-transform: none; }
+
+.form-input {
+    width: 100%;
+    height: 52px;
+    padding: 0 20px;
+    border-radius: var(--radius-sm);
+    border: 1px solid transparent;
+    background-color: #F2F2F7; /* Apple style input bg */
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: var(--text-main);
+    transition: var(--transition);
+}
+
+.form-input::placeholder { color: #8E8E93; }
+
+.form-input:hover { background-color: #E5E5EA; }
+.form-input:focus {
+    background-color: var(--white);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
+    outline: none;
+}
+
+/* Bouton Submit */
+.auth-submit {
+    margin-top: 16px;
+    height: 56px;
+    background: var(--brand-red); /* Rouge marque */
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    transition: var(--transition);
+    width: 100%;
+}
+
+.auth-submit:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 24px rgba(225, 17, 67, 0.3);
+}
+
+/* Footer Link */
+.auth-footer { text-align: center; margin-top: 24px; font-size: 14px; color: var(--text-secondary); }
+.auth-link { color: var(--accent); font-weight: 600; }
+.auth-link:hover { text-decoration: underline; }
+
+/* ==================== 5. Footer (Identique Acceuil.css) ==================== */
+footer {
+    background: var(--text-main);
+    color: white;
+    padding: 60px 5% 40px;
+    border-top-left-radius: var(--radius-lg);
+    border-top-right-radius: var(--radius-lg);
+    margin-top: 80px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: var(--container-width);
+    margin: 0 auto 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-brand .logo { color: white; }
+.footer-brand .logo-dot { color: white; }
+.footer-brand p { color: #86868b; margin-top: 8px; font-size: 14px; }
+.footer-links { display: flex; gap: 32px; }
+.footer-links a { color: #86868b; font-size: 14px; }
+.footer-links a:hover { color: white; }
+.footer-bottom { text-align: center; color: #86868b; font-size: 13px; }
+.chiheb { color: var(--brand-red); }
+
+
+
+/*Pour la page Voyage*/
+
+.contraintes {
+    padding-top: 12px;
+    max-width: 100%;
+    height: auto;
+    max-height: 100px;
+}
+
+.form-hint.voyage {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 6px;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+    .nav-items{
+        gap: 12px;
+    }
+
+    .auth-card.wide {
+        padding: 32px;
+    }
+
+    .auth-form.two-columns {
+        grid-template-columns: 1fr; gap: 16px;
+    }
+
+    .header-container {
+        padding: 0 20px;
+    }
+}

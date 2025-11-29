@@ -1,0 +1,211 @@
+/* ==================== 1. Variables & Core ==================== */
+:root {
+    /* Palette Premium */
+    --bg-body: #F5F5F7;
+    --text-main: #1D1D1F;
+    --text-secondary: #86868B;
+
+    /* Branding */
+    --accent: #007AFF;
+    --brand-red: #E11143;
+    --brand-blue: #304FAC;
+    --white: #FFFFFF;
+
+    /* Glassmorphism */
+    --glass: rgba(255, 255, 255, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.6);
+    --blur: 20px;
+
+    /* Spacing & Layout */
+    --radius-sm: 12px;
+    --radius-md: 24px;
+    --radius-lg: 32px;
+    --radius-pill: 100px;
+    --container-width: 1200px;
+
+    /* Physics */
+    --shadow-sm: 0 4px 12px rgba(0,0,0,0.04);
+    --shadow-md: 0 12px 32px rgba(0,0,0,0.08);
+    --shadow-lg: 0 20px 40px rgba(0,0,0,0.12);
+    --shadow-float: 0 30px 60px -12px rgba(0, 0, 0, 0.15);
+    --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+.btn-primary.small {
+    height: 40px;
+    padding: 0 20px;
+    font-size: 13px;
+}
+
+/* --- Badges & Meta --- */
+.occupancy-badge {
+    background: #F2F2F7;
+    color: var(--text-main);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 100px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.occupancy-badge .icon {
+    font-size: 16px;
+}
+
+.occupancy-badge.full {
+    background: #E5F9F6;
+    color: #00A884; /* Vert succès */
+}
+
+.earnings-display {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+}
+
+.earnings-display .label {
+    font-size: 10px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+.earnings-display .amount {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: #00A884;
+}
+
+/* --- Container Contenu Étendu --- */
+.expanded-content-column {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: #FAFAFA; /* Fond légèrement différent pour le contexte */
+}
+
+.list-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+}
+
+/* --- Liste des Passagers (Style iOS/Airbnb) --- */
+.passenger-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.passenger-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+}
+
+
+.passenger-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar-medium {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.passenger-data {
+    display: flex;
+    flex-direction: column;
+}
+
+.passenger-data .name {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text-main);
+}
+
+.passenger-data .details {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+/* --- Actions (Boutons ronds) --- */
+.phone {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 500;
+
+}
+
+
+
+
+/* --- Footer & Infos Diverses --- */
+.trip-info-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #F2F2F7;
+    padding: 12px 16px;
+    border-radius: 12px;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+.trip-info-box span { font-size: 20px; }
+
+.trip-actions-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+    padding-top: 16px;
+    border-top: 1px solid #E5E5EA;
+}
+
+.btn-text-danger {
+    background: transparent;
+    border: none;
+    color: #E11143; /* Rouge marque */
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 100px;
+    transition: background 0.2s;
+}
+
+.btn-text-danger:hover {
+    background: #FFF0F3;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .passenger-item {
+        align-items: flex-start;
+    }
+    .passenger-actions {
+        flex-direction: column;
+        gap: 6px;
+    }
+    .action-btn {
+        width: 32px;
+        height: 32px;
+    }
+}

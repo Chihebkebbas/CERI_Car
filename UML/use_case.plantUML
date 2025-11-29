@@ -1,0 +1,37 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Conducteur" as C
+actor "Internaute (Membre)" as M
+actor "Visiteur" as V
+
+M -|> V
+C -|> M
+
+rectangle "CERI Car" {
+  usecase "Rechercher un voyage" as UC1
+  usecase "S'inscrire (Créer compte)" as UC2
+  usecase "S'authentifier" as UC3
+  usecase "Réserver un voyage" as UC4
+  usecase "Consulter ses réservations" as UC5
+  usecase "Proposer un voyage" as UC6
+  usecase "Consulter ses propositions" as UC7
+  usecase "Contacter CERI Car" as UC8
+
+  C --> UC6
+  C --> UC7
+
+  M --> UC4
+  M --> UC5
+
+
+  V --> UC1
+  V --> UC2
+  V --> UC3
+  V --> UC8
+
+  UC4 ..> UC1 : <<include>>
+  note bottom of UC1 : Recherche directe\net avec correspondances
+}
+@enduml
