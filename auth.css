@@ -301,7 +301,7 @@ header:hover {
 .auth-link { color: var(--accent); font-weight: 600; }
 .auth-link:hover { text-decoration: underline; }
 
-/* ==================== 5. Footer (Identique Acceuil.css) ==================== */
+/* ==================== 5. Footer (Identique acceuil.css) ==================== */
 footer {
     background: var(--text-main);
     color: white;

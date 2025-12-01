@@ -11,7 +11,7 @@ class Trajet extends ActiveRecord
         return 'fredouil.trajet';
     }
 
-    public function getTrajet($depart, $arrivee) {
-        return $this->findOne(['depart' => $depart, 'arrivee' => $arrivee]);
+    public static function getTrajet($depart, $arrivee) {
+        return self::findOne(['depart' => $depart, 'arrivee' => $arrivee]);
     }
 }

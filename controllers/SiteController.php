@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Internaute;
+use app\models\RechercheVoyages;
 use app\models\Reservation;
 use app\models\Trajet;
 use app\models\Voyage;
@@ -64,7 +65,29 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $depart = \Yii::$app->request->get('depart');
+        $arrivee = \Yii::$app->request->get('arrivee');
+        $places = \Yii::$app->request->get('places');
+
+
+        if($depart && $arrivee && $places){
+            $model = new RechercheVoyages();
+            $voyages = $model->rechercherVoyages($depart, $arrivee, $places);
+            return $this->render('recherche', [
+                'voyages' => $voyages,
+                'depart' => $depart,
+                'arrivee' => $arrivee,
+                'places' => $places,
+            ]);
+        }
+
+
+        return $this->render('index', [
+                'depart' => $depart,
+                'arrivee' => $arrivee,
+                'places' => $places,
+            ]
+        );
     }
 
     /**
@@ -72,8 +95,17 @@ class SiteController extends Controller
      *
      * @return Response|string
      */
+    public function actionLogin() {
+        return $this->render('login');
+    }
 
+    public function actionSignup() {
+        return $this->render('signup');
+    }
 
+    public function actionRecherche() {
+        return $this->render('recherche');
+    }
 
 
 

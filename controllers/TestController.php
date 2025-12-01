@@ -2,12 +2,14 @@
 
 namespace app\controllers;
 
+use app\models\RechercheVoyages;
 use app\models\Reservation;
 use app\models\Voyage;
 use app\models\Internaute;
 
 use yii\web\Controller;
 use yii\web\Response;
+
 
 class TestController extends Controller
 {
@@ -114,6 +116,21 @@ class TestController extends Controller
         }
 
 
+
+    }
+
+    public function actionRechercher() {
+        $depart = "Paris";
+        $arrivee = "Marseille";
+        $places = 1;
+
+        $model = new RechercheVoyages();
+
+        $voyages = $model->rechercherVoyages($depart, $arrivee, $places);
+
+        foreach ($voyages as $voyage) {
+            echo $voyage->id . "<br>";
+        }
 
     }
 }
