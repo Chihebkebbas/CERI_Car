@@ -69,10 +69,18 @@ class SiteController extends Controller
         $arrivee = \Yii::$app->request->get('arrivee');
         $places = \Yii::$app->request->get('places');
 
+        if ($depart) {
+            $depart = ucfirst(strtolower($depart));
+        }
+
+        if ($arrivee) {
+            $arrivee = ucfirst(strtolower($arrivee));
+        }
 
         if($depart && $arrivee && $places){
             $model = new RechercheVoyages();
             $voyages = $model->rechercherVoyages($depart, $arrivee, $places);
+
             return $this->render('recherche', [
                 'voyages' => $voyages,
                 'depart' => $depart,
@@ -82,12 +90,7 @@ class SiteController extends Controller
         }
 
 
-        return $this->render('index', [
-                'depart' => $depart,
-                'arrivee' => $arrivee,
-                'places' => $places,
-            ]
-        );
+        return $this->render('index');
     }
 
     /**

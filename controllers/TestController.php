@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\RechercheVoyages;
 use app\models\Reservation;
+use app\models\Trajet;
 use app\models\Voyage;
 use app\models\Internaute;
 
@@ -15,16 +16,40 @@ class TestController extends Controller
 {
     public function actionTest()
     {
-        $pseudo = "Loup";
+        $pseudo = "Chien";
+
+        $trajetId = 345;
+
+        $voyaggeBytrajetId = Voyage::getVoyagesByTrajetId($trajetId);
+
+        echo "Test getVoyagesByTrajetId <br>";
+        foreach ($voyaggeBytrajetId as $voyage) {
+            echo $voyage->id . "<br>";
+        }
+
+
+        $depart = "Dijon";
+        $arrivee = "Lyon";
+
+        echo "<br>Test getTrajet <br>";
+
+        $trajet = Trajet::getTrajet($depart, $arrivee);
+        echo "trajet id: " . $trajet->id . "<br>";
+        echo "distance: " . $trajet->distance . "<br>";
+        echo "depart: " . $trajet->depart . "<br>";
+        echo "arrivee: " . $trajet->arrivee . "<br>";
+
+
 
         $internaute = Internaute::getUserByIdentifiant($pseudo);
 
-        echo "<h/>Pseudo : </h1>" . $pseudo . "<br>";
+        echo "<br><br><h/>Pseudo : </h1>" . $pseudo . "<br>";
 
         echo "<h3>Information : </h3> <br>";
         echo "Nom : ". $internaute->nom . "<br>";
         echo "Prénom : ". $internaute->prenom . "<br>";
         echo "Mail : ". $internaute->mail . "<br>";
+        echo "Permis : ".  $internaute->permis . "<br>";
         echo "<img src='$internaute->photo ' alt='photo' style='width: 100px'> ". "<br>";
 
         $estCoducteur = Internaute::estConducteur($pseudo);
@@ -43,6 +68,10 @@ class TestController extends Controller
                 echo "Arrivée : ". $voyage->infoTrajet->arrivee . "<br>";
                 echo "Distance : ". $voyage->infoTrajet->distance . "<br>";
 
+                echo "Voyage ID : ". $voyage->id . "<br>";
+                echo "Trajet ID : ". $voyage->trajet . "<br>";
+
+                echo "Conducteur :". $voyage->infoConducteur->pseudo . "<br>";
 
                 echo "Type Véhicule: ". $voyage->typeVehicule->typev . "<br>";
                 echo "Marque Véhicule: ". $voyage->marqueVehicule->marquev . "<br>";
@@ -103,8 +132,10 @@ class TestController extends Controller
                         echo "Nom Conducteur: ". $infoVoyage->infoConducteur->nom . "<br>";
                         echo "Prénom Conducteur: ". $infoVoyage->infoConducteur->prenom . "<br>";
                         echo "Mail: ". $infoVoyage->infoConducteur->mail . "<br>";
+                        echo "MarqueV :" . $infoVoyage->marqueVehicule->marquev . "<br>";
 
                     }
+
 
                     $m++;
 

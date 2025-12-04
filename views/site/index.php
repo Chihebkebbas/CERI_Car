@@ -25,7 +25,7 @@
                     <?=Html::input(
                             'text',
                             'depart',
-                            $depart,
+                            null,
                             [
                                     'class' => 'input',
                                     'placeholder' => 'Départ',
