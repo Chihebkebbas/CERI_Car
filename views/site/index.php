@@ -6,8 +6,8 @@
 ?>
 
 <section class="hero" id="accueil">
-    <div class="hero-content">
-        <div class="hero-text">
+    <div class="hero-content" id="hero-default-content">
+        <div class="hero-text" >
             <span class="hero-badge">Trajets dans toute la France</span>
             <h1>Partage la route,<br>Partage les frais,<br>Partage le moment.</h1>
             <p>La façon la plus simple, économique et conviviale de voyager. Rejoins la communauté CERI Car dès aujourd'hui.</p>
@@ -17,8 +17,10 @@
         </div>
     </div>
 
+    <div class="search-layout-ajax" id="hero-ajax-results" style="display: none;"></div>
+
     <div class="search-container-wrapper">
-        <form class="search-bar" role="search" method="GET" action="site/index">
+        <form id="search-form" class="search-bar" role="search">
             <div class="search-group">
                 <img src="https://img.icons8.com/ios/50/sent--v1.png" alt="Départ" class="input-icon">
                 <div class="input-stack">
@@ -78,7 +80,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="search-btn" onclick="<?=Url::to(['site/recherche'])?>">
+            <button type="submit" class="search-btn">
                 <span class="search-btn-text">Rechercher</span>
                 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAABvklEQVR4nO2WS0oDQRCGBx/Z+NgpeAX1DupaFyqaKwTF9ymC19DoUQRx4wNUYtyGkGT+v2dmoauSijUwK7U7IQhaUDAw/dfXVFdVdxT9228xESmRLAO4APBEMlPXbwA1/adrBgoFsEmyQVK+cgAvADb6BorICMnTQvBb59xBkiTzzWZzQr3b7S7EcXxI8q6wrqraYDANCuCNZOWrYLbJHVvbg/eTXtFAcRwveeiWcziA9ZBCatjOK76bJrlr4LqIjPsIy/mZhpyViIySvDf41o+FAC4NvO8LLcQ4MvC5j+hZRVq9oWCtdgM//VhEMlVRq9WaDAW32+0py1o6VHCn05n2BmMwqV7MK9sHXFORTqRQMIATA5+FtNNdH+30YDG2fYQlHfgm3PEFk9wzbUNExrzEADbykalj0EO3AuBdtc65tSjESFYLl8SupvCb9O7lUACtNE1ng8DyeeP04Ob3OpF0OGirqWv1AjgunGkPmq8PhqvpLaNt8d1DgOSrc25VYfms7hsuIuM68HX2Ani0IaNPn7q2jFZvsZAGCve1JElm8peJbjbLsrnoT8DTQtoBXA8NXIDfALgaKvjfIrMPDB/TSpPDn+oAAAAASUVORK5CYII=" alt="Search" class="search-icon-img">
             </button>

@@ -39,7 +39,7 @@ AppAsset::register($this);
         </a>
         <nav role="navigation">
             <ul class="nav-items">
-                <li><a href="<?=Url::to(['site/recherche']) ?>" class="active">Explorer</a></li>
+                <li><a href="<?=Url::to(['site/index']) ?>">Explorer</a></li>
                 <li><a href="<?=Url::to(['site/index']) ?>#villes">Destinations</a></li>
                 <li><a href="<?=Url::to(['site/index']) ?>#concept">Concept</a></li>
             </ul>

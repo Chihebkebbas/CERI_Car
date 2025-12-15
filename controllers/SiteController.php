@@ -65,23 +65,25 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $depart = \Yii::$app->request->get('depart');
-        $arrivee = \Yii::$app->request->get('arrivee');
-        $places = \Yii::$app->request->get('places');
+        $request = Yii::$app->request;
 
-        if ($depart) {
-            $depart = ucfirst(strtolower($depart));
-        }
+        $depart = $request->get('depart');
+        $arrivee = $request->get('arrivee');
+        $places = $request->get('places');
 
-        if ($arrivee) {
-            $arrivee = ucfirst(strtolower($arrivee));
-        }
+        if ($depart) $depart = ucfirst(strtolower($depart));
+        if ($arrivee) $arrivee = ucfirst(strtolower($arrivee));
 
-        if($depart && $arrivee && $places){
+
+        $voyages = [];
+        if ($depart && $arrivee && $places) {
             $model = new RechercheVoyages();
             $voyages = $model->rechercherVoyages($depart, $arrivee, $places);
+        }
 
-            return $this->render('recherche', [
+
+        if ($request->isAjax) {
+            return $this->renderPartial('_resultat', [
                 'voyages' => $voyages,
                 'depart' => $depart,
                 'arrivee' => $arrivee,
@@ -105,11 +107,6 @@ class SiteController extends Controller
     public function actionSignup() {
         return $this->render('signup');
     }
-
-    public function actionRecherche() {
-        return $this->render('recherche');
-    }
-
 
 
 }

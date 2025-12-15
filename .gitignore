@@ -37,3 +37,5 @@ tests/_support/_generated
 /tests
 ._*
 *.swp
+
+config/db.php

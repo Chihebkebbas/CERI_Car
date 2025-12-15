@@ -12,6 +12,10 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'assetManager' => [
+         'appendTimestamp' => true, // Yii d'ajouter un timestamp à tes fichiers (ex: main.js?v=123456)
+         ],
+
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'VEv9w_HG24bileoDN1PlEj4S_6xJJEFa',

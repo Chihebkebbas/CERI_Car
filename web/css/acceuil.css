@@ -127,7 +127,7 @@ header:hover {
     position: relative;
 }
 
-.nav-items a:hover, .nav-items a.active, .mobile a:hover {
+.nav-items a:hover, .mobile a:hover {
     color: var(--text-main);
 }
 
@@ -207,11 +207,9 @@ header:hover {
 
 .hero-content {
     display: flex;
+    width: var(--container-width);
     align-items: center;
     justify-content: space-between;
-    width: 90%;
-    max-width: var(--container-width);
-    margin-bottom: 60px;
 }
 
 .hero-text {
@@ -689,13 +687,13 @@ footer {
 
 /**==============================================Recherche Page=================================================================**/
 /* ==================== Layout Principal ==================== */
-.search-layout {
-    padding-top: 100px;
-    height: 100vh;
-    background-color: var(--bg-body);
+
+.search-layout-ajax{
+    width: var(--container-width) !important;
+    height: auto !important;
+    background: transparent !important;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
 }
 
 /* --- Barre de Résumé --- */
@@ -709,7 +707,7 @@ footer {
 }
 
 .summary-content {
-    margin: 40px 0 0 0;
+    margin: 0;
     background: var(--white);
     padding: 10px 24px;
     border-radius: var(--radius-pill);
@@ -756,15 +754,17 @@ footer {
 
 /* --- Grid Layout (Sidebar + Résultats) --- */
 .content-container {
-    max-width: var(--container-width);
-    width: 100%;
-    margin: 20px auto 0;
-    padding: 0 32px;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+
     display: grid;
     grid-template-columns: 260px 1fr;
     gap: 32px;
-    flex: 1;
-    overflow: hidden;
+
+    height: 55vh;
+    min-height: 400px;
 }
 
 .no-summary {
@@ -808,6 +808,7 @@ footer {
 
 /* --- Section Résultats --- */
 .results-section {
+    width: 100%;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -845,6 +846,7 @@ footer {
 
 /* --- CARTE VOYAGE --- */
 .trip-card {
+    width: 100%;
     background: var(--white);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
@@ -1221,4 +1223,5 @@ footer {
         gap: 16px;
     }
 }
+
 

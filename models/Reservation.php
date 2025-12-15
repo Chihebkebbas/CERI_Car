@@ -18,12 +18,23 @@ class Reservation extends ActiveRecord
         return $this->hasOne(Voyage::class , ['id' => 'voyage']);
     }
 
+
+
+    public static function getReservationsByInternauteId($internauteId) {
+        return self::findAll(['voyageur' => $internauteId]);
+    }
+
     public static function getReservationsByVoyageId($voyageId) {
         return self::findAll(['voyage' => $voyageId]);
     }
 
-    public static function getReservationsByInternauteId($internauteId) {
-        return self::findAll(['voyageur' => $internauteId]);
+    public static function getNombrePlacesReservee($voyageId) {
+        $nbPlacesReservee = 0;
+        $reservations = self::getReservationsByVoyageId($voyageId);
+        foreach ($reservations as $reservation) {
+            $nbPlacesReservee += $reservation->nbplaceresa;
+        }
+        return $nbPlacesReservee;
     }
 
 }

@@ -63,17 +63,10 @@ class Voyage extends ActiveRecord
         return $url == null ? "https://www.gravatar.com/avatar/?d=mp&f=y" : $url;
     }
 
-    public function getNombrePlacesDispo() {
-
-        $placesReservee = 0;
-        $reservations = Reservation::getReservationsByVoyageId($this->id);
-
-        foreach ($reservations as $reservation) {
-            $placesReservee += $reservation->nbplaceresa;
-        }
-
-        return $this->nbplacedispo - $placesReservee;
+    public function getPlacesRestantes() {
+        return $this->nbplacedispo - Reservation::getNombrePlacesReservee($this->id);
     }
+
 
 
 
