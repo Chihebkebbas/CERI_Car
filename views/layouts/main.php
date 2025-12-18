@@ -48,8 +48,8 @@ AppAsset::register($this);
             <a href="<?=Url::to(['site/login']) ?>" class="btn-text">Connexion</a>
             <a href="<?=Url::to(['site/signup']) ?>" class="btn-primary">S'inscrire</a>
         </div>
-
     </div>
+    <div id="notification-banner"></div>
 </header>
 
 <main>

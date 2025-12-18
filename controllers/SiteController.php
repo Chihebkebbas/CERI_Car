@@ -61,15 +61,18 @@ class SiteController extends Controller
     /**
      * Displays homepage.
      *
-     * @return string
+     * @return array
      */
     public function actionIndex()
     {
         $request = Yii::$app->request;
 
+
         $depart = $request->get('depart');
         $arrivee = $request->get('arrivee');
         $places = $request->get('places');
+        $resultat = "Voyages Dispoblibles !";
+        $statusClass = "success";
 
         if ($depart) $depart = ucfirst(strtolower($depart));
         if ($arrivee) $arrivee = ucfirst(strtolower($arrivee));
@@ -77,18 +80,22 @@ class SiteController extends Controller
 
         $voyages = [];
         if ($depart && $arrivee && $places) {
-            $model = new RechercheVoyages();
-            $voyages = $model->rechercherVoyages($depart, $arrivee, $places);
+            $voyages = RechercheVoyages::rechercherVoyages($depart, $arrivee, $places, $resultat, $statusClass);
         }
 
 
         if ($request->isAjax) {
-            return $this->renderPartial('_resultat', [
-                'voyages' => $voyages,
-                'depart' => $depart,
-                'arrivee' => $arrivee,
-                'places' => $places,
-            ]);
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            return [
+                'content' => $this->renderPartial('_resultat', [
+                    'voyages' => $voyages,
+                    'depart' => $depart,
+                    'arrivee' => $arrivee,
+                    'places' => $places,
+                ]),
+                'resultat' => $resultat,
+                'statusClass' => $statusClass,
+            ];
         }
 
 

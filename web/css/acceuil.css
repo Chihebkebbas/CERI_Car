@@ -1170,7 +1170,7 @@ footer {
     text-decoration: line-through;
 }
 
-.seats-left.alert {
+.seats-left.alert-complet {
     color: var(--brand-red);
     font-weight: 700;
 }
@@ -1222,6 +1222,64 @@ footer {
         flex-direction: column;
         gap: 16px;
     }
+}
+
+
+/* ==================== Alertes ==================== */
+#notification-banner {
+    width: fit-content;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 12px 20px;
+    border-radius: var(--radius-pill);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+    top: 16px;
+    left: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+
+}
+
+
+/* Success */
+.alert-success {
+    background-color: var(--accent); /* Accent bleu */
+    color: var(--white);
+}
+
+/* Danger / Error */
+.alert-danger {
+    background-color: var(--brand-red); /* Rouge logo */
+    color: var(--white);
+}
+
+/* Warning */
+.alert-warning {
+    background-color: #FF9500; /* Orange cohérent avec escales */
+    color: var(--white);
+}
+
+/* Info */
+.alert-info {
+    background-color: var(--brand-blue); /* Bleu branding secondaire */
+    color: var(--white);
+}
+
+
+
+/* Warning */
+.alert-warning {
+    background-color: #FF9500; /* Orange cohérent avec escales */
+    color: var(--white);
+}
+
+/* Info */
+.alert-info {
+    background-color: var(--brand-blue); /* Bleu branding secondaire */
+    color: var(--white);
 }
 
 
