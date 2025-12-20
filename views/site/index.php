@@ -89,6 +89,9 @@
     </div>
 </section>
 
+<div class="auth-main" id="auth-container" style="display: none;"></div>
+
+
 <section class="popular-ville" id="villes">
     <div class="section-header">
         <h2>Destinations Populaires</h2>

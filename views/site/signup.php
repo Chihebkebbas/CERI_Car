@@ -11,7 +11,7 @@
             <p class="auth-subtitle">Rejoignez la communauté et commencez à économiser.</p>
         </div>
 
-        <form class="auth-form two-columns" action="#" method="POST">
+        <form class="auth-form two-columns" action="<?=Url::to(['site/signup']) ?>"" method="POST">
             <div class="form-group">
                 <label for="nom" class="form-label">Nom</label>
                 <input type="text" id="nom" name="nom" class="form-input" placeholder="Votre nom" required>

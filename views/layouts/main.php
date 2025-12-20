@@ -21,10 +21,10 @@ AppAsset::register($this);
 
     <?php $this->registerCsrfMetaTags() ?>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <<link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=DM+Sans:opsz,wght@9..40,400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Inter:wght@400;500;600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
@@ -45,11 +45,11 @@ AppAsset::register($this);
             </ul>
         </nav>
         <div class="right-nav">
-            <a href="<?=Url::to(['site/login']) ?>" class="btn-text">Connexion</a>
-            <a href="<?=Url::to(['site/signup']) ?>" class="btn-primary">S'inscrire</a>
+            <a href="<?=Url::to(['site/login']) ?>" class="btn-text js-auth-link">Connexion</a>
+            <a href="<?=Url::to(['site/signup']) ?>" class="btn-primary js-auth-link">S'inscrire</a>
         </div>
     </div>
-    <div id="notification-banner"></div>
+    <div id="notification-banner" style="display:none;"></div>
 </header>
 
 <main>

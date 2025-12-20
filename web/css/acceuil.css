@@ -280,7 +280,7 @@ header:hover {
     transition: var(--transition);
 }
 
-.search-bar:hover {
+.search-bar:hover, .search-bar.is-active {
     transform: translateY(-4px);
     scale: 1.1;
     box-shadow: 0 40px 80px -12px rgba(0, 0, 0, 0.2);
@@ -1228,7 +1228,6 @@ footer {
 /* ==================== Alertes ==================== */
 #notification-banner {
     width: fit-content;
-    max-width: 1200px;
     margin: 0 auto;
     padding: 12px 20px;
     border-radius: var(--radius-pill);
@@ -1255,20 +1254,6 @@ footer {
     background-color: var(--brand-red); /* Rouge logo */
     color: var(--white);
 }
-
-/* Warning */
-.alert-warning {
-    background-color: #FF9500; /* Orange cohérent avec escales */
-    color: var(--white);
-}
-
-/* Info */
-.alert-info {
-    background-color: var(--brand-blue); /* Bleu branding secondaire */
-    color: var(--white);
-}
-
-
 
 /* Warning */
 .alert-warning {

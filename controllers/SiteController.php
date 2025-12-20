@@ -105,13 +105,33 @@ class SiteController extends Controller
     /**
      * Login action.
      *
-     * @return Response|string
+     * @return array
      */
     public function actionLogin() {
+        $request = Yii::$app->request;
+
+        if ($request->isAjax) {
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            return [
+                'content' => $this->renderPartial('_login', [])
+            ];
+        }
+
+        
         return $this->render('login');
     }
 
     public function actionSignup() {
+
+        $request = Yii::$app->request;
+
+        if ($request->isAjax) {
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            return [
+                'content' => $this->renderPartial('_signup', [])
+            ];
+        }
+
         return $this->render('signup');
     }
 

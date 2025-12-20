@@ -11,7 +11,7 @@
             <p class="auth-subtitle">Connectez-vous pour poursuivre votre voyage.</p>
         </div>
 
-        <form class="auth-form" action="#" method="POST">
+        <form class="auth-form" action="<?=Url::to(['site/login']) ?>"" method="POST">
             <div class="form-group">
                 <label for="email" class="form-label">Adresse e-mail</label>
                 <input type="email" id="email" name="email" class="form-input" placeholder="nom@exemple.com" required>

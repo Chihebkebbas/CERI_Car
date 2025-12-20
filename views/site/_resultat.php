@@ -1,13 +1,9 @@
 <?php
-use yii\helpers\Html;
+
 use yii\helpers\Url;
 
-$this->title = 'Résultats de vote recherche';
-
 ?>
-
-
-    <section class="search-summary">
+<section class="search-summary">
         <div class="summary-content">
             <div class="route-info">
                 <span class="city"><?=$depart ?></span>
@@ -17,7 +13,7 @@ $this->title = 'Résultats de vote recherche';
             <div class="meta-info">
                 <p class="passenger-count"><?=$places?> passager</p>
             </div>
-            <a class="btn-modify">Modifier</a>
+            <a class="btn-modify js-modify-link" href="<?=Url::to(['site/index']) ?>">Modifier</a>
         </div>
     </section>
 
