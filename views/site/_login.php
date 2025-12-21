@@ -9,15 +9,16 @@ use yii\helpers\Url;
         <p class="auth-subtitle">Connectez-vous pour poursuivre votre voyage.</p>
     </div>
 
-    <form class="auth-form" action="<?=Url::to(['site/login']) ?>" method="POST">
+    <form class="auth-form login-form" action="<?=Url::to(['site/login']) ?>" method="POST">
+        <input type="hidden" name="<?= Yii::$app->request->csrfParam; ?>" value="<?= Yii::$app->request->csrfToken; ?>" />
         <div class="form-group">
-            <label for="email" class="form-label">Adresse e-mail</label>
-            <input type="email" id="email" name="email" class="form-input" placeholder="nom@exemple.com" required>
+            <label for="pseudo" class="form-label">Pseudo</label>
+            <input type="text" id="pseudo" name="LoginForm[pseudo]" class="form-input" placeholder="ex: chiheb_kbs" required>
         </div>
 
         <div class="form-group">
             <label for="password" class="form-label">Mot de passe</label>
-            <input type="password" id="password" name="password" class="form-input" placeholder="••••••••" required>
+            <input type="password" id="password" name="LoginForm[password]" class="form-input" placeholder="••••••••" required>
         </div>
 
         <button type="submit" class="auth-submit">Se connecter</button>

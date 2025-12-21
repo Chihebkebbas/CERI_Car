@@ -11,6 +11,7 @@ use app\models\Voyage;
 use app\models\LoginForm;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\Console;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
@@ -162,6 +163,80 @@ class SiteController extends Controller
             return [
                 'content' => $this->renderPartial('_signup', [])
             ];
+        }
+
+    }
+
+
+    public function actionReservation() {
+        $request = Yii::$app->request;
+
+        $message = "Réservations Disponibles !";
+        $statusClass = "info";
+
+        $reservations = Reservation::getReservationsByInternauteId(Yii::$app->user->id);
+        if (empty($reservations)) {
+            $message = "Vouz avez pas réservé encore !";
+            $statusClass = "warning";
+        }
+
+        if ($request->isAjax && !$request->isPost) {
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            return [
+                'content' => $this->renderPartial('_reservation', [
+                    'reservations' => $reservations,
+                ]),
+                'message' => $message,
+                'statusClass' => $statusClass,
+            ];
+        }
+
+        $voyageId = $request->post('voyageId');
+
+
+        if ($voyageId) {
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+            if (Yii::$app->user->isGuest) {
+                return [
+                    'success' => false,
+                    'message' => 'Vous devez être connecté pour réserver.',
+                    'redirect' => Url::to(['site/login'])
+                ];
+            }
+
+            $voyage = Voyage::findOne($voyageId);
+
+            if ($voyage->conducteur == Yii::$app->user->id) {
+                return [
+                    'success' => false,
+                    'message' => 'Vous ne pouvez pas réserver votre propre trajet.',
+                    'redirect' => Url::to(['site/index'])
+                ];
+            }
+
+            $places = $request->post('places');
+
+            $reservation = new Reservation();
+            $reservation->voyage = $voyageId;
+            $reservation->voyageur = Yii::$app->user->id;
+            $reservation->nbplaceresa = $places;
+
+            if ($reservation->save()) {
+                Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+                return [
+                    'success' => true,
+                    'message' => 'Réservation effectuée !',
+                    'redirect' => Url::to(['site/index'])
+                ];
+            } else {
+                Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+                return [
+                    'success' => false,
+                    'message' => "Erreur lors de la réservation !"
+                ];
+            }
+
         }
 
     }

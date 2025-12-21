@@ -37,6 +37,7 @@ $(document).ready(function() {
                 $('#hero-default-content').fadeOut(200, function() {
                     $('#villes').fadeOut(200);
                     $('#concept').fadeOut(200);
+                    $('#reservation-ajax-container').fadeOut(200);
                     $('#hero-ajax-results').html(response.content).fadeIn(200);
                     $('body').css('cursor', 'default');
                 });
@@ -176,9 +177,77 @@ $(document).ready(function() {
         })
     })
 
+    $(document).on('click', '.reservation-ajax-link', function (e) {
+        e.preventDefault();
+
+        var url = $(this).attr('href');
+
+        $('body').css('cursor', 'wait');
+
+        $.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'json',
+            success: function(response) {
+                $('#hero-default-content, #villes, #concept, #hero-ajax-results').fadeOut(200);
+
+                setTimeout(function() {
+                    $('#reservation-ajax-container').html(response.content).fadeIn(200);
+                    $('body').css('cursor', 'default');
+                }, 200);
+
+                showNotification(response.message, response.statusClass);
+            },
+            error: function() {
+                $resultat = "Impossible de charger la page";
+                $statusClass = 'danger';
+                $('body').css('cursor', 'default');
+                showNotification($resultat, $statusClass)
+            }
+        })
+
+    })
+
+
+
+    $(document).on('click', '.btn-book-ajax', function (e) {
+        e.preventDefault();
+        const button = $(this);
+        const voyageId = button.data('id');
+        const places = button.data('places');
+        const price = button.data('price');
+        var url = 'index.php?r=site/reservation'
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                voyageId: voyageId,
+                places: places,
+                price: price,
+                _csrf: yii.getCsrfToken()
+            },
+
+            success: function(response) {
+                showNotification(response.message, "success");
+                if (response.redirect) {
+                    setTimeout(function() {
+                        window.location.href = response.redirect;
+                    }, 2000);
+                }
+            },
+
+            error: function() {
+                showNotification("Une erreur technique est survenue", "danger");
+            }
+        })
+
+    })
+
     $(document).on('click', '.trip-card', function(e) {
 
-        if ($(e.target).closest('.btn-book, a').length) {
+        if ($(e.target).closest('.btn-book, a, .btn-cancel').length) {
             return;
         }
 

@@ -1,6 +1,6 @@
 .reservation-layout {
     width: var(--container-width);
-    margin: 220px auto 0;
+    margin: 0 auto;
     height: 100%;
 }
 

@@ -43,7 +43,7 @@ use yii\helpers\Url;
                 <?php foreach ($voyages as $voyage): ?>
 
                     <article class="trip-card <?=$voyage->placesRestantes < $places ? "full-trip" : "" ?>" >
-                        <div class="trip-main">
+                        <div class="trip-main" >
                             <div class="trip-overview">
                                 <div class="trip-schedule">
                                     <div class="time-row"><span class="time"><?=$voyage->heureDepartFormat ?></span><span class="place"><?=$depart ?></span></div>
@@ -60,7 +60,7 @@ use yii\helpers\Url;
                                         <span class="name"><?=$voyage->nomFormat ?></span>
                                     </div>
                                     <div class="price-block">
-                                        <span class="price"><?= number_format($voyage->tarif * $places * $voyage->infoTrajet->distance, 2, '.', '') ?> €</span>
+                                        <span class="price"><?= $voyage->getPriceFormat($places) ?> €</span>
                                         <?= $voyage->placesRestantes < $places
                                                 ? '<span class="seats-left alert-complet">COMPLET</span>'
                                                 : '<span class="seats-left">' .
@@ -91,7 +91,7 @@ use yii\helpers\Url;
                                     </div>
                                 </div>
                                 <div class="action-area">
-                                    <button class="btn-book">Réserver</button>
+                                    <button class="btn-book btn-book-ajax" data-id="<?= $voyage->id ?>" data-places="<?=$places ?>" data-price="<?=$voyage->getPriceFormat($places) ?>">Réserver</button>
                                 </div>
                             </div>
                         </div>

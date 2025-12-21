@@ -67,8 +67,13 @@ class Voyage extends ActiveRecord
         return $this->nbplacedispo - Reservation::getNombrePlacesReservee($this->id);
     }
 
+    public function getPriceFormat($places) {
+        return number_format($this->tarif * $places * $this->infoTrajet->distance, 2, '.', '');
+    }
 
-
+    public static function getVoyageById($id) {
+        return self::findOne(['id' => $id]);
+    }
 
     public static function getVoyagesByTrajetId($trajetId) {
         return self::findAll(['trajet' => $trajetId]);
