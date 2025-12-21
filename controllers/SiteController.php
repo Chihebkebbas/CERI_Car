@@ -5,13 +5,16 @@ namespace app\controllers;
 use app\models\Internaute;
 use app\models\RechercheVoyages;
 use app\models\Reservation;
+use app\models\SignupForm;
 use app\models\Trajet;
 use app\models\Voyage;
+use app\models\LoginForm;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
+use yii\helpers\Url;
 
 
 class SiteController extends Controller
@@ -102,13 +105,23 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
-    /**
-     * Login action.
-     *
-     * @return array
-     */
+
     public function actionLogin() {
+
         $request = Yii::$app->request;
+
+        $model = new LoginForm();
+        if ($model->load($request->post()) && $model->login()) {
+
+            if ($request->isAjax) {
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                return [
+                    'success' => true,
+                    'message' => 'Connexion réussie !',
+                    'redirect' => Url::to(['site/index']), // Redirection vers l'accueil
+                ];
+            }
+        }
 
         if ($request->isAjax) {
             Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
@@ -124,6 +137,25 @@ class SiteController extends Controller
     public function actionSignup() {
 
         $request = Yii::$app->request;
+        $model = new SignupForm();
+
+        if ($model->load($request->post())) {
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+            if ($user = $model->signup()) {
+                Yii::$app->user->login($user); // Si tu as configuré User Identity
+                return [
+                    'success' => true,
+                    'message' => 'Compte créé avec succès !',
+                    'redirect' => Url::to(['site/index'])
+                ];
+            } else {
+                return [
+                    'success' => false,
+                    'errors' => $model->errors
+                ];
+            }
+        }
 
         if ($request->isAjax) {
             Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
@@ -132,7 +164,6 @@ class SiteController extends Controller
             ];
         }
 
-        return $this->render('signup');
     }
 
 

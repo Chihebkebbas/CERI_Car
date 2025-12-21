@@ -24,26 +24,32 @@ class Internaute extends ActiveRecord implements IdentityInterface
 
     public static function findIdentity($id)
     {
-        // TODO: Implement findIdentity() method.
+        return self::findOne($id);
     }
 
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        // TODO: Implement findIdentityByAccessToken() method.
+        return null;
     }
 
     public function getId()
     {
-        // TODO: Implement getId() method.
+        return $this->id;
     }
 
     public function getAuthKey()
     {
-        // TODO: Implement getAuthKey() method.
+        return null;
     }
 
     public function validateAuthKey($authKey)
     {
-        // TODO: Implement validateAuthKey() method.
+        return false;
     }
+
+    public function validatePassword($password)
+    {
+        return sha1($password) === $this->pass;
+    }
+
 }

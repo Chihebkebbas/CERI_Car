@@ -4,13 +4,13 @@ use yii\helpers\Url;
 
 
 ?>
-<section class="auth-card wide">
+<section class="auth-card wide" id="signup">
     <div class="auth-header">
         <h1 class="auth-title">Créer un compte</h1>
         <p class="auth-subtitle">Rejoignez la communauté et commencez à économiser.</p>
     </div>
 
-    <form class="auth-form two-columns" action="<?=Url::to(['site/login']) ?>" method="POST">
+    <form class="auth-form two-columns signup-form" action="<?=Url::to(['site/signup']) ?>" method="POST">
         <input type="hidden" name="<?= Yii::$app->request->csrfParam; ?>" value="<?= Yii::$app->request->csrfToken; ?>" />
         <div class="form-group">
             <label for="nom" class="form-label">Nom</label>

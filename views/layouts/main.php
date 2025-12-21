@@ -21,7 +21,7 @@ AppAsset::register($this);
 
     <?php $this->registerCsrfMetaTags() ?>
 
-    <<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Inter:wght@400;500;600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -33,22 +33,49 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 <header role="banner">
-    <div class="header-container">
-        <a href="<?=Url::to(['site/index']) ?>" class="logo">
-            CERI<span class="logo-dot">.</span><span class="logo-red">Car</span>
-        </a>
-        <nav role="navigation">
-            <ul class="nav-items">
-                <li><a href="<?=Url::to(['site/index']) ?>">Explorer</a></li>
-                <li><a href="<?=Url::to(['site/index']) ?>#villes">Destinations</a></li>
-                <li><a href="<?=Url::to(['site/index']) ?>#concept">Concept</a></li>
-            </ul>
-        </nav>
-        <div class="right-nav">
-            <a href="<?=Url::to(['site/login']) ?>" class="btn-text js-auth-link">Connexion</a>
-            <a href="<?=Url::to(['site/signup']) ?>" class="btn-primary js-auth-link">S'inscrire</a>
+    <?php if (Yii::$app->user->isGuest): ?>
+        <div class="header-container">
+            <a href="<?=Url::to(['site/index']) ?>" class="logo">
+                CERI<span class="logo-dot">.</span><span class="logo-red">Car</span>
+            </a>
+            <nav role="navigation">
+                <ul class="nav-items">
+                    <li><a href="<?=Url::to(['site/index']) ?>">Explorer</a></li>
+                    <li><a href="<?=Url::to(['site/index']) ?>#villes">Destinations</a></li>
+                    <li><a href="<?=Url::to(['site/index']) ?>#concept">Concept</a></li>
+                </ul>
+            </nav>
+            <div class="right-nav">
+                <a href="<?=Url::to(['site/login']) ?>" class="btn-text js-auth-link">Connexion</a>
+                <a href="<?=Url::to(['site/signup']) ?>" class="btn-primary js-auth-link">S'inscrire</a>
+            </div>
         </div>
-    </div>
+    <?php else: ?>
+        <div class="header-container">
+            <a href="<?= Url::to(['site/index']) ?>" class="logo">
+                CERI<span class="logo-dot">.</span><span class="logo-red">Car</span>
+            </a>
+            <nav role="navigation">
+                <ul class="nav-items">
+                    <li><a href="<?= Url::to(['site/index']) ?>">Explorer</a></li>
+
+                    <li><a href="<?= Url::to(['reservation/index']) ?>">Réservations</a></li>
+
+                    <li><a href="<?= Url::to(['voyage/index']) ?>">Voyages</a></li>
+                </ul>
+            </nav>
+            <div class="right-nav">
+                <a href="<?= Url::to(['internaute/view', 'id' => Yii::$app->user->id]) ?>" class="btn-text">
+                    <?= Yii::$app->user->identity->pseudo ?> (Profil)
+                </a>
+
+                <a href="<?= Url::to(['voyage/create']) ?>" class="btn-primary">Nouveau voyage</a>
+
+                <a href="<?= Url::to(['site/logout']) ?>" data-method="post" class="btn-text" style="margin-left: 10px; color: #dc3545;">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </div>
+        </div>
     <div id="notification-banner" style="display:none;"></div>
 </header>
 

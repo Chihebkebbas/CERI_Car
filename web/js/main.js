@@ -116,6 +116,66 @@ $(document).ready(function() {
         }
     })
 
+    $(document).on('submit', '.signup-form', function(e) {
+        e.preventDefault();
+        var $form = $(this);
+        var url = $form.attr('action');
+
+        $.ajax({
+            url : url,
+            type : 'POST',
+            data: $form.serialize(),
+            dataType: 'json',
+
+            success: function(response) {
+                if (response.success) {
+                    showNotification(response.message, 'success');
+                    if (response.redirect) {
+                        setTimeout(function() {
+                            window.location.href = response.redirect;
+                        }, 2000);
+                    }
+                } else {
+                    var errorMsg = "Erreur lors de l'inscription";
+                    showNotification(errorMsg, 'danger');
+                }
+            },
+            error: function() {
+                showNotification("Une erreur technique est survenue", "danger");
+            }
+        })
+    })
+
+    $(document).on('submit', '.login-form', function(e) {
+        e.preventDefault();
+        var $form = $(this);
+        var url = $form.attr('action');
+
+        $.ajax({
+            url : url,
+            type : 'POST',
+            data: $form.serialize(),
+            dataType: 'json',
+
+            success: function(response) {
+                if (response.success) {
+                    showNotification(response.message, 'success');
+                    if (response.redirect) {
+                        setTimeout(function() {
+                            window.location.href = response.redirect;
+                        }, 2000);
+                    }
+                } else {
+                    var errorMsg = "Erreur lors de la connexion";
+                    showNotification(errorMsg, 'danger');
+                }
+            },
+            error: function() {
+                showNotification("Une erreur technique est survenue", "danger");
+            }
+        })
+    })
+
     $(document).on('click', '.trip-card', function(e) {
 
         if ($(e.target).closest('.btn-book, a').length) {
