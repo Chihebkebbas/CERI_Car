@@ -288,6 +288,21 @@ class SiteController extends Controller
         }
     }
 
+    public function actionProfile() {
+        $request = Yii::$app->request;
+        $user = Internaute::getUserById(Yii::$app->user->id);
+
+        if ($request->isAjax) {
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            return [
+                'success' => true,
+                'content' => $this->renderPartial('_profile', [
+                    'user' => $user
+                ])
+            ];
+        }
+    }
+
 }
 
 

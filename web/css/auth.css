@@ -297,9 +297,29 @@ header:hover {
 }
 
 /* Footer Link */
-.auth-footer { text-align: center; margin-top: 24px; font-size: 14px; color: var(--text-secondary); }
-.auth-link { color: var(--accent); font-weight: 600; }
-.auth-link:hover { text-decoration: underline; }
+.auth-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-top: 24px;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+.auth-link {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.logout {
+    margin-top: 24px;
+    font-size: 16px;
+    color: var(--brand-red);
+    font-weight: 600;
+}
+.auth-link:hover, .logout:hover {
+    text-decoration: underline;
+}
 
 /* ==================== 5. Footer (Identique acceuil.css) ==================== */
 footer {
