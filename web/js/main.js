@@ -295,12 +295,21 @@ $(document).ready(function() {
             type: 'GET',
             dataType: 'json',
             success: function(response) {
-                $('#reservation-ajax-container, #hero-default-content, #villes, #concept, #hero-ajax-results').fadeOut(200);
-                setTimeout(function() {
-                    $('#voyage-ajax-container').html(response.content).fadeIn(200);
-                    $('body').css('cursor', 'default');
-                }, 200);
+                if (!response.success) {
+                    setTimeout(function() {
+                        window.location.href = response.redirect;
+                    }, 2000);
+                }
+
                 showNotification(response.message, response.statusClass);
+
+                if (response.success) {
+                    $('#reservation-ajax-container, #hero-default-content, #villes, #concept, #hero-ajax-results').fadeOut(200);
+                    setTimeout(function() {
+                        $('#voyage-ajax-container').html(response.content).fadeIn(200);
+                        $('body').css('cursor', 'default');
+                    }, 200);
+                }
 
             },
             error: function() {

@@ -32,6 +32,10 @@ class Reservation extends ActiveRecord
         return self::findAll(['voyage' => $voyageId]);
     }
 
+    public static function getNombrePlacesReserveePourUnVoyageurID($voyageurId, $reservationId) {
+        $reservation = self::getReservationById($reservationId);
+
+    }
     public static function getNombrePlacesReservee($voyageId) {
         $nbPlacesReservee = 0;
         $reservations = self::getReservationsByVoyageId($voyageId);
@@ -40,5 +44,6 @@ class Reservation extends ActiveRecord
         }
         return $nbPlacesReservee;
     }
+
 
 }

@@ -64,11 +64,15 @@ class Voyage extends ActiveRecord
     }
 
     public function getPlacesRestantes() {
-        return $this->nbplacedispo - Reservation::getNombrePlacesReservee($this->id);
+        return $this->nbplacedispo - $this->placesReservees;
     }
 
     public function getPriceFormat($places) {
         return number_format($this->tarif * $places * $this->infoTrajet->distance, 2, '.', '');
+    }
+
+    public function getPlacesReservees() {
+        return Reservation::getNombrePlacesReservee($this->id);
     }
 
     public static function getVoyageById($id) {
@@ -81,6 +85,19 @@ class Voyage extends ActiveRecord
 
     public static function getVoyagesByConducteurID($conducteurId) {
         return self::findAll(['conducteur' => $conducteurId]);
+    }
+
+
+    public function getVoyageurs() {
+        $voyageurs = [];
+        $reservations = Reservation::getReservationsByVoyageId($this->id);
+        foreach ($reservations as $reservation) {
+            $voyageurs += Internaute::getUserById($reservation->voyageur);
+        }
+        return $voyageurs;
+    }
+    public function estComplet() {
+        return $this->placesRestantes === 0;
     }
 
 

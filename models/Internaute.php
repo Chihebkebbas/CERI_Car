@@ -17,9 +17,20 @@ class Internaute extends ActiveRecord implements IdentityInterface
         return self::findOne(['pseudo' => $pseudo]);
     }
 
+    public static function getUserById($id) {
+        return self::findOne(['id' => $id]);
+    }
+
     public static function estConducteur($pseudo) {
         return !(self::getUserByIdentifiant($pseudo)->permis == NULL);
     }
+
+    public static function isConducteur($id) {
+        return !(self::getUserById($id)->permis == NULL);
+    }
+
+
+
 
 
     public static function findIdentity($id)
@@ -51,5 +62,22 @@ class Internaute extends ActiveRecord implements IdentityInterface
     {
         return sha1($password) === $this->pass;
     }
+
+    public function getNomFormat() {
+        $initialeNom = strtoupper(substr($this->nom, 0, 1));
+
+        return "{$this->prenom} {$initialeNom}.";
+    }
+
+    public function getNombrePlacesReserveesByVoyageId($voyageId) {
+        $nombrePlaces = 0;
+        $reservations = Reservation::getReservationsByVoyageId($voyageId);
+        foreach ($reservations as $reservation) {
+            if ($reservation->voyageur === $this->id) {
+                $nombrePlaces += $reservation->nbplaceresa;
+            }
+        }
+    }
+
 
 }
