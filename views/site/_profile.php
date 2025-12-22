@@ -60,6 +60,6 @@ use yii\helpers\Url;
     <div class="auth-footer">
         <?= !$user->permis ? '<p>Rejoindre nos conducteurs ? <a href="#permis" class="auth-link">Ajouter un permis</a></p>' : '' ?>
 
-        <a class="logout" href="<?=Url::to(['site/logout']) ?>">Déconnexion</a>
+        <a class="logout" href="<?=Url::to(['site/logout']) ?>" data-method="post">Déconnexion</a>
     </div>
 </section>
