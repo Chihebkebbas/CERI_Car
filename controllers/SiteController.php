@@ -292,6 +292,139 @@ class SiteController extends Controller
         $request = Yii::$app->request;
         $user = Internaute::getUserById(Yii::$app->user->id);
 
+
+        if ($request->isPost) {
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+            // Tableau pour stocker les noms des champs modifiés
+            $modifications = [];
+
+            // 1. Vérification du NOM
+            if ($user->nom !== $request->post('nom')) {
+                $user->nom = $request->post('nom');
+                $modifications[] = "nom";
+            }
+
+            // 2. Vérification du PRENOM
+            if ($user->prenom !== $request->post('prenom')) {
+                $user->prenom = $request->post('prenom');
+                $modifications[] = "prénom";
+            }
+
+            // 3. Vérification du PSEUDO (avec sécurité unicité)
+            $newPseudo = $request->post('pseudo');
+            if ($user->pseudo !== $newPseudo) {
+                // On vérifie si le pseudo est libre avant de l'attribuer
+                $existingUser = Internaute::findOne(['pseudo' => $newPseudo]);
+                if (!$existingUser) {
+                    $user->pseudo = $newPseudo;
+                    $modifications[] = "pseudo";
+                } else {
+                    return [
+                        'success' => false,
+                        'message' => "Ce pseudo est déjà pris !",
+                        'statusClass' => 'danger'
+                    ];
+                }
+            }
+
+            // 4. Vérification de l'EMAIL
+            if ($user->mail !== $request->post('email')) {
+                $user->mail = $request->post('email');
+                $modifications[] = "email";
+            }
+
+            // 5. Vérification de la PHOTO
+            if ($user->photo !== $request->post('photo')) {
+                $user->photo = $request->post('photo');
+                $modifications[] = "photo";
+            }
+
+            // 6. Vérification du PERMIS
+            $newPermis = $request->post('permis');
+
+            // Cas A : L'utilisateur a saisi quelque chose
+            if (!empty($newPermis)) {
+                // On vérifie le format : uniquement des chiffres (0-9) et exactement 12 caractères
+                if (!preg_match('/^[0-9]{12}$/', $newPermis)) {
+                    return [
+                        'success' => false,
+                        'message' => 'Le numéro de permis doit comporter exactement 12 chiffres.',
+                        'statusClass' => 'danger'
+                    ];
+                }
+
+                // Si le format est bon, on regarde si la valeur a changé
+                if ($user->permis != $newPermis) {
+                    $user->permis = $newPermis;
+                    $modifications[] = "permis";
+                }
+            }
+            // Cas B : L'utilisateur a laissé le champ vide (Suppression du permis)
+            else {
+                // Si l'utilisateur avait un permis avant, on le met à NULL
+                if ($user->permis !== null) {
+                    $user->permis = null;
+                    $modifications[] = "permis";
+                }
+            }
+
+            // 7. Vérification du MOT DE PASSE (Sécurisé)
+            $newPass = $request->post('password');
+            // On ne change que si le champ n'est PAS vide
+            if (!empty($newPass)) {
+                $hash = sha1($newPass);
+                // On vérifie si c'est vraiment un nouveau mot de passe
+                if ($user->pass !== $hash) {
+                    $user->pass = $hash;
+                    $modifications[] = "mot de passe";
+                }
+            }
+
+            // --- CONSTRUCTION DU MESSAGE ---
+            if ($user->save()) {
+
+                $message = "Profil mis à jour avec succès !"; // Message par défaut
+
+                // Si on a détecté des changements spécifiques
+                if (!empty($modifications)) {
+                    // Cette fonction joint les éléments avec des virgules : "nom, prénom, email"
+                    $listeChamps = implode(', ', $modifications);
+
+                    // On remplace la dernière virgule par " et " pour faire joli (optionnel)
+                    // Ex: "nom, prénom et email"
+                    $lastComma = strrpos($listeChamps, ',');
+                    if ($lastComma !== false) {
+                        $listeChamps = substr_replace($listeChamps, ' et', $lastComma, 1);
+                    }
+                    if (count($modifications) === 1) {
+                        $message = "Votre " . $listeChamps . " a été mis à jour avec succès !";
+                    } else {
+                        $message = "Votre " . $listeChamps . " ont été mis à jour avec succès !";
+                    }
+
+                } else {
+                    $message = "Aucune modification détectée.";
+                    $statusClass = "warning";
+                }
+
+                return [
+                    'success' => true,
+                    'message' => $message,
+                    'statusClass' => 'success',
+                    // On renvoie le contenu mis à jour pour rafraîchir le formulaire
+                    'content' => $this->renderPartial('_profile', ['user' => $user])
+                ];
+            } else {
+                return [
+                    'success' => false,
+                    'message' => 'Erreur technique lors de la sauvegarde.',
+                    'statusClass' => 'danger',
+                    'errors' => $user->errors
+                ];
+            }
+        }
+
         if ($request->isAjax) {
             Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
             return [
@@ -301,7 +434,10 @@ class SiteController extends Controller
                 ])
             ];
         }
+
     }
+
+
 
 }
 

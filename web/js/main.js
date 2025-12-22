@@ -342,6 +342,42 @@ $(document).ready(function() {
 
     })
 
+    $(document).on('submit', '#profile-form', function(e) {
+        e.preventDefault();
+        var form = $(this);
+        var url = 'index.php?r=site/profile';
+        var nouveauPseudo = '@' + form.find('input[name="pseudo"]').val();
+        $('body').css('cursor', 'wait');
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+            dataType: 'json',
+            data: form.serialize(),
+
+            success: function(response) {
+                $('body').css('cursor', 'default');
+
+                if (response.success) {
+                    showNotification(response.message, 'success', 10000);
+                    if (nouveauPseudo) {
+                        $('#header-pseudo').text(nouveauPseudo);
+                    }
+                    if(response.content) {
+                        $('#profile-ajax-container').html(response.content);
+                    }
+                } else {
+                    showNotification(response.message, 'danger');
+                }
+            },
+            error: function() {
+                $('body').css('cursor', 'default');
+                showNotification("Une erreur technique est survenue", "danger");
+            }
+        });
+    })
+
+
     $(document).on('click', '.trip-card', function(e) {
 
         if ($(e.target).closest('.btn-book, a, .btn-cancel').length) {

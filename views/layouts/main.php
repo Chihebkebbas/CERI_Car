@@ -58,7 +58,7 @@ AppAsset::register($this);
                 </ul>
             </nav>
             <div class="right-nav">
-                <a href="<?= Url::to(['site/profile']) ?>" class="btn-text profile-ajax-link">
+                <a id="header-pseudo" href="<?= Url::to(['site/profile']) ?>" class="btn-text profile-ajax-link">
                     @<?= Yii::$app->user->identity->pseudo ?>
                 </a>
 

@@ -15,7 +15,7 @@ use yii\helpers\Url;
         <img src="https://i.pravatar.cc/150?img=5" alt="user avatar">
     </div>
 
-    <form class="auth-form two-columns" action="<?=Url::to(['site/profile']) ?>" method="POST">
+    <form id="profile-form" class="auth-form two-columns" action="<?=Url::to(['site/profile']) ?>" method="POST">
         <input type="hidden" name="<?= Yii::$app->request->csrfParam; ?>" value="<?= Yii::$app->request->csrfToken; ?>" />
         <div class="form-group">
             <label for="nom" class="form-label">Nom</label>
@@ -39,7 +39,7 @@ use yii\helpers\Url;
 
         <div class="form-group full-width">
             <label for="password" class="form-label">Mot de passe</label>
-            <input type="password" id="password" name="password" class="form-input" placeholder="Vous pouvez entrez un nouveau mot de pass" required minlength="8" value="<?=$user->pass?>">
+            <input type="password" id="password" name="password" class="form-input" placeholder="Vous pouvez entrez un nouveau mot de pass" minlength="8">
         </div>
 
         <div class="form-group">
@@ -58,7 +58,8 @@ use yii\helpers\Url;
     </form>
 
     <div class="auth-footer">
-        <p>Rejoindre nos conducteurs ? <a href="#" class="auth-link">Ajouter un permis</a></p>
+        <?= !$user->permis ? '<p>Rejoindre nos conducteurs ? <a href="#permis" class="auth-link">Ajouter un permis</a></p>' : '' ?>
+
         <a class="logout" href="<?=Url::to(['site/logout']) ?>">Déconnexion</a>
     </div>
 </section>
