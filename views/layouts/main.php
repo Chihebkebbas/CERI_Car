@@ -54,7 +54,7 @@ AppAsset::register($this);
 
                     <li><a href="<?= Url::to(['site/reservation']) ?>" class="reservation-ajax-link">Réservations</a></li>
 
-                    <li><a href="<?= Url::to(['site/voyage']) ?>">Voyages</a></li>
+                    <li><a href="<?= Url::to(['site/voyage']) ?>" class="voyage-ajax-link">Voyages</a></li>
                 </ul>
             </nav>
             <div class="right-nav">

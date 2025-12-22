@@ -24,7 +24,8 @@ class AppAsset extends AssetBundle
         'css/acceuil.css',
         'css/auth.css',
         'css/reservation.css',
-        'css/recherche.css'
+        'css/recherche.css',
+        'css/voyage.css'
     ];
     public $js = [
         'js/main.js'

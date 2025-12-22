@@ -38,6 +38,7 @@ $(document).ready(function() {
                     $('#villes').fadeOut(200);
                     $('#concept').fadeOut(200);
                     $('#reservation-ajax-container').fadeOut(200);
+                    $('#voyage-ajax-container').fadeOut(200);
                     $('#hero-ajax-results').html(response.content).fadeIn(200);
                     $('body').css('cursor', 'default');
                 });
@@ -73,7 +74,7 @@ $(document).ready(function() {
             type: 'GET',
             dataType: 'json',
             success: function(response) {
-                $('#accueil, #villes, #concept, #hero-ajax-results').fadeOut(200);
+                $('#accueil, #villes, #concept, #accueil').fadeOut(200);
 
                 setTimeout(function() {
                     $('#auth-container').html(response.content).fadeIn(200);
@@ -191,7 +192,7 @@ $(document).ready(function() {
             type: 'GET',
             dataType: 'json',
             success: function(response) {
-                $('#hero-default-content, #villes, #concept, #hero-ajax-results').fadeOut(200);
+                $('#hero-default-content, #villes, #concept, #hero-ajax-results, #voyage-ajax-container').fadeOut(200);
 
                 setTimeout(function() {
                     $('#reservation-ajax-container').html(response.content).fadeIn(200);
@@ -280,6 +281,30 @@ $(document).ready(function() {
 
             error: function() {
                 showNotification("Une erreur technique est survenue", "danger");
+            }
+        })
+    })
+
+    $(document).on('click', '.voyage-ajax-link', function (e) {
+        e.preventDefault();
+        const url = $(this).attr('href');
+        $('body').css('cursor', 'wait');
+
+        $.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'json',
+            success: function(response) {
+                $('#reservation-ajax-container, #hero-default-content, #villes, #concept, #hero-ajax-results').fadeOut(200);
+                setTimeout(function() {
+                    $('#voyage-ajax-container').html(response.content).fadeIn(200);
+                    $('body').css('cursor', 'default');
+                }, 200);
+                showNotification(response.message, response.statusClass);
+
+            },
+            error: function() {
+                showNotification("Une erreur technique est survenue !", "danger");
             }
         })
     })

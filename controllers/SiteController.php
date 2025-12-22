@@ -262,7 +262,15 @@ class SiteController extends Controller
     }
 
     public function actionVoyage() {
+        $request = Yii::$app->request;
 
+        if ($request->isAjax) {
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+            return [
+                'content' => $this->renderPartial('_voyage', [])
+            ];
+        }
     }
 
 }
