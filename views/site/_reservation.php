@@ -68,7 +68,7 @@
                                     </div>
                                 </div>
                                 <div class="action-area">
-                                    <button class="btn-cancel">Annuler la réservation</button>
+                                    <button class="btn-cancel cancel-reservation-ajax" data-id="<?=$reservation->id ?>">Annuler la réservation</button>
                                 </div>
                             </div>
                         </div>

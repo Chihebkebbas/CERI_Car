@@ -20,6 +20,10 @@ class Reservation extends ActiveRecord
 
 
 
+    public static function getReservationById($id) {
+        return self::findOne(['id' => $id]);
+    }
+
     public static function getReservationsByInternauteId($internauteId) {
         return self::findAll(['voyageur' => $internauteId]);
     }

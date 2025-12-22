@@ -19,6 +19,7 @@
 
     <div class="search-layout-ajax" id="hero-ajax-results" style="display: none;"></div>
     <div class="reservation-layout" id="reservation-ajax-container" style="display: none;"></div>
+    <div class="voyage-layout" id="voyage-ajax-container" style="display: none;"></div>
 
     <div class="search-container-wrapper">
         <form id="search-form" class="search-bar" role="search">

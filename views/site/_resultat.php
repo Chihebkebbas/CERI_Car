@@ -91,7 +91,7 @@ use yii\helpers\Url;
                                     </div>
                                 </div>
                                 <div class="action-area">
-                                    <button class="btn-book btn-book-ajax" data-id="<?= $voyage->id ?>" data-places="<?=$places ?>" data-price="<?=$voyage->getPriceFormat($places) ?>">Réserver</button>
+                                    <button class="btn-book btn-book-ajax" data-id="<?= $voyage->id ?>" data-places="<?=$places ?>" >Réserver</button>
                                 </div>
                             </div>
                         </div>

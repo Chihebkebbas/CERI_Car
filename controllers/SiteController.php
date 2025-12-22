@@ -193,7 +193,6 @@ class SiteController extends Controller
 
         $voyageId = $request->post('voyageId');
 
-
         if ($voyageId) {
             Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
@@ -239,8 +238,32 @@ class SiteController extends Controller
 
         }
 
+        $reservationId = $request->post('reservationId');
+
+        if ($reservationId) {
+            $reservation = Reservation::getReservationById($reservationId);
+            if($reservation->delete()) {
+                Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+                return [
+                    'success' => true,
+                    'message' => 'Réservation annulée !',
+                    'statusClass' => 'warning',
+                    'redirect' => Url::to(['site/index'])
+                ];
+            } else {
+                Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+                return [
+                    'success' => false,
+                    'message' => "Erreur lors de l'annulation !"
+                ];
+            }
+        }
+
     }
 
+    public function actionVoyage() {
+
+    }
 
 }
 

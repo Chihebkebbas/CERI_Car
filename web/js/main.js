@@ -151,6 +151,7 @@ $(document).ready(function() {
         e.preventDefault();
         var $form = $(this);
         var url = $form.attr('action');
+        $('body').css('cursor', 'wait');
 
         $.ajax({
             url : url,
@@ -165,6 +166,7 @@ $(document).ready(function() {
                         setTimeout(function() {
                             window.location.href = response.redirect;
                         }, 2000);
+                        $('body').css('cursor', 'default');
                     }
                 } else {
                     var errorMsg = "Erreur lors de la connexion";
@@ -216,7 +218,9 @@ $(document).ready(function() {
         const voyageId = button.data('id');
         const places = button.data('places');
         const price = button.data('price');
-        var url = 'index.php?r=site/reservation'
+        var url = 'index.php?r=site/reservation';
+
+        $('body').css('cursor', 'wait');
 
         $.ajax({
             url: url,
@@ -235,7 +239,9 @@ $(document).ready(function() {
                     setTimeout(function() {
                         window.location.href = response.redirect;
                     }, 2000);
+
                 }
+                $('body').css('cursor', 'default');
             },
 
             error: function() {
@@ -243,6 +249,39 @@ $(document).ready(function() {
             }
         })
 
+    })
+
+    $(document).on('click', '.cancel-reservation-ajax', function (e) {
+        e.preventDefault();
+        const button = $(this);
+        const reservationId = button.data('id');
+        var url = 'index.php?r=site/reservation';
+        $('body').css('cursor', 'wait');
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                reservationId: reservationId,
+                _csrf: yii.getCsrfToken()
+            },
+
+            success: function(response) {
+                showNotification(response.message, response.statusClass);
+
+                if (response.redirect) {
+                    setTimeout(function() {
+                        window.location.href = response.redirect;
+                    }, 2000);
+                }
+                $('body').css('cursor', 'default');
+            },
+
+            error: function() {
+                showNotification("Une erreur technique est survenue", "danger");
+            }
+        })
     })
 
     $(document).on('click', '.trip-card', function(e) {
