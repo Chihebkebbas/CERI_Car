@@ -437,6 +437,20 @@ class SiteController extends Controller
 
     }
 
+    public function actionCreate()
+    {
+        $request = Yii::$app->request;
+
+
+
+        if ($request->isAjax) {
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            return [
+                'content' => $this->renderPartial('_create', [])
+            ];
+        }
+    }
+
     public function actionLogout() {
         Yii::$app->user->logout();
         return $this->goHome();

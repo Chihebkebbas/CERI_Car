@@ -39,6 +39,8 @@ $(document).ready(function() {
                     $('#concept').fadeOut(200);
                     $('#reservation-ajax-container').fadeOut(200);
                     $('#voyage-ajax-container').fadeOut(200);
+                    $('#profile-ajax-container').fadeOut(200);
+                    $('#create-ajax-container').fadeOut(200);
                     $('#hero-ajax-results').html(response.content).fadeIn(200);
                     $('body').css('cursor', 'default');
                 });
@@ -74,7 +76,7 @@ $(document).ready(function() {
             type: 'GET',
             dataType: 'json',
             success: function(response) {
-                $('#accueil, #villes, #concept, #accueil, #hero-ajax-results').fadeOut(200);
+                $('#accueil, #villes, #concept, #accueil, #hero-ajax-results, #create-ajax-container').fadeOut(200);
 
                 setTimeout(function() {
                     $('#auth-container').html(response.content).fadeIn(200);
@@ -192,7 +194,7 @@ $(document).ready(function() {
             type: 'GET',
             dataType: 'json',
             success: function(response) {
-                $('#hero-default-content, #villes, #concept, #hero-ajax-results, #voyage-ajax-container, #profile-ajax-container').fadeOut(200);
+                $('#hero-default-content, #villes, #concept, #hero-ajax-results, #voyage-ajax-container, #profile-ajax-container, #create-ajax-container').fadeOut(200);
 
                 setTimeout(function() {
                     $('#reservation-ajax-container').html(response.content).fadeIn(200);
@@ -304,7 +306,7 @@ $(document).ready(function() {
                 showNotification(response.message, response.statusClass);
 
                 if (response.success) {
-                    $('#reservation-ajax-container, #hero-default-content, #villes, #concept, #hero-ajax-results, #profile-ajax-container').fadeOut(200);
+                    $('#reservation-ajax-container, #hero-default-content, #villes, #concept, #hero-ajax-results, #profile-ajax-container, #create-ajax-container').fadeOut(200);
                     setTimeout(function() {
                         $('#voyage-ajax-container').html(response.content).fadeIn(200);
                         $('body').css('cursor', 'default');
@@ -328,7 +330,7 @@ $(document).ready(function() {
             type: 'GET',
             dataType: 'json',
             success: function(response) {
-                $('#reservation-ajax-container, #accueil, #villes, #concept, #hero-ajax-results, #voyage-ajax-container').fadeOut(200);
+                $('#reservation-ajax-container, #accueil, #villes, #concept, #hero-ajax-results, #voyage-ajax-container, #create-ajax-container').fadeOut(200);
                 setTimeout(function() {
                     $('#profile-ajax-container').html(response.content).fadeIn(200);
                     $('body').css('cursor', 'default');
@@ -375,6 +377,24 @@ $(document).ready(function() {
                 showNotification("Une erreur technique est survenue", "danger");
             }
         });
+    })
+
+    $(document).on('click', '.create-ajax-link', function(e) {
+        e.preventDefault();
+        var url = $(this).attr('href');
+        $('body').css('cursor', 'wait');
+        $.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'json',
+            success: function(response) {
+                $('#reservation-ajax-container, #accueil, #villes, #concept, #hero-ajax-results, #voyage-ajax-container, #profile-ajax-container').fadeOut(200);
+                setTimeout(function() {
+                    $('#create-ajax-container').html(response.content).fadeIn(200);
+                    $('body').css('cursor', 'default');
+                }, 200);
+            }
+        })
     })
 
 

@@ -62,7 +62,7 @@ AppAsset::register($this);
                     @<?= Yii::$app->user->identity->pseudo ?>
                 </a>
 
-                <a href="<?= Url::to(['voyage/create']) ?>" class="btn-primary">Nouveau voyage</a>
+                <a href="<?= Url::to(['site/create']) ?>" class="btn-primary create-ajax-link">Nouveau voyage</a>
             </div>
         </div>
     <?php endif; ?>
