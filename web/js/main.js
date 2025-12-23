@@ -306,7 +306,7 @@ $(document).ready(function() {
                 showNotification(response.message, response.statusClass);
 
                 if (response.success) {
-                    $('#reservation-ajax-container, #hero-default-content, #villes, #concept, #hero-ajax-results, #profile-ajax-container, #create-ajax-container').fadeOut(200);
+                    $('#reservation-ajax-container, #hero-default-content, #villes, #concept, #hero-ajax-results, #create-ajax-container, #profile-ajax-container').fadeOut(200);
                     setTimeout(function() {
                         $('#voyage-ajax-container').html(response.content).fadeIn(200);
                         $('body').css('cursor', 'default');
@@ -396,6 +396,41 @@ $(document).ready(function() {
             }
         })
     })
+
+    $(document).on('submit', '#create-trip-form', function(e) {
+        e.preventDefault();
+        var form = $(this);
+        var url = 'index.php?r=site/create';
+
+        $('body').css('cursor', 'wait');
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+            dataType: 'json',
+            data: form.serialize(),
+
+            success: function(response) {
+                $('body').css('cursor', 'default');
+
+                if (response.success) {
+                    showNotification(response.message, 'success');
+
+                    // Si succès, on redirige vers l'accueil ou on vide le formulaire
+                    setTimeout(function() {
+                        window.location.href = response.redirect;
+                    }, 2000);
+                } else {
+                    // Affichage de l'erreur
+                    showNotification(response.message, 'danger');
+                }
+            },
+            error: function() {
+                $('body').css('cursor', 'default');
+                showNotification("Erreur technique lors de la création du voyage.", "danger");
+            }
+        });
+    });
 
 
     $(document).on('click', '.trip-card', function(e) {

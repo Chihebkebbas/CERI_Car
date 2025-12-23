@@ -726,6 +726,45 @@ footer {
     color: var(--white);
 }
 
+/* ==================== Select Customization ==================== */
+
+/* Base pour le select avec la classe .form-input */
+select.form-input {
+    appearance: none;        /* Supprime le style par défaut du navigateur */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+
+    /* Espace à droite pour ne pas que le texte chevauche la flèche */
+    padding-right: 48px;
+
+    /* Flèche SVG encodée (Chevron gris #8E8E93 pour matcher les placeholders) */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%238E8E93' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 20px;
+}
+
+/* État Focus : Fond blanc et flèche bleue */
+select.form-input:focus {
+    background-color: var(--white);
+    /* La flèche passe en bleu (--accent #007AFF) au focus */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23007AFF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
+/* Gestion de la couleur "Placeholder" pour le select */
+/* Astuce : Si le select est 'required' et a une valeur vide, on le met en gris */
+select.form-input:invalid {
+    color: #8E8E93;
+}
+
+/* Style des options (Le rendu dépend du système d'exploitation, mais on assure les bases) */
+select.form-input option {
+    color: var(--text-main);
+    background-color: var(--white);
+    padding: 12px;
+}
+
 
 
 

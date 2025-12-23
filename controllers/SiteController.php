@@ -3,10 +3,12 @@
 namespace app\controllers;
 
 use app\models\Internaute;
+use app\models\MarqueVehicule;
 use app\models\RechercheVoyages;
 use app\models\Reservation;
 use app\models\SignupForm;
 use app\models\Trajet;
+use app\models\TypeVehicule;
 use app\models\Voyage;
 use app\models\LoginForm;
 use Yii;
@@ -441,12 +443,78 @@ class SiteController extends Controller
     {
         $request = Yii::$app->request;
 
+        if ($request->isPost) {
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+            // 1. Sécurité : Est-ce qu'il est connecté et conducteur ?
+            if (Yii::$app->user->isGuest || Yii::$app->user->identity->permis === null) {
+                return [
+                    'success' => false,
+                    'message' => 'Vous devez être connecté et avoir un permis pour proposer un voyage.'
+                ];
+            }
+
+            // 2. Récupération et Nettoyage des données
+            $nomDepart = ucfirst(strtolower(trim($request->post('depart'))));
+            $nomArrivee = ucfirst(strtolower(trim($request->post('arrivee'))));
+
+            $heureString = $request->post('heure');
+            $heureInt = (int) explode(':', $heureString)[0];
+            
+
+
+            // 3. Recherche le trajet
+            $trajet = Trajet::getTrajet($nomDepart, $nomArrivee);
+
+            if (!$trajet) {
+                return [
+                    'success' => false,
+                    'message' => 'Le trajet n\'existe pas.'
+                ];
+            }
+
+
+            // 4. Création du Voyage
+            $voyage = new Voyage();
+            $voyage->conducteur = Yii::$app->user->id;
+            $voyage->trajet = $trajet->id;
+            $voyage->heuredepart = $heureInt;
+            $voyage->tarif = $request->post('tarif');
+            $voyage->nbplacedispo = $request->post('places');
+            $voyage->nbbagage = $request->post('bagages');
+            $voyage->contraintes = $request->post('contraintes');
+            $voyage->idtypev = $request->post('idtypev');
+            $voyage->idmarquev = $request->post('idmarquev');
+
+
+            if ($voyage->save()) {
+                return [
+                    'success' => true,
+                    'message' => 'Voyage publié avec succès !',
+                    'redirect' => Url::to(['site/index'])
+                ];
+            } else {
+                // Récupération de la première erreur
+                $error = reset($voyage->errors)[0] ?? 'Erreur de validation';
+                return [
+                    'success' => false,
+                    'message' => 'Erreur : ' . $error
+                ];
+            }
+        }
 
 
         if ($request->isAjax) {
             Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+            $marques = MarqueVehicule::getAllMarques();
+            $types = TypeVehicule::getAllTypes();
+
             return [
-                'content' => $this->renderPartial('_create', [])
+                'content' => $this->renderPartial('_create', [
+                    'marques' => $marques,
+                    'types' => $types
+                ])
             ];
         }
     }

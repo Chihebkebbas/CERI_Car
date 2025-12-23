@@ -91,8 +91,9 @@ class Voyage extends ActiveRecord
     public function getVoyageurs() {
         $voyageurs = [];
         $reservations = Reservation::getReservationsByVoyageId($this->id);
+
         foreach ($reservations as $reservation) {
-            $voyageurs += Internaute::getUserById($reservation->voyageur);
+            $voyageurs[] = Internaute::getUserById($reservation->voyageur);
         }
         return $voyageurs;
     }

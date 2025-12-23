@@ -11,4 +11,8 @@ class TypeVehicule extends ActiveRecord
         return 'fredouil.typevehicule';
     }
 
+    public static function getAllTypes() {
+        return self::find()->all();
+    }
+
 }

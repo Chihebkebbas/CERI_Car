@@ -38,19 +38,19 @@
                     <div class="trip-main">
                         <div class="trip-overview">
                             <div class="trip-schedule">
-                                <div class="time-row"><span class="time"><?=$voyage->heureDepartFormat ?></span> <span class="place"><?=$voyage->heureinfoTrjat->depart ?></span></div>
+                                <div class="time-row"><span class="time"><?=$voyage->heureDepartFormat ?></span> <span class="place"><?=$voyage->infoTrajet->depart ?></span></div>
                                 <div class="duration-visual">
                                     <div class="line"></div>
                                     <span class="duration"><?=$voyage->dureeTrajet . " (" . $voyage->infoTrajet->distance . ")"?></span>
                                     <div class="line"></div>
                                 </div>
-                                <div class="time-row"><span class="time"><?=$voyage->heureArivee ?></span> <span class="place"><?=$voyage->heureinfoTrjat->arrivee ?></span></div>
+                                <div class="time-row"><span class="time"><?=$voyage->heureArrivee ?></span> <span class="place"><?=$voyage->infoTrajet->arrivee ?></span></div>
                             </div>
 
                             <div class="trip-meta-visible">
                                 <div class="occupancy-badge <?=$voyage->estComplet() ? "full" : ""?>">
                                     <span class="material-symbols-rounded icon"><?=$voyage->estComplet() ? "check_circle" : "group"?></span>
-                                    <span><?=$voyage->estComplet() ?"Complet(" . $voyage->nbplacedispo . "/" . $voyage->nbplacedispo . ")" : $voyage->placesRestantes . "/" . $voyage->nbplacedispo . " Réservé"?></span>
+                                    <span><?=$voyage->estComplet() ?"Complet(" . $voyage->nbplacedispo . "/" . $voyage->nbplacedispo . ")" : $voyage->placesReservees. "/" . $voyage->nbplacedispo . " Réservé"?></span>
                                 </div>
                                 <div class="earnings-display">
                                     <span class="label">Gain</span>
