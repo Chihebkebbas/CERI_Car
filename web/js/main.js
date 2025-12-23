@@ -432,6 +432,39 @@ $(document).ready(function() {
         });
     });
 
+    $(document).on('click', '.cancel-voyage-ajax', function (e) {
+        e.preventDefault();
+        const button = $(this);
+        const voyageId = button.data('id');
+        var url = 'index.php?r=site/voyage';
+        $('body').css('cursor', 'wait');
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                voyageId: voyageId,
+                _csrf: yii.getCsrfToken()
+            },
+
+            success: function(response) {
+                showNotification(response.message, response.statusClass);
+
+                if (response.redirect) {
+                    setTimeout(function() {
+                        window.location.href = response.redirect;
+                    }, 2000);
+                }
+                $('body').css('cursor', 'default');
+            },
+
+            error: function() {
+                showNotification("Une erreur technique est survenue", "danger");
+            }
+        })
+    })
+
 
     $(document).on('click', '.trip-card', function(e) {
 

@@ -278,7 +278,7 @@ class SiteController extends Controller
 
         $voyages = Voyage::getVoyagesByConducteurID(Yii::$app->user->id);
 
-        if ($request->isAjax) {
+        if ($request->isAjax && !$request->isPost) {
             Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
             return [
@@ -288,6 +288,28 @@ class SiteController extends Controller
                 ])
             ];
         }
+
+        $voyageId = $request->post('voyageId');
+
+        if ($voyageId) {
+            $voyage = Voyage::getVoyageById($voyageId);
+            if($voyage->delete()) {
+                Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+                return [
+                    'success' => true,
+                    'message' => 'Voyage annulée !',
+                    'statusClass' => 'warning',
+                    'redirect' => Url::to(['site/index'])
+                ];
+            } else {
+                Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+                return [
+                    'success' => false,
+                    'message' => "Erreur lors de l'annulation !"
+                ];
+            }
+        }
+
     }
 
     public function actionProfile() {

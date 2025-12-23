@@ -84,7 +84,7 @@
                             </div>
 
                             <div class="trip-actions-footer">
-                                <button class="btn-text-danger">Annuler ce voyage</button>
+                                <button class="btn-text-danger cancel-voyage-ajax" data-id="<?=$voyage->id ?>">Annuler ce voyage</button>
                             </div>
                         </div>
                     </div>
