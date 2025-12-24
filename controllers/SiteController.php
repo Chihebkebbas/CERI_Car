@@ -198,6 +198,10 @@ class SiteController extends Controller
         }
 
         $voyageId = $request->post('voyageId');
+        $vId1 = $request->post('voyageId1');
+        $vId2 = $request->post('voyageId2');
+
+
 
         if ($voyageId) {
             Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
@@ -210,7 +214,7 @@ class SiteController extends Controller
                 ];
             }
 
-            $voyage = Voyage::findOne($voyageId);
+            $voyage = Voyage::getVoyageById($voyageId);
 
             if ($voyage->conducteur == Yii::$app->user->id) {
                 return [
@@ -241,6 +245,57 @@ class SiteController extends Controller
                     'message' => "Erreur lors de la réservation !"
                 ];
             }
+
+        } else if ($vId1 && $vId2) {
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+            if (Yii::$app->user->isGuest) {
+                return [
+                    'success' => false,
+                    'message' => 'Vous devez être connecté pour réserver.',
+                    'content' => $this->renderPartial('_login', [])
+                ];
+            }
+
+            $voyage1 = Voyage::getVoyageById($vId1);
+            $voyage2 = Voyage::getVoyageById($vId2);
+
+
+            if ($voyage1->conducteur == Yii::$app->user->id || $voyage2->conducteur == Yii::$app->user->id) {
+                return [
+                    'success' => false,
+                    'message' => 'Vous ne pouvez pas réserver votre propre trajet.',
+                    'redirect' => Url::to(['site/index'])
+                ];
+            }
+
+            $places = $request->post('places');
+
+            $reservation1 = new Reservation();
+            $reservation1->voyage = $vId1;
+            $reservation1->voyageur = Yii::$app->user->id;
+            $reservation1->nbplaceresa = $places;
+
+            $reservation2 = new Reservation();
+            $reservation2->voyage = $vId2;
+            $reservation2->voyageur = Yii::$app->user->id;
+            $reservation2->nbplaceresa = $places;
+
+            if ($reservation1->save() && $reservation2->save()) {
+                Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+                return [
+                    'success' => true,
+                    'message' => 'Réservation effectuée !',
+                    'redirect' => Url::to(['site/index'])
+                ];
+            } else {
+                Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+                return [
+                    'success' => false,
+                    'message' => "Erreur lors de la réservation !"
+                ];
+            }
+
 
         }
 

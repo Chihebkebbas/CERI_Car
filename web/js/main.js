@@ -222,23 +222,34 @@ $(document).ready(function() {
     $(document).on('click', '.btn-book-ajax', function (e) {
         e.preventDefault();
         const button = $(this);
-        const voyageId = button.data('id');
-        const places = button.data('places');
-        const price = button.data('price');
-        var url = 'index.php?r=site/reservation';
 
+        // On récupère les IDs (direct ou correspondance)
+        const voyageId = button.data('id');
+        const voyageId1 = button.data('id1');
+        const voyageId2 = button.data('id2');
+        const places = button.data('places');
+
+        const url = 'index.php?r=site/reservation';
         $('body').css('cursor', 'wait');
+
+        // On prépare les données à envoyer
+        let postData = {
+            places: places,
+            _csrf: yii.getCsrfToken()
+        };
+
+        if (voyageId) {
+            postData.voyageId = voyageId;
+        } else {
+            postData.voyageId1 = voyageId1;
+            postData.voyageId2 = voyageId2;
+        }
 
         $.ajax({
             url: url,
             type: 'POST',
             dataType: 'json',
-            data: {
-                voyageId: voyageId,
-                places: places,
-                price: price,
-                _csrf: yii.getCsrfToken()
-            },
+            data: postData,
 
             success: function(response) {
                 if (response.success === true) {
@@ -250,8 +261,10 @@ $(document).ready(function() {
                     }
                 } else {
                     showNotification(response.message, "danger");
-                    $('#accueil, #villes, #concept, #accueil, #hero-ajax-results, #create-ajax-container').fadeOut(200);
-                    $('#auth-container').html(response.content).fadeIn(200);
+                    if (response.content) {
+                        $('#accueil, #hero-ajax-results, #create-ajax-container').fadeOut(200);
+                        $('#auth-container').html(response.content).fadeIn(200);
+                    }
                     $('body').css('cursor', 'default');
 
                 }
