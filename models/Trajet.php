@@ -14,4 +14,8 @@ class Trajet extends ActiveRecord
     public static function getTrajet($depart, $arrivee) {
         return self::findOne(['depart' => $depart, 'arrivee' => $arrivee]);
     }
+
+    public static function getAllTrajets($depart) {
+        return self::findAll(['depart' => $depart]);
+    }
 }

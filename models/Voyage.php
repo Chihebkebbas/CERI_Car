@@ -37,6 +37,15 @@ class Voyage extends ActiveRecord
         return sprintf("%2dh%02dmin", $heures, $minutesRestantes);
     }
 
+    public static function getDureeTrajetFormat($distance) {
+        $minutes = $distance;
+        $heures = intdiv($minutes, 60);
+        $minutesRestantes = $minutes % 60;
+        return sprintf("%2dh%02dmin", $heures, $minutesRestantes);
+    }
+
+
+
     public function getHeureArrivee()
     {
         $depart = strtotime($this->heuredepart . ":00");

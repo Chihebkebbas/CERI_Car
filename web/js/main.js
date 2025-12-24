@@ -49,7 +49,11 @@ $(document).ready(function() {
                     $('html, body').animate({ scrollTop: $('body').offset().top}, 300);
                 }
 
-                showNotification(response.resultat, response.statusClass)
+                showNotification(response.resultat, response.statusClass);
+                setTimeout(function() {
+                    showNotification(response.resultatCorrespondance, response.statusCorrespondance)
+                }, 4000)
+
 
             },
             error: function() {

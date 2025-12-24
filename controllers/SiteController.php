@@ -72,7 +72,9 @@ class SiteController extends Controller
         $depart = $request->get('depart');
         $arrivee = $request->get('arrivee');
         $places = $request->get('places');
-        $resultat = "Voyages Dispoblibles !";
+        $resultat = "Voyages Directes Disponibles !";
+        $resultatCorrespondance = "";
+        $statusCorrespondance = "";
         $statusClass = "success";
 
         if ($depart) $depart = ucfirst(strtolower($depart));
@@ -80,9 +82,15 @@ class SiteController extends Controller
 
 
         $voyages = [];
+        $correspondance = [];
+
+
         if ($depart && $arrivee && $places) {
             $voyages = RechercheVoyages::rechercherVoyages($depart, $arrivee, $places, $resultat, $statusClass);
+            $correspondance = RechercheVoyages::rechercherCorrespondance($depart, $arrivee, $places, $resultatCorrespondance, $statusCorrespondance);
         }
+
+
 
 
         if ($request->isAjax) {
@@ -90,12 +98,15 @@ class SiteController extends Controller
             return [
                 'content' => $this->renderPartial('_resultat', [
                     'voyages' => $voyages,
+                    'correspondance' => $correspondance,
                     'depart' => $depart,
                     'arrivee' => $arrivee,
                     'places' => $places,
                 ]),
                 'resultat' => $resultat,
+                'resultatCorrespondance' => $resultatCorrespondance,
                 'statusClass' => $statusClass,
+                'statusCorrespondance' => $statusCorrespondance,
             ];
         }
 
