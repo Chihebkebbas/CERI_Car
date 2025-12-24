@@ -237,13 +237,21 @@ $(document).ready(function() {
             },
 
             success: function(response) {
-                showNotification(response.message, "success");
-                if (response.redirect) {
-                    setTimeout(function() {
-                        window.location.href = response.redirect;
-                    }, 2000);
+                if (response.success === true) {
+                    showNotification(response.message, "success");
+                    if (response.redirect) {
+                        setTimeout(function() {
+                            window.location.href = response.redirect;
+                        }, 2000);
+                    }
+                } else {
+                    showNotification(response.message, "danger");
+                    $('#accueil, #villes, #concept, #accueil, #hero-ajax-results, #create-ajax-container').fadeOut(200);
+                    $('#auth-container').html(response.content).fadeIn(200);
+                    $('body').css('cursor', 'default');
 
                 }
+
                 $('body').css('cursor', 'default');
             },
 
@@ -464,6 +472,17 @@ $(document).ready(function() {
             }
         })
     })
+
+
+    $(document).on('click', 'a[href*="#villes"], a[href*="#concept"], .logo', function(e) {
+
+        if ($('#hero-ajax-results').is(':visible') || $('#auth-container').is(':visible') || $('#profile-ajax-container').is(':visible')) {
+
+            window.location.href = $(this).attr('href');
+            window.location.reload();
+        }
+    });
+
 
 
     $(document).on('click', '.trip-card', function(e) {

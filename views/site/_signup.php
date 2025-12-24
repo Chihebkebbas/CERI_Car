@@ -53,6 +53,6 @@ use yii\helpers\Url;
     </form>
 
     <div class="auth-footer">
-        <p>Déjà membre ? <a href="<?=Url::to(['site/login'])?>" class="auth-link">Se connecter</a></p>
+        <p>Déjà membre ? <a href="<?=Url::to(['site/login'])?>" class="auth-link js-auth-link">Se connecter</a></p>
     </div>
 </section>

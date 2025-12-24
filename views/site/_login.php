@@ -25,6 +25,6 @@ use yii\helpers\Url;
     </form>
 
     <div class="auth-footer">
-        <p>Pas encore de compte ? <a href="<?=Url::to(['site/signup']) ?>" class="auth-link">Créer un profil</a></p>
+        <p>Pas encore de compte ? <a href="<?=Url::to(['site/signup']) ?>" class="auth-link js-auth-link">Créer un profil</a></p>
     </div>
 </section>

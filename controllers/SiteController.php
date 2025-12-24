@@ -64,11 +64,6 @@ class SiteController extends Controller
         ];
     }
 
-    /**
-     * Displays homepage.
-     *
-     * @return array
-     */
     public function actionIndex()
     {
         $request = Yii::$app->request;
@@ -133,8 +128,6 @@ class SiteController extends Controller
             ];
         }
 
-        
-        return $this->render('login');
     }
 
     public function actionSignup() {
@@ -202,7 +195,7 @@ class SiteController extends Controller
                 return [
                     'success' => false,
                     'message' => 'Vous devez être connecté pour réserver.',
-                    'redirect' => Url::to(['site/login'])
+                    'content' => $this->renderPartial('_login', [])
                 ];
             }
 

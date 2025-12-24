@@ -1,8 +1,8 @@
 <?php
-    $this->title = 'CERI Car by Chiheb';
+$this->title = 'CERI Car by Chiheb';
 
-    use yii\helpers\Url;
-    use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\helpers\Html;
 ?>
 
 <section class="hero" id="accueil">
