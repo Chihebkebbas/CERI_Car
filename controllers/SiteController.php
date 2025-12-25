@@ -20,10 +20,18 @@ use yii\filters\VerbFilter;
 use yii\helpers\Url;
 
 
+/**
+ * SiteController gère les actions principales de l'application CeriCar,
+ * notamment l'accueil, l'authentification, la gestion des profils,
+ * les recherches de voyages et les réservations.
+ */
 class SiteController extends Controller
 {
     /**
-     * {@inheritdoc}
+     * Définit les comportements du contrôleur, tels que le contrôle d'accès
+     * et les filtres de verbes HTTP.
+     * 
+     * @return array Configuration des comportements.
      */
     public function behaviors()
     {
@@ -49,7 +57,10 @@ class SiteController extends Controller
     }
 
     /**
-     * {@inheritdoc}
+     * Définit les actions externes du contrôleur, comme la page d'erreur
+     * ou le captcha.
+     * 
+     * @return array Configuration des actions.
      */
     public function actions()
     {
@@ -64,6 +75,12 @@ class SiteController extends Controller
         ];
     }
 
+    /**
+     * Affiche la page d'accueil et gère la recherche de voyages directs et en correspondance.
+     * Si la requête est AJAX, retourne les résultats au format JSON pour un rafraîchissement dynamique.
+     * 
+     * @return mixed Le rendu de la vue ou un tableau JSON.
+     */
     public function actionIndex()
     {
         $request = Yii::$app->request;
@@ -114,7 +131,12 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
-
+    /**
+     * Gère la connexion des utilisateurs.
+     * Si la connexion réussit via AJAX, retourne une redirection vers l'accueil.
+     * 
+     * @return mixed Le rendu partiel du formulaire de connexion ou un JSON de succès.
+     */
     public function actionLogin() {
 
         $request = Yii::$app->request;
@@ -141,6 +163,12 @@ class SiteController extends Controller
 
     }
 
+    /**
+     * Gère l'inscription de nouveaux utilisateurs.
+     * Valide les données soumises en AJAX et connecte l'utilisateur en cas de succès.
+     * 
+     * @return array JSON indiquant le succès de l'opération ou les erreurs de validation.
+     */
     public function actionSignup() {
 
         $request = Yii::$app->request;
@@ -173,7 +201,12 @@ class SiteController extends Controller
 
     }
 
-
+    /**
+     * Gère les réservations (affichage, création et annulation).
+     * Permet également de réserver des trajets avec correspondance.
+     * 
+     * @return mixed JSON contenant le contenu HTML ou le résultat d'une action de réservation.
+     */
     public function actionReservation() {
         $request = Yii::$app->request;
 
@@ -322,6 +355,12 @@ class SiteController extends Controller
 
     }
 
+    /**
+     * Gère les voyages proposés par l'utilisateur connecté (affichage et suppression).
+     * Vérifie si l'utilisateur est un conducteur avant d'accéder aux données.
+     * 
+     * @return array JSON contenant les voyages ou le résultat d'une suppression.
+     */
     public function actionVoyage() {
         $request = Yii::$app->request;
 
@@ -371,6 +410,12 @@ class SiteController extends Controller
 
     }
 
+    /**
+     * Gère l'affichage et la mise à jour du profil utilisateur.
+     * Détecte les modifications sur chaque champ et met à jour les informations en base.
+     * 
+     * @return array JSON contenant le résultat de la mise à jour ou le formulaire de profil.
+     */
     public function actionProfile() {
         $request = Yii::$app->request;
         $user = Internaute::getUserById(Yii::$app->user->id);
@@ -520,6 +565,12 @@ class SiteController extends Controller
 
     }
 
+    /**
+     * Gère la publication d'un nouveau voyage.
+     * Récupère les données du formulaire, valide le trajet et enregistre le voyage.
+     * 
+     * @return array JSON indiquant le succès ou l'échec de la publication.
+     */
     public function actionCreate()
     {
         $request = Yii::$app->request;
@@ -600,6 +651,11 @@ class SiteController extends Controller
         }
     }
 
+    /**
+     * Déconnecte l'utilisateur actuel et redirige vers la page d'accueil.
+     * 
+     * @return Response Redirection vers la page d'accueil.
+     */
     public function actionLogout() {
         Yii::$app->user->logout();
         return $this->goHome();

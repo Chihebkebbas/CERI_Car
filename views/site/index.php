@@ -1,4 +1,11 @@
 <?php
+/**
+ * Vue principale de la page d'accueil (Index).
+ * Affiche la bannière héro, la barre de recherche et les sections d'information.
+ * 
+ * @var yii\web\View $this
+ */
+
 $this->title = 'CERI Car by Chiheb';
 
 use yii\helpers\Url;
@@ -6,6 +13,7 @@ use yii\helpers\Html;
 ?>
 
 <section class="hero" id="accueil">
+    <!-- Contenu par défaut affiché au chargement initial -->
     <div class="hero-content" id="hero-default-content">
         <div class="hero-text" >
             <span class="hero-badge">Trajets dans toute la France</span>
@@ -17,10 +25,12 @@ use yii\helpers\Html;
         </div>
     </div>
 
+    <!-- Conteneurs pour l'injection de contenu dynamique via AJAX -->
     <div class="search-layout-ajax" id="hero-ajax-results" style="display: none;"></div>
     <div class="reservation-layout" id="reservation-ajax-container" style="display: none;"></div>
     <div class="voyage-layout" id="voyage-ajax-container" style="display: none;"></div>
 
+    <!-- Barre de recherche persistante -->
     <div class="search-container-wrapper">
         <form id="search-form" class="search-bar" role="search">
             <div class="search-group">
