@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\Html;
 use yii\helpers\Url;
 
 ?>
@@ -9,22 +10,33 @@ use yii\helpers\Url;
         <p class="auth-subtitle">Connectez-vous pour poursuivre votre voyage.</p>
     </div>
 
-    <form class="auth-form login-form" action="<?=Url::to(['site/login']) ?>" method="POST">
-        <input type="hidden" name="<?= Yii::$app->request->csrfParam; ?>" value="<?= Yii::$app->request->csrfToken; ?>" />
+    <form class="auth-form login-form" action="<?= Url::to(['site/login']) ?>" method="POST">
+        <?= Html::hiddenInput(Yii::$app->request->csrfParam, Yii::$app->request->csrfToken) ?>
+
         <div class="form-group">
             <label for="pseudo" class="form-label">Pseudo</label>
-            <input type="text" id="pseudo" name="LoginForm[pseudo]" class="form-input" placeholder="ex: chiheb_kbs" required>
+            <?= Html::input('text', 'LoginForm[pseudo]', '', [
+                    'id' => 'pseudo',
+                    'class' => 'form-input',
+                    'placeholder' => 'ex: chiheb_kbs',
+                    'required' => true
+            ]) ?>
         </div>
 
         <div class="form-group">
             <label for="password" class="form-label">Mot de passe</label>
-            <input type="password" id="password" name="LoginForm[password]" class="form-input" placeholder="••••••••" required>
+            <?= Html::input('password', 'LoginForm[password]', '', [
+                    'id' => 'password',
+                    'class' => 'form-input',
+                    'placeholder' => '••••••••',
+                    'required' => true
+            ]) ?>
         </div>
 
         <button type="submit" class="auth-submit">Se connecter</button>
     </form>
 
     <div class="auth-footer">
-        <p>Pas encore de compte ? <a href="<?=Url::to(['site/signup']) ?>" class="auth-link js-auth-link">Créer un profil</a></p>
+        <p>Pas encore de compte ? <a href="<?= Url::to(['site/signup']) ?>" class="auth-link js-auth-link">Créer un profil</a></p>
     </div>
 </section>

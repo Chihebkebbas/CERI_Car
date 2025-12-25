@@ -1,5 +1,8 @@
 <?php
+
+use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
 
 ?>
 
@@ -10,65 +13,105 @@ use yii\helpers\Url;
     </div>
 
     <form id="create-trip-form" class="auth-form two-columns" action="<?= Url::to(['site/create']) ?>" method="POST">
-        <input type="hidden" name="<?= Yii::$app->request->csrfParam; ?>" value="<?= Yii::$app->request->csrfToken; ?>" />
+        <?= Html::hiddenInput(Yii::$app->request->csrfParam, Yii::$app->request->csrfToken) ?>
 
         <div class="form-group">
             <label for="depart" class="form-label">Ville de départ</label>
             <div class="input-with-icon">
-                <input type="text" id="depart" name="depart" class="form-input" placeholder="Ex: Avignon" required>
+                <?= Html::input('text', 'depart', '', [
+                        'id' => 'depart',
+                        'class' => 'form-input',
+                        'placeholder' => 'Ex: Avignon',
+                        'required' => true
+                ]) ?>
             </div>
         </div>
 
         <div class="form-group">
             <label for="arrivee" class="form-label">Ville d'arrivée</label>
-            <input type="text" id="arrivee" name="arrivee" class="form-input" placeholder="Ex: Paris" required>
+            <?= Html::input('text', 'arrivee', '', [
+                    'id' => 'arrivee',
+                    'class' => 'form-input',
+                    'placeholder' => 'Ex: Paris',
+                    'required' => true
+            ]) ?>
         </div>
 
         <div class="form-group">
             <label for="heure" class="form-label">Heure de départ</label>
-            <input type="time" id="heure" name="heure" class="form-input" required step="3600">
+            <?= Html::input('time', 'heure', '', [
+                    'id' => 'heure',
+                    'class' => 'form-input',
+                    'required' => true,
+                    'step' => '3600'
+            ]) ?>
         </div>
 
         <div class="form-group">
             <label for="tarif" class="form-label">Prix (€) (Max 5€)</label>
-            <input type="number" id="tarif" name="tarif" class="form-input" placeholder="Ex: 4" min="0" max="5" step="0.5" required>
+            <?= Html::input('number', 'tarif', '', [
+                    'id' => 'tarif',
+                    'class' => 'form-input',
+                    'placeholder' => 'Ex: 4',
+                    'min' => 0,
+                    'max' => 5,
+                    'step' => '0.5',
+                    'required' => true
+            ]) ?>
         </div>
 
         <div class="form-group">
             <label for="idmarquev" class="form-label">Marque Véhicule</label>
-            <select id="idmarquev" name="idmarquev" class="form-input" required>
-                <option value="" disabled selected>Choisir...</option>
-                <?php foreach ($marques as $marque): ?>
-                    <option value="<?= $marque->id ?>"><?= $marque->marquev ?></option>
-                <?php endforeach; ?>
-            </select>
+            <?= Html::dropDownList('idmarquev', null, ArrayHelper::map($marques, 'id', 'marquev'), [
+                    'id' => 'idmarquev',
+                    'class' => 'form-input',
+                    'prompt' => 'Choisir...',
+                    'required' => true
+            ]) ?>
         </div>
 
         <div class="form-group">
             <label for="idtypev" class="form-label">Type Véhicule</label>
-            <select id="idtypev" name="idtypev" class="form-input" required>
-                <option value="" disabled selected>Choisir...</option>
-                <?php foreach ($types as $type): ?>
-                    <option value="<?= $type->id ?>"><?= $type->typev ?></option>
-                <?php endforeach; ?>
-            </select>
+            <?= Html::dropDownList('idtypev', null, ArrayHelper::map($types, 'id', 'typev'), [
+                    'id' => 'idtypev',
+                    'class' => 'form-input',
+                    'prompt' => 'Choisir...',
+                    'required' => true
+            ]) ?>
         </div>
 
         <div class="form-group">
             <label for="places" class="form-label">Places dispo</label>
             <div class="stepper-input">
-                <input type="number" id="places" name="places" class="form-input" value="1" min="1" max="8" required>
+                <?= Html::input('number', 'places', 1, [
+                        'id' => 'places',
+                        'class' => 'form-input',
+                        'min' => 1,
+                        'max' => 8,
+                        'required' => true
+                ]) ?>
             </div>
         </div>
 
         <div class="form-group">
             <label for="bagages" class="form-label">Bagages autorisés</label>
-            <input type="number" id="bagages" name="bagages" class="form-input" value="0" min="0" max="3" required>
+            <?= Html::input('number', 'bagages', 0, [
+                    'id' => 'bagages',
+                    'class' => 'form-input',
+                    'min' => 0,
+                    'max' => 3,
+                    'required' => true
+            ]) ?>
         </div>
 
         <div class="form-group full-width">
             <label for="contraintes" class="form-label">Contraintes</label>
-            <textarea id="contraintes" name="contraintes" class="form-input contraintes" rows="2" maxlength="500"></textarea>
+            <?= Html::textarea('contraintes', '', [
+                    'id' => 'contraintes',
+                    'class' => 'form-input contraintes',
+                    'rows' => 2,
+                    'maxlength' => 500
+            ]) ?>
         </div>
 
         <div class="form-group full-width">
