@@ -22,28 +22,6 @@ $(document).ready(function () {
         }, duration);
     }
 
-    /**
-     * Charge automatiquement une section basée sur le hash de l'URL
-     * Utilisé quand on redirige depuis une autre page
-     */
-    function loadFromHash() {
-        const hash = window.location.hash;
-
-        if (hash === '#reservations') {
-            // Déclencher le clic sur le lien réservations
-            setTimeout(function () {
-                $('.reservation-ajax-link').first().trigger('click');
-            }, 300);
-        } else if (hash === '#voyages') {
-            // Déclencher le clic sur le lien voyages
-            setTimeout(function () {
-                $('.voyage-ajax-link').first().trigger('click');
-            }, 300);
-        }
-    }
-
-    // Charger la section au démarrage si un hash est présent
-    loadFromHash();
 
     /**
      * Gestion de la soumission du formulaire de recherche de voyages.
@@ -250,6 +228,7 @@ $(document).ready(function () {
                 $('#hero-default-content, #villes, #concept, #hero-ajax-results, #voyage-ajax-container, #profile-ajax-container, #create-ajax-container').fadeOut(200);
 
                 setTimeout(function () {
+                    $('#accueil').fadeIn(200);
                     $('#reservation-ajax-container').html(response.content).fadeIn(200);
                     $('body').css('cursor', 'default');
 
@@ -402,6 +381,7 @@ $(document).ready(function () {
                 if (response.success) {
                     $('#reservation-ajax-container, #hero-default-content, #villes, #concept, #hero-ajax-results, #create-ajax-container, #profile-ajax-container, #auth-container').fadeOut(200);
                     setTimeout(function () {
+                        $('#accueil').fadeIn(200);
                         $('#voyage-ajax-container').html(response.content).fadeIn(200);
                         $('body').css('cursor', 'default');
 

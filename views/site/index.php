@@ -26,9 +26,9 @@ use yii\helpers\Html;
     </div>
 
     <!-- Conteneurs pour l'injection de contenu dynamique via AJAX -->
-    <div class="search-layout-ajax" id="hero-ajax-results" style="display: none;"></div>
-    <div class="reservation-layout" id="reservation-ajax-container" style="display: none;"></div>
-    <div class="voyage-layout" id="voyage-ajax-container" style="display: none;"></div>
+    <div class="search-layout-ajax" id="hero-ajax-results"></div>
+    <div class="reservation-layout" id="reservation-ajax-container"></div>
+    <div class="voyage-layout" id="voyage-ajax-container"></div>
 
     <!-- Barre de recherche persistante -->
     <div class="search-container-wrapper">
