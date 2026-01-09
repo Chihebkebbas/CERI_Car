@@ -44,9 +44,22 @@
     display: inline-block;
     margin-bottom: 8px;
 }
-.status-confirmed { background: #E5F9F6; color: #00A884; } /* Vert WhatsApp/Airbnb */
-.status-past { background: #F0F0F0; color: #86868B; }
-.status-cancelled { background: #FFF4E5; color: #FF9500; }
+
+.status-confirmed {
+    background: #E5F9F6;
+    color: #00A884;
+}
+
+/* Vert WhatsApp/Airbnb */
+.status-past {
+    background: #F0F0F0;
+    color: #86868B;
+}
+
+.status-cancelled {
+    background: #FFF4E5;
+    color: #FF9500;
+}
 
 /* Bouton Annuler (Style Danger/Secondaire) */
 .btn-cancel {
@@ -61,7 +74,15 @@
     width: 100%;
     transition: all 0.2s;
 }
+
 .btn-cancel:hover {
     background: #FFF4E5;
 }
 
+@media (max-width: 1200px) {
+    .reservation-layout {
+        width: 100%;
+        height: auto;
+        padding: 0 16px;
+    }
+}

@@ -599,7 +599,7 @@ footer {
 }
 
 /* ==================== Responsive ==================== */
-@media (max-width: 968px) {
+@media (max-width: 1200px) {
 
     .nav-items {
         gap: 16px;

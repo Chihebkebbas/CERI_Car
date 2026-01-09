@@ -3,7 +3,7 @@
 use yii\helpers\Url;
 
 ?>
-<section class="search-summary">
+    <section class="search-summary">
         <div class="summary-content">
             <div class="route-info">
                 <span class="city"><?=$depart ?></span>
@@ -21,16 +21,9 @@ use yii\helpers\Url;
 
         <aside class="filters-sidebar">
             <div class="filter-card">
-                <h3>Trier par</h3>
+                <h3>Afficher</h3>
                 <div class="filter-options">
-                    <label class="radio-option"><input type="radio" name="sort" checked> <span>Prix le plus bas</span></label>
-                    <label class="radio-option"><input type="radio" name="sort"> <span>Départ le plus tôt</span></label>
-                </div>
-                <div class="divider"></div>
-                <h3>Options</h3>
-                <div class="filter-options">
-                    <label class="checkbox-option"><input type="checkbox"> <span>Trajets directs</span></label>
-                    <label class="checkbox-option"><input type="checkbox"> <span>Bagages supplémentaires</span></label>
+                    <label class="radio-option"><input type="radio" name="filter" checked> <span>Tous</span></label>
                 </div>
             </div>
         </aside>

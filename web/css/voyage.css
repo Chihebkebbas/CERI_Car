@@ -29,7 +29,8 @@
 
 .occupancy-badge.full {
     background: #E5F9F6;
-    color: #00A884; /* Vert succès */
+    color: #00A884;
+    /* Vert succès */
 }
 
 .earnings-display {
@@ -59,7 +60,8 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    background: #FAFAFA; /* Fond légèrement différent pour le contexte */
+    background: #FAFAFA;
+    /* Fond légèrement différent pour le contexte */
 }
 
 .list-title {
@@ -141,7 +143,10 @@
     color: var(--text-secondary);
     font-size: 13px;
 }
-.trip-info-box span { font-size: 20px; }
+
+.trip-info-box span {
+    font-size: 20px;
+}
 
 .trip-actions-footer {
     display: flex;
@@ -154,7 +159,8 @@
 .btn-text-danger {
     background: transparent;
     border: none;
-    color: #E11143; /* Rouge marque */
+    color: #E11143;
+    /* Rouge marque */
     font-weight: 600;
     font-size: 14px;
     cursor: pointer;
@@ -172,12 +178,22 @@
     .passenger-item {
         align-items: flex-start;
     }
+
     .passenger-actions {
         flex-direction: column;
         gap: 6px;
     }
+
     .action-btn {
         width: 32px;
         height: 32px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .voyage-layout {
+        width: 100%;
+        height: auto;
+        padding: 0 16px;
     }
 }

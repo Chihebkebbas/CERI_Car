@@ -5,24 +5,9 @@
 
     <aside class="filters-sidebar">
         <div class="filter-card">
-            <h3>Trier par</h3>
+            <h3>Afficher</h3>
             <div class="filter-options">
-                <label class="radio-option">
-                    <input type="radio" name="sort" checked> <span>Date (Prochain)</span>
-                </label>
-                <label class="radio-option">
-                    <input type="radio" name="sort"> <span>Remplissage</span>
-                </label>
-            </div>
-            <div class="divider"></div>
-            <h3>Filtres</h3>
-            <div class="filter-options">
-                <label class="checkbox-option">
-                    <input type="checkbox" checked> <span>À venir</span>
-                </label>
-                <label class="checkbox-option">
-                    <input type="checkbox"> <span>Historique</span>
-                </label>
+                <label class="radio-option"><input type="radio" name="filter" checked> <span>Tous</span></label>
             </div>
         </div>
     </aside>

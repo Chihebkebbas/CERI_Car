@@ -375,12 +375,21 @@ class SiteController extends Controller
         }
 
         $voyages = Voyage::getVoyagesByConducteurID(Yii::$app->user->id);
+        if (empty($voyages)) {
+            $message = "Vous avez rien publié encore !";
+            $statusClass = "warning";
+        } else {
+            $message = "Voyages disponibles !";
+            $statusClass = "info";
+        }
 
         if ($request->isAjax && !$request->isPost) {
             Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
             return [
                 'success' => true,
+                'message' => $message,
+                'statusClass' => $statusClass,
                 'content' => $this->renderPartial('_voyage', [
                     'voyages' => $voyages
                 ])
