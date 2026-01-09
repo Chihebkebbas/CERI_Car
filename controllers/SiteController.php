@@ -178,7 +178,7 @@ class SiteController extends Controller
             Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
             if ($user = $model->signup()) {
-                Yii::$app->user->login($user); // Si tu as configuré User Identity
+                Yii::$app->user->login($user);
                 return [
                     'success' => true,
                     'message' => 'Compte créé avec succès !',
@@ -187,7 +187,7 @@ class SiteController extends Controller
             } else {
                 return [
                     'success' => false,
-                    'errors' => $model->errors
+                    'errors' => "Erreur lors de la création du compte !"
                 ];
             }
         }
@@ -452,7 +452,7 @@ class SiteController extends Controller
             $newPseudo = $request->post('pseudo');
             if ($user->pseudo !== $newPseudo) {
                 // On vérifie si le pseudo est libre avant de l'attribuer
-                $existingUser = Internaute::findOne(['pseudo' => $newPseudo]);
+                $existingUser = Internaute::getUserByIdentifiant($newPseudo);
                 if (!$existingUser) {
                     $user->pseudo = $newPseudo;
                     $modifications[] = "pseudo";
@@ -528,7 +528,7 @@ class SiteController extends Controller
                     // Cette fonction joint les éléments avec des virgules : "nom, prénom, email"
                     $listeChamps = implode(', ', $modifications);
 
-                    // On remplace la dernière virgule par " et " pour faire joli (optionnel)
+                    // On remplace la dernière virgule par " et " pour faire joli
                     // Ex: "nom, prénom et email"
                     $lastComma = strrpos($listeChamps, ',');
                     if ($lastComma !== false) {
@@ -542,14 +542,13 @@ class SiteController extends Controller
 
                 } else {
                     $message = "Aucune modification détectée.";
-                    $statusClass = "warning";
                 }
 
                 return [
                     'success' => true,
                     'message' => $message,
                     'statusClass' => 'success',
-                    // On renvoie le contenu mis à jour pour rafraîchir le formulaire
+
                     'content' => $this->renderPartial('_profile', ['user' => $user])
                 ];
             } else {
@@ -635,11 +634,9 @@ class SiteController extends Controller
                     'redirect' => Url::to(['site/index'])
                 ];
             } else {
-                // Récupération de la première erreur
-                $error = reset($voyage->errors)[0] ?? 'Erreur de validation';
                 return [
                     'success' => false,
-                    'message' => 'Erreur : ' . $error
+                    'message' => 'Erreur est survenue lors de la publication du voyage. '
                 ];
             }
         }
